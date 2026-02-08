@@ -1,0 +1,160 @@
+---
+description: UI guidelines (Ant Design + TailwindCSS) for this repo
+globs:
+  - "app/**/*.{ts,tsx,js,jsx,mdx}"
+  - "components/**/*.{ts,tsx,js,jsx}"
+  - "lib/**/*.{ts,tsx,js,jsx}"
+alwaysApply: true
+---
+
+# UI Rules (Ant Design + TailwindCSS)
+
+Mục tiêu: mọi UI page được AI generate ra phải **đồng bộ**, ưu tiên **đúng hệ thống component** (Ant Design) và **đúng khung/layout** (Tailwind).
+
+## Nguyên tắc cốt lõi
+- **Ant Design = System components**: dùng cho các component "chuẩn hệ thống" (Navigation, Form elements, Data display nhỏ, Feedback, Table…).
+- **TailwindCSS = Layout + section/block + spacing + typography**: dùng để dựng khung, chia layout, spacing, background/border tokens, chữ (ngoài text nằm trong AntD component), custom system component (ant không có)
+- **Không dùng shadow**: chỉ dùng `bg-surface` + `border-border` để phân lớp.
+- **Token-first**: màu nền/viền/chữ/primary/semantic phải bám theo token CSS của dự án (`bg-background`, `text-foreground`, `bg-surface`, `border-border`, `text-primary`, `text-success|error|warning|info`…).
+
+## Quy tắc chọn AntD vs Tailwind
+### Dùng Ant Design khi
+- **Navigation**: Button, Breadcrumb, Dropdown, Menu, Pagination, Steps, Tabs.
+- **Form**: Input, Select, DatePicker, Checkbox, Radio, Switch, Upload… (validation, label, help text… theo AntD).
+- **Data display**: Avatar/Badge/Card/List/Tag/Tooltip/Popover… (nếu bản thân nó là component AntD). **Tag**: luôn dùng `bordered={false}`.
+- **Feedback**: Alert, Modal, Drawer, Message, Notification, Popconfirm, Spin, Progress…
+- **Table**: tất cả bảng dữ liệu dùng **AntD Table**, luôn dùng bordered khi có khung rõ
+- **Empty / Error**: dùng **AntD kiểu "info"** (ví dụ `Result`/`Alert` theo context).
+
+### Dùng Tailwind khi
+- **Layout trang**: container, grid/flex, chia cột, khoảng cách giữa block.
+- **Section / Block wrappers**: card nền, viền, radius, padding.
+- **Typography**: 100% chữ ngoài AntD component dùng Tailwind.
+- **Loading skeleton**: dùng Tailwind + CSS skeleton (ưu tiên cùng kích thước nội dung thật).
+
+### Không làm
+- Không "rebuild" lại system component bằng Tailwind (ví dụ tự làm dropdown/menu/table).
+- Không override sâu style nội bộ `.ant-*` bằng Tailwind trừ khi có guideline riêng.
+
+## Layout cho UI page
+- **Container chuẩn**: luôn dùng `container mx-auto px-8`.
+  - Không dùng padding khác cho page (vì toàn bộ spacing theo hệ 8).
+- **Page spacing**: page wrapper ưu tiên `py-8` hoặc `p-8` (tuỳ layout); có thể kết hợp `space-y-8` cho các block con.
+- **Page header** (H1 + mô tả): dùng `space-y-4` giữa title và description.
+- **Layout 2 cột (dashboard)**: có thể dùng `grid grid-cols-1 lg:grid-cols-3 gap-8` với `lg:col-span-2` / `lg:col-span-1` để chia cột chính + sidebar.
+- **Header/Footer**: không cần rule cho generated page (đã code 1 lần ở layout).
+
+## Section / Block (bắt buộc)
+### Section Card (chuẩn)
+Áp dụng cho mọi block nội dung chính trong page.
+- **Wrapper**: `bg-surface border border-border rounded-3xl p-8`
+- **Spacing giữa các section**: `mb-8` hoặc `space-y-8` (level layout)
+- **Header section** (title + optional subtitle + actions): dùng 1 hàng `flex items-start justify-between gap-8 mb-8`; bên trái `flex items-start gap-4` (optional icon + block title/subtitle), bên phải actions `flex items-center gap-4`. Khi cần override padding (vd. section có Timeline sát đáy) có thể thêm `className` như `pb-0`.
+
+### Sub-block trong section
+- **Chuẩn**: `rounded-2xl bg-background p-8` (không viền; phân cấp bằng nền `bg-background`).
+- Dùng **`bg-background`** cho mọi sub-block nằm trong section để phân cấp rõ với section (section dùng `bg-surface`, sub-block dùng `bg-background`); không dùng shadow, không border cho sub-block.
+- **Khoảng cách giữa các sub-block**: dùng `gap-4` hoặc `space-y-4` (hệ 4), không dùng 8.
+- **List / danh sách trong section hoặc sub-block**: khoảng cách giữa các item, giữa các block con (ví dụ hai SubCard trong một section, các dòng progress trong một card) luôn dùng **`gap-4`** hoặc **`space-y-4`**; không dùng `gap-8`/`space-y-8` trong thành phần con.
+
+## Spacing (level-based)
+Mục tiêu: page "thoáng" theo hệ 8 ở layout lớn, nhưng vẫn "gọn" ở chi tiết nhỏ.
+
+### Level spacing (bắt buộc: dùng hệ 8)
+Chỉ áp dụng cho tối đa 3 phân cấp:
+- **Page → Section**
+- **Section → Block**
+- **Block → Sub-block**
+
+Classes chuẩn:
+- `p-8`, `px-8`, `py-8`
+- `mb-8`, `mt-8`
+- `gap-8`, `space-y-8`, `space-x-8`
+
+### Micro spacing (cho chi tiết nhỏ: dùng hệ 4)
+Áp dụng cho spacing nhỏ bên trong 1 card/sub-block (label/value, row, item meta, nhóm button, **danh sách/list items**…).
+Classes chuẩn:
+- `gap-4`, `space-y-4`, `space-x-4`
+- `mb-4`, `mt-4`, `py-4`
+
+**Trong thành phần con (section/sub-block)**: mọi dạng list (nhiều item xếp dọc, nhiều sub-card trong một section, nhiều block nhỏ trong một card) chỉ dùng `gap-4` hoặc `space-y-4`, không dùng hệ 8.
+Không dùng `gap-2/space-y-2/mb-2...` trong layout Tailwind của page (trừ khi AntD tự render).
+Gợi ý: các chỗ như **page header** (H1 + description), meta nhỏ trong card… mặc định là micro spacing `space-y-4`.
+
+## Typography (Tailwind-only cho text ngoài AntD)
+- **Heading**: chỉ dùng tối đa 3 level
+  - `text-3xl font-semibold` (heading lớn nhất)
+  - `text-2xl font-bold`
+  - `text-xl font-bold` (nhỏ nhất trong heading)
+- **Body text**: mặc định (không cần set thêm nếu không cần).
+- **Text nhỏ/secondary (chuẩn)**: `text-sm text-zinc-500` (dark mode: ưu tiên vẫn readable, có thể dùng `dark:text-zinc-400` nếu cần).
+- **Không dùng** các size heading khác (`text-4xl`, `text-lg` làm heading, v.v.).
+
+## Radius (lớn – bắt buộc)
+- **Section**: `rounded-3xl` (chuẩn).
+- **Sub-block**: `rounded-2xl`.
+- **Smallest** (nếu bắt buộc): `rounded-xl`.
+
+## Màu sắc (token-first + semantic)
+- **Màu chính (primary)**: luôn đảm bảo UI "nhìn thấy primary" ở các điểm nhấn:
+  - CTA chính, trạng thái active/selected, link quan trọng, icon nhấn trong tiêu đề/section.
+- **Semantic colors**: `success`, `error`, `warning`, `info` (mức 600 theo token/global CSS).
+- Có thể kết hợp màu khác để "sinh động"/phân cấp thông tin, nhưng:
+  - Không lấn át primary
+  - Ưu tiên dùng trong data viz/tag phụ, không dùng làm màu chủ đạo của page
+
+## Icons, badge/chip (khuyến khích)
+- **Icon**: luôn dùng **lucide-react** (dự án không dùng `@ant-design/icons`).
+- **Kích thước** (đồng bộ với `app/globals.css` và code hiện tại):
+  - **Icon với Antd component**: Dùng mặc định
+  - **Icon đứng độc lậpm**: Icon có size mặc định `className="size-4"` (16px), ví dụ `<Sun className="size-4" />`
+  - **Icon container** (section header, metric): wrapper `size-12 rounded-2xl bg-border font-semibold flex items-center justify-center` + màu theo tone (`text-primary` | `text-info` | `text-success` | `text-warning`); icon bên trong dùng Lucide, kích thước `text-[22px]` (wrapper) hoặc prop `size={22}`.
+- **Icon không bắt buộc ở header section**. Chỉ dùng khi giúp nhận diện nhanh section, nếu không có thì ưu tiên header "sạch" + actions.
+- Tránh icon "trôi" trên nền. Khi icon đứng riêng (metric header, section header), luôn dùng **icon container** (xem kích thước ở trên).
+- **Dùng icon + badge/chip/tag** để tăng phân cấp thông tin:
+  - Status: Tag/Badge theo semantic (success/error/warning/info)
+  - Metric/summary: icon + number + label
+- **A11y**: icon trang trí đặt `aria-hidden`; icon button phải có `aria-label`.
+
+## Header của Section (khuyến khích nhưng nên có)
+Để tránh section "trống", mỗi section card nên có khu vực **actions** bên phải header (filter, view all, export, refresh...).
+- Actions dùng AntD (`Button`, `Dropdown`, `Segmented`, `DatePicker`...) + micro spacing `gap-4`.
+
+## Loading / Empty / Error
+### Loading
+- Dùng **Tailwind skeleton** (CSS skeleton).
+- Skeleton nên **match kích thước** content thật:
+  - Card skeleton: block `h-*` tương ứng
+  - Text skeleton: nhiều dòng với width khác nhau
+- Không dùng AntD `Spin` cho toàn page nếu skeleton phù hợp hơn (Spin chỉ khi chờ ngắn/inline).
+ - Mẫu skeleton gợi ý (chỉ là định hướng): `animate-pulse bg-border/60 rounded-2xl`.
+
+### Empty / Error
+- Dùng **AntD "info"**:
+  - Empty state: ưu tiên `Result status="info"` (hoặc `Empty` nếu cần tối giản)
+  - Error state: ưu tiên `Result status="error"` hoặc `Alert type="info"` (tuỳ vị trí inline/toàn trang), luôn có CTA "Thử lại/Quay lại"
+
+## Responsive (3 kích thước)
+Chỉ thiết kế theo 3 mức: **mobile / tablet / desktop**.
+- **Mobile**: mặc định (không prefix).
+- **Tablet**: dùng `md:*`.
+- **Desktop**: dùng `lg:*`.
+- Tránh dùng quá nhiều breakpoint lắt nhắt (`sm`, `xl`, `2xl`) trong UI page nếu không thật sự cần.
+
+## Table (AntD-only)
+- Tất cả bảng dữ liệu dùng **AntD Table**.
+- **Bọc table** (khi cần khung đồng bộ với section): `rounded-2xl border border-border overflow-hidden`, bên trong có thể `bg-surface`; có thể thêm khoảng đáy (vd. `h-4`) để viền không đè nhau.
+- Có thể dùng `showHeader={false}` khi thiết kế dạng compact / bảng trong section đã có title.
+- Layout xung quanh table (section wrapper, spacing, title/filter bar) dùng Tailwind theo rule trên.
+
+## Checklist trước khi "xong UI page"
+- Có dùng `container mx-auto px-8` cho page wrapper.
+- Mọi section chính là `bg-surface border border-border rounded-3xl p-8`.
+- Section header có cấu trúc title (optional icon + subtitle) + actions, spacing `gap-8` / `gap-4` đúng.
+- Spacing layout giữa block chỉ dùng hệ 8.
+- Heading chỉ dùng `3xl/2xl/xl` đúng weight.
+- Text nhỏ/secondary đúng `text-sm text-zinc-500` (dark: `dark:text-zinc-400` khi cần).
+- Không có shadow.
+- Empty/Error dùng AntD "info".
+- Loading dùng skeleton (match size).
+- Responsive chỉ dùng default + `md:` + `lg:`.

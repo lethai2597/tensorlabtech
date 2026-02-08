@@ -1,26 +1,114 @@
 @import "tailwindcss";
 
+/* Tailwind dark: variant theo class .dark (đồng bộ với ThemeToggle) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* zinc-50: nền trang */
+  --background: #fafafa;
+
+  /* black: màu chữ chính */
+  --foreground: #000000;
+
+  /* white: nền section/block nổi */
+  --surface: #ffffff;
+
+  /* zinc-100: viền section/block */
+  --border: #f4f4f5;
+
+  /* Palette semantic (status & trend) */
+
+  /* green-600 */
+  --success: #16a34a;
+
+  /* red-600 */
+  --error: #dc2626;
+
+  /* amber-600 */
+  --warning: #d97706;
+
+  /* blue-600 */
+  --info: #2563eb;
+
+  color-scheme: light;
+}
+
+.dark {
+  /* zinc-950: nền trang */
+  --background: #09090b80;
+
+  /* white: màu chữ chính */
+  --foreground: #ffffff;
+
+  /* zinc-950: nền section/block nổi */
+  --surface: #18181b;
+
+  /* gray-900/50: viền section/block */
+  --border: #27272a80;
+
+  color-scheme: dark;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-surface: var(--surface);
+  --color-border: var(--border);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Primary = Tailwind orange-600 (#ea580c) */
+  --color-primary: #ea580c;
+
+  /* Semantic (status & trend) */
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+
+  --font-sans: var(--font-be-vietnam-pro);
+  --font-mono: var(--font-be-vietnam-pro);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image:
+    linear-gradient(90deg, var(--border) 1px, transparent 1px),
+    linear-gradient(var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-be-vietnam-pro), ui-sans-serif, sans-serif;
+}
+
+/* Icon size: Button 16px, Tag 14px; Tag icon + text cùng một dòng */
+.ant-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+.ant-tag {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+  gap: 0.25rem;
+}
+.ant-tag > * {
+  flex-shrink: 0;
+}
+.ant-tag > span:not(.ant-tag-close-icon) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ant-tag svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Alert: bỏ border, giảm khoảng cách title ↔ description */
+.ant-alert {
+  border: none !important;
+}
+.ant-alert-with-description .ant-alert-title {
+  margin-bottom: 4px;
 }

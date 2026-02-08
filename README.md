@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Tài liệu dành cho người mới
+
+- **[Custom Primary Theme (Tailwind & Ant Design)](./docs/theme.md)** — Chỉnh màu primary, dark mode, biến CSS và token Ant Design.
+- **[Làm việc với API (Generate & Hooks)](./docs/api.md)** — Generate schema từ OpenAPI, dùng client và viết hook TanStack Query.
+- **[Làm việc với Zustand](./docs/zustand.md)** — Store app config, persist, hydration và cách thêm store mới.
+
 ## Getting Started
 
 First, run the development server:
