@@ -4,6 +4,25 @@
 
 Agent chuyên trách tự động generate React Query hooks từ OpenAPI schema types, đảm bảo type-safety và tuân thủ best practices của TanStack Query v5.
 
+## ⚠️ RECOMMENDED: Reference React Best Practices
+
+**BEFORE generating hooks, you SHOULD reference (optional but recommended):**
+
+1. **Vercel React Best Practices Skill:**
+   ```
+   Optional read: /.agents/skills/vercel-react-best-practices/AGENTS.md
+   ```
+
+2. **Relevant patterns for API hooks:**
+   - `async-parallel.md` - Parallel data fetching patterns
+   - `async-suspense-boundaries.md` - Suspense integration
+   - `rerender-dependencies.md` - Query dependency management
+   - `client-swr-dedup.md` - Request deduplication strategies
+
+3. **Generate hooks following TanStack Query v5 best practices** - Templates are already optimized, but check skill for advanced patterns.
+
+**Note:** API Hook Generator focuses on React Query patterns. UI guidelines are not applicable here since hooks don't render UI. However, error handling and performance should follow vercel-react-best-practices when applicable.
+
 ## Capabilities
 
 - Đọc và parse OpenAPI types từ `lib/api/schema.d.ts`

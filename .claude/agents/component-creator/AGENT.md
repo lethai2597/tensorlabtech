@@ -2,14 +2,40 @@
 name: component-creator
 description: Specialized agent for creating React components with proper categorization, TypeScript interfaces, and automatic barrel export updates. Follows React 19 patterns, UI guidelines, and project conventions.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   author: lethai
   last_updated: "2026-02-08"
+  changelog: "v1.1.0 - Dynamic reference to ui-guidelines skill instead of hardcoded rules"
 ---
 
 # Component Creator Agent
 
 Tạo React components với categorization tự động, TypeScript props interfaces, và barrel export updates.
+
+## ⚠️ CRITICAL: Read UI Guidelines First
+
+**BEFORE generating any component, you MUST:**
+
+1. **Read UI Guidelines Skill:**
+   ```
+   Read file: /.claude/skills/ui-guidelines/AGENTS.md
+   ```
+
+2. **Extract relevant rules based on component type:**
+   - **UI Component** → Focus on: `colors-token-first`, `spacing-*`, `radius-system`, `icons-usage`
+   - **Layout Component** → Focus on: `layout-*`, `section-*`, `spacing-*`
+   - **Feature Component** → Apply **all rules** (comprehensive compliance)
+
+3. **Reference specific rule files when needed:**
+   - Container patterns: `/.claude/skills/ui-guidelines/rules/layout-container.md`
+   - Section structure: `/.claude/skills/ui-guidelines/rules/section-card-structure.md`
+   - Spacing system: `/.claude/skills/ui-guidelines/rules/spacing-level-system.md`
+   - Colors: `/.claude/skills/ui-guidelines/rules/colors-token-first.md`
+   - Typography: `/.claude/skills/ui-guidelines/rules/typography-hierarchy.md`
+
+4. **Generate code following these rules** - Don't rely on examples in this AGENT.md, always check skill files for latest patterns.
+
+5. **Validate output** - Before completing, verify generated code matches UI guidelines (see checklist below).
 
 ## Capabilities
 
@@ -19,7 +45,7 @@ Tạo React components với categorization tự động, TypeScript props inter
 - ✅ Auto-update barrel exports (index.ts)
 - ✅ Import common Ant Design components
 - ✅ Follow React 19 patterns (no forwardRef)
-- ✅ Apply UI guidelines automatically
+- ✅ **Dynamically apply UI guidelines from skill files**
 
 ## Component Categories
 
@@ -375,35 +401,40 @@ import {
 
 ## UI Guidelines Integration
 
-### Apply automatically
+### Dynamic Rule Application
 
-Khi tạo component, auto-apply các rules:
+**IMPORTANT:** Do NOT rely on hardcoded examples below. Always read from skill files for latest patterns.
 
-1. **Layout & Container**
-   - Page wrapper: `container mx-auto px-8`
-   - Section: `bg-surface border border-border rounded-3xl p-8`
-   - Sub-block: `bg-background rounded-2xl p-6`
+**Workflow:**
+1. Read `/.claude/skills/ui-guidelines/AGENTS.md` or specific rule files
+2. Extract patterns for component type (UI/Layout/Feature)
+3. Apply rules to generated code
+4. Validate against skill guidelines (use checklist below)
 
-2. **Spacing**
-   - Level spacing: `gap-8`, `mb-8`, `p-8`
-   - Micro spacing: `gap-4`, `space-y-4`
+**Rule Categories by Component Type:**
 
-3. **Typography**
-   - H1: `text-3xl font-semibold`
-   - H2: `text-2xl font-semibold`
-   - H3: `text-xl font-semibold`
-   - Body: `text-base`
-   - Small: `text-sm text-zinc-500`
+**UI Components** - Apply these rules:
+- `colors-token-first.md` - Token-first color approach
+- `spacing-micro-system.md` - Micro spacing (4px system)
+- `radius-system.md` - Border radius patterns
+- `icons-usage.md` - Icon sizing and containers
+- `typography-hierarchy.md` - Text styles
 
-4. **Colors (Token-first)**
-   - Background: `bg-background`, `bg-surface`
-   - Text: `text-foreground`, `text-primary`, `text-zinc-500`
-   - Border: `border-border`
+**Layout Components** - Apply these rules:
+- `layout-container.md` - Container standards
+- `layout-grid.md` - Grid and flex patterns
+- `section-card-structure.md` - Section wrapper patterns
+- `section-header.md` - Section header structure
+- `spacing-level-system.md` - Level spacing (8px system)
 
-5. **Radius**
-   - Large: `rounded-3xl`
-   - Medium: `rounded-2xl`
-   - Small: `rounded-xl`
+**Feature Components** - Apply ALL rules for comprehensive compliance
+
+**Quick Reference** (verify against skill files):
+- Container: `container mx-auto px-8` (see `layout-container.md`)
+- Section: `bg-surface border border-border rounded-3xl p-8` (see `section-card-structure.md`)
+- Spacing: 8/4 system (see `spacing-*.md`)
+- Colors: Token-first, no hardcoded values (see `colors-token-first.md`)
+- Typography: Semantic hierarchy (see `typography-hierarchy.md`)
 
 ## Usage Examples
 
@@ -543,51 +574,98 @@ export function UserProfileCard({
 ### Step-by-Step Process
 
 ```
-1. Analyze Request
+1. READ UI GUIDELINES FIRST ⚠️ CRITICAL
+   ├─ Read /.claude/skills/ui-guidelines/AGENTS.md
+   ├─ Extract relevant rules for component type
+   └─ Keep rules in mind during generation
+
+2. Analyze Request
    ├─ Extract component name
    ├─ Identify required props
    └─ Determine dependencies
 
-2. Categorize Component
+3. Categorize Component
    ├─ Check for API calls → Feature
    ├─ Check for layout logic → Layout
    └─ Default → UI
 
-3. Generate Props Interface
+4. Generate Props Interface
    ├─ Required props
    ├─ Optional props
    ├─ Callbacks
    └─ Style props
 
-4. Select Template
+5. Select Template
    ├─ ui-component.tsx.template
    ├─ layout-component.tsx.template
    └─ feature-component.tsx.template
 
-5. Apply Template
+6. Apply Template WITH UI Guidelines
    ├─ Replace placeholders
    ├─ Add imports
    ├─ Generate JSX
-   └─ Apply UI guidelines
+   └─ Apply patterns from skill files (NOT hardcoded examples)
 
-6. Add i18n (if needed)
+7. Add i18n (if needed)
    ├─ Add 'use client' directive
    ├─ Import useTranslations
    └─ Replace static text
 
-7. Create File
+8. Create File
    └─ Write to appropriate directory
 
-8. Update Barrel Export
+9. Update Barrel Export
    ├─ Add component export
    ├─ Add type export
    └─ Sort alphabetically
 
-9. Verify
-   ├─ TypeScript check
-   ├─ Import check
-   └─ UI guidelines compliance
+10. VALIDATE AGAINST UI GUIDELINES ⚠️ CRITICAL
+    └─ Use checklist below to verify compliance
 ```
+
+## UI Guidelines Validation Checklist
+
+**Before completing task, verify generated code:**
+
+### Layout & Structure
+- [ ] Container uses `container mx-auto px-8` (if applicable)
+- [ ] Section card uses `bg-surface border border-border rounded-3xl p-8`
+- [ ] Sub-blocks use `bg-background rounded-2xl p-6`
+- [ ] Grid/flex layouts follow skill patterns
+
+### Spacing
+- [ ] Level spacing uses 8px system (`gap-8`, `mb-8`, `p-8`)
+- [ ] Micro spacing uses 4px system (`gap-4`, `space-y-4`)
+- [ ] No arbitrary spacing values (no `gap-3`, `p-5`, etc.)
+
+### Colors
+- [ ] All colors use tokens (`bg-surface`, `text-foreground`, `border-border`)
+- [ ] NO hardcoded colors (`bg-white`, `text-gray-500`)
+- [ ] Dark mode support via token system (automatic)
+
+### Typography
+- [ ] Headings use semantic classes (`text-3xl`, `text-2xl`, `text-xl`)
+- [ ] Font weights appropriate (`font-semibold` for headings)
+- [ ] Body text uses `text-base`
+- [ ] Secondary text uses `text-sm text-zinc-500 dark:text-zinc-400`
+
+### Radius
+- [ ] Large elements use `rounded-3xl`
+- [ ] Medium elements use `rounded-2xl`
+- [ ] Small elements use `rounded-xl`
+- [ ] NO `rounded-lg`, `rounded-md` (not in system)
+
+### Components
+- [ ] Ant Design used for complex components (Table, Form, Modal)
+- [ ] Tailwind used for layout/spacing
+- [ ] NO shadows (use borders instead: `border border-border`)
+
+### Icons
+- [ ] Icons from lucide-react (not Ant Design icons)
+- [ ] Icon sizes: 16px (`size={16}`) or 20px (`size={20}`)
+- [ ] Icons in containers use proper padding
+
+**If any checklist item fails, read the corresponding skill rule file and fix before completing.**
 
 ## Best Practices
 

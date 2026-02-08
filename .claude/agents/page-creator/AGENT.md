@@ -3,13 +3,34 @@
 ## Purpose
 Agent chuyên tạo Next.js App Router pages với full structure (page, layout, loading, error) và tích hợp i18n tự động.
 
+## ⚠️ CRITICAL: Read UI Guidelines First
+
+**BEFORE generating any page, you MUST:**
+
+1. **Read UI Guidelines Skill:**
+   ```
+   Read file: /.claude/skills/ui-guidelines/AGENTS.md
+   ```
+
+2. **Focus on these HIGH-priority rules for pages:**
+   - `layout-container.md` - Container and page wrapper standards
+   - `layout-page-header.md` - Page header structure
+   - `section-card-structure.md` - Section card patterns
+   - `section-header.md` - Section headers with title + actions
+   - `spacing-level-system.md` - Level spacing (8px system)
+   - `states-loading-empty-error.md` - Loading/Empty/Error patterns
+
+3. **Generate code following skill patterns** - Don't rely on examples in this AGENT.md, always check skill files for latest patterns.
+
+4. **Validate output** - Before completing, verify generated pages match UI guidelines (see checklist below).
+
 ## Capabilities
 - ✅ Tạo full page structure theo Next.js 16 App Router conventions
 - ✅ Auto-generate layout.tsx, loading.tsx, error.tsx
 - ✅ Tích hợp next-intl (i18n) hooks
 - ✅ Tự động thêm i18n keys vào locales/en.json và locales/vi.json
 - ✅ TypeScript types đầy đủ
-- ✅ Follow project UI guidelines (Ant Design + Tailwind)
+- ✅ **Dynamically apply UI guidelines from skill files**
 - ✅ Support cả Client Components và Server Components
 
 ## Usage
@@ -182,33 +203,23 @@ app/[locale]/
    - Sử dụng hooks (useState, useEffect, etc.)
    - `useTranslations` từ next-intl
 
-### UI Guidelines
+### UI Guidelines Integration
 
-**Section Structure**:
-```tsx
-<div className="container mx-auto px-8 py-8 space-y-8">
-  <header className="space-y-4">
-    <h1 className="text-3xl font-semibold">{t("title")}</h1>
-    <p className="text-sm text-zinc-500 dark:text-zinc-400">
-      {t("description")}
-    </p>
-  </header>
+**IMPORTANT:** Always read from skill files for latest patterns. Don't rely on examples below.
 
-  <SectionCard title="..." subtitle="...">
-    {/* Content */}
-  </SectionCard>
-</div>
-```
+**Required Reading:**
+- `/.claude/skills/ui-guidelines/rules/layout-container.md` - Container patterns
+- `/.claude/skills/ui-guidelines/rules/layout-page-header.md` - Page header structure
+- `/.claude/skills/ui-guidelines/rules/section-card-structure.md` - Section cards
+- `/.claude/skills/ui-guidelines/rules/spacing-level-system.md` - Spacing system
 
-**Spacing System**:
-- Level 1: `gap-4` (16px) - Micro spacing
-- Level 2: `gap-8` (32px) - Component spacing
-- Level 3: `space-y-8` - Section spacing
-
-**Colors**:
-- Use design tokens: `text-primary`, `text-success`, `bg-surface`
-- Avoid hardcoded colors
-- Dark mode support: `dark:text-zinc-400`
+**Quick Reference** (verify against skill files before using):
+- Container: `container mx-auto px-8` (see layout-container.md)
+- Page spacing: `py-8 space-y-8` (see spacing-level-system.md)
+- Section card: `bg-surface border border-border rounded-3xl p-8` (see section-card-structure.md)
+- Page header: See layout-page-header.md for complete structure
+- Colors: Token-first approach (see colors-token-first.md)
+- Typography: Semantic hierarchy (see typography-hierarchy.md)
 
 ## Examples
 
@@ -303,33 +314,78 @@ app/[locale]/user-management/roles/
 
 ## Workflow
 
-1. **Receive Request**
+1. **READ UI GUIDELINES FIRST** ⚠️ CRITICAL
+   - Read `/.claude/skills/ui-guidelines/AGENTS.md`
+   - Extract page-specific rules (layout, section, spacing, states)
+   - Keep patterns in mind during generation
+
+2. **Receive Request**
    - Parse feature name
    - Identify requirements (layout, loading, error)
    - Determine component type (server/client)
 
-2. **Create Structure**
+3. **Create Structure**
    - Generate folder: `app/[locale]/[feature-name]/`
    - Copy templates
    - Replace placeholders
 
-3. **Add i18n Keys**
+4. **Add i18n Keys**
    - Read current locales/en.json
    - Read current locales/vi.json
    - Add new keys for feature
    - Write back both files
 
-4. **Customize Code**
+5. **Customize Code WITH UI Guidelines**
    - Replace `[FeatureName]` with actual name (PascalCase)
    - Replace `[featureName]` with actual name (camelCase)
    - Replace `[feature-name]` with actual name (kebab-case)
    - Update i18n namespace
+   - Apply patterns from skill files (NOT hardcoded examples)
 
-5. **Verify**
+6. **VALIDATE AGAINST UI GUIDELINES** ⚠️ CRITICAL
+   - Use checklist below to verify compliance
    - Check TypeScript syntax
    - Verify imports
    - Confirm i18n keys match
    - Validate folder structure
+
+## UI Guidelines Validation Checklist
+
+**Before completing task, verify generated pages:**
+
+### Layout & Structure
+- [ ] Page wrapper uses `container mx-auto px-8 py-8`
+- [ ] Section spacing uses `space-y-8`
+- [ ] Section cards use `bg-surface border border-border rounded-3xl p-8`
+- [ ] Page header structure matches `layout-page-header.md` pattern
+
+### Spacing
+- [ ] Uses 8px level spacing (`gap-8`, `mb-8`, `p-8`, `space-y-8`)
+- [ ] Micro spacing uses 4px system (`gap-4`, `space-y-4`)
+- [ ] No arbitrary values (no `gap-3`, `p-5`)
+
+### Colors
+- [ ] All colors use tokens (`bg-surface`, `text-foreground`, `border-border`)
+- [ ] NO hardcoded colors (`bg-white`, `text-gray-500`)
+- [ ] Dark mode via tokens (automatic)
+
+### Typography
+- [ ] Page title: `text-3xl font-semibold`
+- [ ] Section titles: `text-2xl font-semibold`
+- [ ] Descriptions: `text-sm text-zinc-500 dark:text-zinc-400`
+
+### Loading State (loading.tsx)
+- [ ] Skeleton structure matches actual page layout
+- [ ] Uses `animate-pulse` for loading effect
+- [ ] Follows same spacing as page.tsx
+
+### Error State (error.tsx)
+- [ ] Uses Ant Design `Result` component
+- [ ] Has reset functionality
+- [ ] i18n error messages
+- [ ] Proper error logging with digest
+
+**If any item fails, read the corresponding skill rule file and fix before completing.**
 
 ## Error Handling
 
