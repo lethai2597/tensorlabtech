@@ -1,0 +1,101 @@
+import { cn } from '@/lib/utils';
+
+export interface {{COMPONENT_NAME}}Props {
+  {{PROPS_DEFINITION}}
+  className?: string;
+}
+
+export function {{COMPONENT_NAME}}({{PROPS_DESTRUCTURE}}: {{COMPONENT_NAME}}Props) {
+  return (
+    <div className={cn({{BASE_CLASSES}}, className)}>
+      {{COMPONENT_BODY}}
+    </div>
+  );
+}
+
+// =============================================================================
+// TEMPLATE USAGE GUIDE
+// =============================================================================
+//
+// Placeholders:
+// - {{COMPONENT_NAME}}     : Component name (e.g., "Button", "StatusBadge")
+// - {{PROPS_DEFINITION}}   : Props interface body (multiline)
+// - {{PROPS_DESTRUCTURE}}  : Props destructuring in function params
+// - {{BASE_CLASSES}}       : Base Tailwind classes as string
+// - {{COMPONENT_BODY}}     : JSX content inside component
+//
+// Example 1: Simple Badge Component
+// ----------------------------------
+// {{COMPONENT_NAME}} = "StatusBadge"
+// {{PROPS_DEFINITION}} =
+//   status: 'success' | 'warning' | 'error' | 'info';
+//   text?: string;
+// {{PROPS_DESTRUCTURE}} = { status, text, className }
+// {{BASE_CLASSES}} = "'inline-flex items-center gap-2'"
+// {{COMPONENT_BODY}} =
+//   <Badge status={status} text={text} />
+//
+// Result:
+// -------
+// import { Badge } from 'antd';
+// import { cn } from '@/lib/utils';
+//
+// export interface StatusBadgeProps {
+//   status: 'success' | 'warning' | 'error' | 'info';
+//   text?: string;
+//   className?: string;
+// }
+//
+// export function StatusBadge({ status, text, className }: StatusBadgeProps) {
+//   return (
+//     <div className={cn('inline-flex items-center gap-2', className)}>
+//       <Badge status={status} text={text} />
+//     </div>
+//   );
+// }
+//
+// Example 2: Icon Button
+// ----------------------
+// {{COMPONENT_NAME}} = "IconButton"
+// {{PROPS_DEFINITION}} =
+//   icon: React.ReactNode;
+//   onClick?: () => void;
+//   variant?: 'primary' | 'secondary';
+// {{PROPS_DESTRUCTURE}} = { icon, onClick, variant = 'primary', className }
+// {{BASE_CLASSES}} = "'inline-flex items-center justify-center rounded-xl p-2 transition-colors'"
+// {{COMPONENT_BODY}} =
+//   <button
+//     onClick={onClick}
+//     className={variant === 'primary' ? 'bg-primary text-white' : 'bg-surface'}
+//   >
+//     {icon}
+//   </button>
+//
+// Additional Patterns:
+// -------------------
+//
+// 1. With Ant Design Component:
+//    - Add import: import { Button } from 'antd';
+//    - Use in body: <Button {...props}>{children}</Button>
+//
+// 2. With Icons:
+//    - Add import: import { Check } from 'lucide-react';
+//    - Use in body: <Check className="h-4 w-4" />
+//
+// 3. With Variants:
+//    - Use cn() utility with conditional classes
+//    - Example: cn('base-class', variant === 'primary' && 'primary-class')
+//
+// 4. With Children:
+//    - Add to props: children: React.ReactNode;
+//    - Use in body: {children}
+//
+// UI Guidelines to Apply:
+// ----------------------
+// - Spacing: gap-4 (micro), gap-8 (level)
+// - Radius: rounded-xl (small), rounded-2xl (medium), rounded-3xl (large)
+// - Colors: bg-surface, text-foreground, border-border (token-first)
+// - Typography: text-sm, text-base, font-medium
+// - NO shadows (use borders instead)
+//
+// =============================================================================

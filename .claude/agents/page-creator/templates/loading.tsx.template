@@ -1,0 +1,38 @@
+export default function Loading() {
+  return (
+    <div className="container mx-auto px-8 py-8 space-y-8">
+      {/* Header Skeleton */}
+      <header className="space-y-4">
+        <div className="h-9 w-64 animate-pulse rounded-lg bg-border/60" />
+        <div className="h-5 w-96 animate-pulse rounded-lg bg-border/60" />
+      </header>
+
+      {/* Section Skeleton */}
+      <section className="bg-surface border border-border rounded-3xl p-8">
+        <div className="space-y-8">
+          {/* Section header */}
+          <div className="flex items-start gap-4">
+            <div className="size-12 rounded-2xl animate-pulse bg-border/60" />
+            <div className="flex-1 space-y-2">
+              <div className="h-6 w-48 animate-pulse rounded-lg bg-border/60" />
+              <div className="h-4 w-72 animate-pulse rounded-lg bg-border/60" />
+            </div>
+          </div>
+
+          {/* Content skeleton */}
+          <div className="rounded-2xl bg-background p-8 space-y-4">
+            <div className="h-4 w-full animate-pulse rounded-lg bg-border/60" />
+            <div className="h-4 max-w-[90%] animate-pulse rounded-lg bg-border/60" />
+            <div className="h-4 max-w-[70%] animate-pulse rounded-lg bg-border/60" />
+          </div>
+
+          {/* Grid skeleton */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="h-32 animate-pulse rounded-2xl bg-border/60" />
+            <div className="h-32 animate-pulse rounded-2xl bg-border/60" />
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

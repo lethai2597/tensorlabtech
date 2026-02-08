@@ -1,0 +1,40 @@
+"use client";
+
+import { Button, Result } from "antd";
+import { useTranslations } from "next-intl";
+import { useEffect } from "react";
+
+type ErrorProps = {
+  error: Error & { digest?: string };
+  reset: () => void;
+};
+
+export default function Error({ error, reset }: ErrorProps) {
+  const t = useTranslations("[featureName]");
+
+  useEffect(() => {
+    // Log error to error reporting service
+    console.error("[FeatureName] Error:", error);
+  }, [error]);
+
+  return (
+    <div className="container mx-auto px-8 py-8">
+      <Result
+        status="error"
+        title={t("error.title")}
+        subTitle={
+          t("error.subtitle") +
+          (error.digest ? ` (Error ID: ${error.digest})` : "")
+        }
+        extra={[
+          <Button type="primary" key="retry" onClick={reset}>
+            {t("error.retry")}
+          </Button>,
+          <Button key="home" href="/">
+            {t("error.backHome")}
+          </Button>,
+        ]}
+      />
+    </div>
+  );
+}

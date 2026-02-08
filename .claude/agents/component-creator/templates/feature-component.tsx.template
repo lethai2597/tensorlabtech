@@ -1,0 +1,269 @@
+'use client';
+
+import { useQuery } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
+import { {{ANT_IMPORTS}} } from 'antd';
+import { cn } from '@/lib/utils';
+
+export interface {{COMPONENT_NAME}}Props {
+  {{PROPS_DEFINITION}}
+  className?: string;
+}
+
+export function {{COMPONENT_NAME}}({{PROPS_DESTRUCTURE}}: {{COMPONENT_NAME}}Props) {
+  const t = useTranslations('{{I18N_NAMESPACE}}');
+
+  {{HOOKS_SECTION}}
+
+  {{LOADING_STATE}}
+
+  {{ERROR_STATE}}
+
+  return (
+    <div className={cn({{BASE_CLASSES}}, className)}>
+      {{COMPONENT_BODY}}
+    </div>
+  );
+}
+
+// =============================================================================
+// TEMPLATE USAGE GUIDE
+// =============================================================================
+//
+// Placeholders:
+// - {{COMPONENT_NAME}}     : Component name (e.g., "UserProfileCard", "ProductList")
+// - {{ANT_IMPORTS}}        : Ant Design components to import (e.g., "Card, Skeleton, Alert")
+// - {{PROPS_DEFINITION}}   : Props interface body (multiline)
+// - {{PROPS_DESTRUCTURE}}  : Props destructuring in function params
+// - {{I18N_NAMESPACE}}     : Translation namespace (e.g., "user.profile", "product.list")
+// - {{HOOKS_SECTION}}      : React hooks (useQuery, useState, etc.)
+// - {{LOADING_STATE}}      : Loading state JSX
+// - {{ERROR_STATE}}        : Error state JSX
+// - {{BASE_CLASSES}}       : Base Tailwind classes as string
+// - {{COMPONENT_BODY}}     : Main JSX content
+//
+// Example 1: User Profile Card with Data Fetching
+// -----------------------------------------------
+// {{COMPONENT_NAME}} = "UserProfileCard"
+// {{ANT_IMPORTS}} = "Card, Skeleton, Alert"
+// {{PROPS_DEFINITION}} =
+//   userId: string;
+// {{PROPS_DESTRUCTURE}} = { userId, className }
+// {{I18N_NAMESPACE}} = "user.profile"
+// {{HOOKS_SECTION}} =
+//   const { data: user, isLoading, error } = useQuery({
+//     queryKey: ['user', userId],
+//     queryFn: () => fetchUser(userId),
+//   });
+// {{LOADING_STATE}} =
+//   if (isLoading) {
+//     return <Skeleton active />;
+//   }
+// {{ERROR_STATE}} =
+//   if (error) {
+//     return <Alert type="error" message={t('error.load')} />;
+//   }
+// {{BASE_CLASSES}} = "''"
+// {{COMPONENT_BODY}} =
+//   <Card title={t('title')}>
+//     <div className="space-y-4">
+//       <p>{user?.name}</p>
+//       <p className="text-sm text-zinc-500">{user?.email}</p>
+//     </div>
+//   </Card>
+//
+// Example 2: Product List with Filter
+// -----------------------------------
+// {{COMPONENT_NAME}} = "ProductList"
+// {{ANT_IMPORTS}} = "Table, Empty, Button"
+// {{PROPS_DEFINITION}} =
+//   category?: string;
+//   onProductClick?: (id: string) => void;
+// {{PROPS_DESTRUCTURE}} = { category, onProductClick, className }
+// {{I18N_NAMESPACE}} = "product.list"
+// {{HOOKS_SECTION}} =
+//   const [page, setPage] = useState(1);
+//
+//   const { data, isLoading } = useQuery({
+//     queryKey: ['products', category, page],
+//     queryFn: () => fetchProducts({ category, page }),
+//   });
+// {{LOADING_STATE}} =
+//   if (isLoading) {
+//     return <Skeleton active />;
+//   }
+// {{ERROR_STATE}} =
+//   if (!data?.products.length) {
+//     return <Empty description={t('empty')} />;
+//   }
+// {{BASE_CLASSES}} = "'bg-surface border border-border rounded-3xl p-8'"
+// {{COMPONENT_BODY}} =
+//   <div className="space-y-8">
+//     <div className="flex items-center justify-between">
+//       <h2 className="text-2xl font-semibold">{t('title')}</h2>
+//       <Button>{t('add')}</Button>
+//     </div>
+//     <Table
+//       dataSource={data.products}
+//       columns={columns}
+//       pagination={{ current: page, onChange: setPage }}
+//     />
+//   </div>
+//
+// Common React Query Patterns:
+// ---------------------------
+//
+// 1. Simple Data Fetch:
+//    const { data, isLoading, error } = useQuery({
+//      queryKey: ['resource', id],
+//      queryFn: () => fetchResource(id),
+//    });
+//
+// 2. With Enabled Condition:
+//    const { data } = useQuery({
+//      queryKey: ['user', userId],
+//      queryFn: () => fetchUser(userId),
+//      enabled: !!userId,
+//    });
+//
+// 3. Mutation (Create/Update/Delete):
+//    const mutation = useMutation({
+//      mutationFn: (data) => createItem(data),
+//      onSuccess: () => {
+//        queryClient.invalidateQueries({ queryKey: ['items'] });
+//      },
+//    });
+//
+// 4. Infinite Query (Pagination):
+//    const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
+//      queryKey: ['items'],
+//      queryFn: ({ pageParam = 1 }) => fetchItems(pageParam),
+//      getNextPageParam: (lastPage) => lastPage.nextPage,
+//    });
+//
+// Common State Patterns:
+// ---------------------
+//
+// 1. Loading State:
+//    if (isLoading) {
+//      return <Skeleton active />;
+//    }
+//
+// 2. Error State:
+//    if (error) {
+//      return <Alert type="error" message={t('error.load')} />;
+//    }
+//
+// 3. Empty State:
+//    if (!data?.length) {
+//      return <Empty description={t('empty')} />;
+//    }
+//
+// 4. Combined Loading/Error/Empty:
+//    if (isLoading) return <Skeleton active />;
+//    if (error) return <Alert type="error" message={t('error.load')} />;
+//    if (!data?.length) return <Empty description={t('empty')} />;
+//
+// i18n Translation Structure:
+// --------------------------
+//
+// messages/en.json:
+// {
+//   "user": {
+//     "profile": {
+//       "title": "User Profile",
+//       "error": {
+//         "load": "Failed to load user profile"
+//       }
+//     }
+//   },
+//   "product": {
+//     "list": {
+//       "title": "Products",
+//       "add": "Add Product",
+//       "empty": "No products found",
+//       "error": {
+//         "load": "Failed to load products"
+//       }
+//     }
+//   }
+// }
+//
+// Common Ant Design Components:
+// -----------------------------
+//
+// Data Display:
+// - Card: Complex content containers
+// - Table: Data tables with pagination
+// - Empty: Empty state placeholder
+// - Result: Success/Error/Info pages
+//
+// Feedback:
+// - Skeleton: Loading placeholders
+// - Spin: Loading spinners
+// - Alert: Messages and alerts
+// - Modal: Dialogs and confirmations
+//
+// Data Entry:
+// - Form: Form containers with validation
+// - Input: Text inputs
+// - Select: Dropdown selects
+// - DatePicker: Date selection
+//
+// UI Guidelines for Features:
+// ---------------------------
+// - Wrap in section card: 'bg-surface border border-border rounded-3xl p-8'
+// - Section header: title + actions với gap-8
+// - Content spacing: space-y-8 (level), space-y-4 (micro)
+// - Loading: Match content structure với Skeleton
+// - Empty/Error: Ant Design Result/Alert/Empty
+// - Typography: text-2xl (title), text-base (body), text-sm (secondary)
+//
+// Form Patterns:
+// -------------
+// <Form
+//   form={form}
+//   onFinish={onSubmit}
+//   layout="vertical"
+// >
+//   <Form.Item
+//     label={t('field.label')}
+//     name="fieldName"
+//     rules={[{ required: true, message: t('field.required') }]}
+//   >
+//     <Input placeholder={t('field.placeholder')} />
+//   </Form.Item>
+//   <Form.Item>
+//     <Button type="primary" htmlType="submit">
+//       {t('submit')}
+//     </Button>
+//   </Form.Item>
+// </Form>
+//
+// Table Patterns:
+// --------------
+// const columns = [
+//   {
+//     title: t('column.name'),
+//     dataIndex: 'name',
+//     key: 'name',
+//   },
+//   {
+//     title: t('column.actions'),
+//     key: 'actions',
+//     render: (_, record) => (
+//       <Button onClick={() => onEdit(record.id)}>
+//         {t('edit')}
+//       </Button>
+//     ),
+//   },
+// ];
+//
+// <Table
+//   dataSource={data}
+//   columns={columns}
+//   pagination={{ pageSize: 10 }}
+//   bordered
+// />
+//
+// =============================================================================
