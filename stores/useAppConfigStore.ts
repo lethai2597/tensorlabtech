@@ -25,7 +25,7 @@ export { toValidTheme } from "@/lib/theme";
 export const useAppConfigStore = create<AppConfigState>()(
   persist(
     (set) => ({
-      theme: "light",
+      theme: "dark",
       setTheme: (mode) => set({ theme: mode }),
     }),
     {

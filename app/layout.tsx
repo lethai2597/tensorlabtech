@@ -74,7 +74,7 @@ export default async function RootLayout({
         var raw = localStorage.getItem('${APP_CONFIG_STORAGE_KEY}');
         var data = raw ? JSON.parse(raw) : null;
         var theme = data?.state?.theme;
-        var isDark = theme === 'dark';
+        var isDark = theme === 'dark' || theme === undefined;
         document.documentElement.classList.toggle('dark', !!isDark);
       } catch (e) {}
     })();

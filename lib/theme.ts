@@ -10,7 +10,7 @@ export function parseTheme(value: string | undefined): ThemeMode | undefined {
 
 /** Ép giá trị (kể cả "system" cũ từ localStorage) thành ThemeMode hợp lệ */
 export function toValidTheme(value: string): ThemeMode {
-  return value === "dark" || value === "light" ? value : "light";
+  return value === "dark" || value === "light" ? value : "dark";
 }
 
 /** Token Ant Design dùng chung: Button, Input, Select, form controls */

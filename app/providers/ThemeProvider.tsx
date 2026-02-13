@@ -28,7 +28,7 @@ function useEffectiveTheme(initialThemeOverride?: ThemeMode) {
   const setTheme = useAppConfigStore((s) => s.setTheme);
   const effectiveTheme: ThemeMode = hasHydrated
     ? toValidTheme(themeFromStore)
-    : initialTheme ?? "light";
+    : initialTheme ?? "dark";
   const isDark = effectiveTheme === "dark";
   return { effectiveTheme, isDark, setTheme, themeFromStore };
 }
