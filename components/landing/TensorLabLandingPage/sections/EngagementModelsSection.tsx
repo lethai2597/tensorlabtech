@@ -13,6 +13,7 @@ import {
 
 import ShinyText from "@/components/ShinyText";
 import SpotlightCard from "@/components/SpotlightCard";
+import { SectionBackdrop } from "@/components/landing/TensorLabLandingPage/SectionBackdrop";
 import { landingViewport, useSectionVariants } from "@/lib/landingMotion";
 
 export function EngagementModelsSection() {
@@ -65,9 +66,11 @@ export function EngagementModelsSection() {
       whileInView="visible"
       viewport={landingViewport}
       variants={stagger}
-      className="bg-background py-20 md:py-28"
+      className="relative overflow-hidden bg-background py-20 md:py-28"
     >
-      <div className="container mx-auto px-8">
+      <SectionBackdrop variant="cool" />
+
+      <div className="container mx-auto px-8 relative z-10">
         <motion.div
           variants={fadeUp}
           className="max-w-2xl mx-auto text-center flex flex-col items-center gap-4 mb-16"

@@ -88,6 +88,9 @@
         }
       }
     },
+    "scrollReveal": {
+      "headline": "Triển khai sản phẩm số production ready nhanh, ổn định, dễ mở rộng. Kiến trúc rõ ràng, UX gọn sạch, và vận hành tự tin ở môi trường thực tế."
+    },
     "engagement": {
       "tag": "Hợp tác",
       "title": "2 hướng hợp tác cùng TensorLab",

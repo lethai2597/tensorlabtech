@@ -80,7 +80,7 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
         onMouseLeave?.(e);
         handleMouseLeaveInternal();
       }}
-      className={`relative overflow-hidden rounded-3xl border border-border bg-background p-8 outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-2 focus-visible:ring-offset-background ${className}`}
+      className={`relative overflow-hidden rounded-3xl border border-border bg-surface p-8 outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-2 focus-visible:ring-offset-background ${className}`}
       {...rest}
     >
       <div

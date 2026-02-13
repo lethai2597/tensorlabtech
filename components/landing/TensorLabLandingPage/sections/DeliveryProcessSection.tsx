@@ -7,6 +7,7 @@ import { Layers, Lightbulb, Rocket, Shield, Zap } from "lucide-react";
 
 import ShinyText from "@/components/ShinyText";
 import SpotlightCard from "@/components/SpotlightCard";
+import { SectionBackdrop } from "@/components/landing/TensorLabLandingPage/SectionBackdrop";
 import { landingViewport, useSectionVariants } from "@/lib/landingMotion";
 
 const stepIcons = {
@@ -37,9 +38,11 @@ export function DeliveryProcessSection() {
       whileInView="visible"
       viewport={landingViewport}
       variants={stagger}
-      className="bg-surface py-20 md:py-28 border-y border-border"
+      className="relative overflow-hidden bg-background py-20 md:py-28 border-y border-border"
     >
-      <div className="container mx-auto px-8">
+      <SectionBackdrop variant="neutral" />
+
+      <div className="container mx-auto px-8 relative z-10">
         <motion.div
           variants={fadeUp}
           className="max-w-2xl mx-auto text-center flex flex-col items-center gap-4 mb-16"
@@ -85,7 +88,7 @@ export function DeliveryProcessSection() {
                     className="grid grid-cols-[44px_1fr] md:grid-cols-[48px_1fr] gap-4 md:gap-6"
                   >
                     <div className="pt-4">
-                      <div className="relative z-10 size-11 md:size-12 rounded-2xl bg-background border border-border flex items-center justify-center text-primary">
+                      <div className="relative z-10 size-11 md:size-12 rounded-2xl bg-surface border border-border flex items-center justify-center text-primary">
                         <Icon size={22} aria-hidden="true" />
                       </div>
                     </div>

@@ -35,16 +35,16 @@
 
 .dark {
   /* zinc-950: nền trang */
-  --background: #09090b80;
+  --background: #09090b;
 
   /* white: màu chữ chính */
   --foreground: #fafafa;
 
-  /* zinc-950: nền section/block nổi */
-  --surface: #121213;
+  /* zinc-900: nền section/block nổi (nhẹ hơn background) */
+  --surface: #18181b;
 
-  /* gray-900/50: viền section/block */
-  --border: #27272a80;
+  /* gray-800/70: viền section/block */
+  --border: #27272ab3;
 
   color-scheme: dark;
 }
