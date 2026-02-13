@@ -27,8 +27,8 @@
   /* amber-600 */
   --warning: #d97706;
 
-  /* blue-600 */
-  --info: #2563eb;
+  /* sky-500 (tech accent) */
+  --info: #0ea5e9;
 
   color-scheme: light;
 }
@@ -38,10 +38,10 @@
   --background: #09090b80;
 
   /* white: màu chữ chính */
-  --foreground: #ffffff;
+  --foreground: #fafafa;
 
   /* zinc-950: nền section/block nổi */
-  --surface: #18181b;
+  --surface: #121213;
 
   /* gray-900/50: viền section/block */
   --border: #27272a80;
@@ -55,8 +55,8 @@
   --color-surface: var(--surface);
   --color-border: var(--border);
 
-  /* Primary = Tailwind orange-600 (#ea580c) */
-  --color-primary: #ea580c;
+  /* Primary = blue-600 (#2563eb) */
+  --color-primary: #2563eb;
 
   /* Semantic (status & trend) */
   --color-success: var(--success);
@@ -68,12 +68,13 @@
   --font-mono: var(--font-be-vietnam-pro);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--background);
-  background-image:
-    linear-gradient(90deg, var(--border) 1px, transparent 1px),
-    linear-gradient(var(--border) 1px, transparent 1px);
-  background-size: 40px 40px;
+
   color: var(--foreground);
   font-family: var(--font-be-vietnam-pro), ui-sans-serif, sans-serif;
 }

@@ -5,25 +5,30 @@
 ## Tech Stack Overview
 
 ### Core Framework
+
 - **Next.js 16.1.6** - App Router with Server Components
 - **React 19.2.3** - Latest React with concurrent features
 - **TypeScript 5** - Strict mode enabled
 
 ### UI & Styling
+
 - **Ant Design 5.23.2** - Primary component library
 - **TailwindCSS 4** - Utility-first CSS framework
 - **Lucide React 0.563.0** - Icon library
 - **Recharts 3.7.0** - Charting library
 
 ### State Management & Data Fetching
+
 - **Zustand 5.0.2** - Lightweight state management (for global app state)
 - **TanStack Query 5.90.20** - Server state management & caching
 - **openapi-fetch 0.15.0** - Type-safe API client
 
 ### Internationalization
+
 - **next-intl 4.8.1** - i18n solution for Next.js
 
 ### Development Tools
+
 - **ESLint 9** - Linting
 - **openapi-typescript 7.10.1** - Generate TypeScript types from OpenAPI specs
 
@@ -74,12 +79,14 @@
 ## Coding Conventions
 
 ### File Naming
+
 - **Components**: `PascalCase.tsx` (e.g., `MainLayout.tsx`, `ThemeToggle.tsx`)
 - **Utilities/Hooks**: `camelCase.ts` (e.g., `useAppConfigStore.ts`, `utils.ts`)
 - **Pages**: Next.js conventions (`page.tsx`, `layout.tsx`, `error.tsx`, `loading.tsx`)
 - **Directories**: `kebab-case` (e.g., `landing-v2/`, `api-hooks/`)
 
 ### Import Order
+
 ```tsx
 // 1. External dependencies (React, Next.js, libraries)
 import { useState } from "react";
@@ -96,6 +103,7 @@ import type { ThemeMode } from "@/lib/theme";
 ```
 
 ### TypeScript Guidelines
+
 - **Strict mode enabled** - All type errors must be resolved
 - **Path alias**: Use `@/` for imports from project root
 - **Type inference**: Prefer type inference over explicit typing when obvious
@@ -104,10 +112,13 @@ import type { ThemeMode } from "@/lib/theme";
 
 ```tsx
 // Simple props - inline
-function Button({ children, onClick }: {
+function Button({
+  children,
+  onClick,
+}: {
   children: React.ReactNode;
   onClick: () => void;
-}) { }
+}) {}
 
 // Complex props - separate type
 type CardProps = {
@@ -117,12 +128,13 @@ type CardProps = {
   loading?: boolean;
 };
 
-function Card({ title, description, actions, loading }: CardProps) { }
+function Card({ title, description, actions, loading }: CardProps) {}
 ```
 
 ### Component Patterns
 
 #### Server vs Client Components
+
 ```tsx
 // Server Component (default in app/)
 // - Can use async/await
@@ -137,7 +149,7 @@ export default async function HomePage() {
 // - Can use hooks (useState, useEffect, etc.)
 // - Can handle user interactions
 // - Required for Ant Design components
-"use client";
+("use client");
 export function ThemeToggle() {
   const [theme, setTheme] = useState("light");
   return <Button onClick={() => setTheme("dark")}>Toggle</Button>;
@@ -145,6 +157,7 @@ export function ThemeToggle() {
 ```
 
 #### Component File Structure
+
 ```tsx
 "use client"; // If client component
 
@@ -172,7 +185,9 @@ function HelperComponent() {
 ### When to use what?
 
 #### 1. React `useState` / `useReducer`
+
 **Use for**: Component-local state that doesn't need to be shared
+
 ```tsx
 // ✅ Good: Toggle, form input, local UI state
 const [isOpen, setIsOpen] = useState(false);
@@ -180,7 +195,9 @@ const [searchQuery, setSearchQuery] = useState("");
 ```
 
 #### 2. TanStack Query (`useQuery`, `useMutation`)
+
 **Use for**: Server state (data fetching, caching, synchronization)
+
 ```tsx
 // ✅ Good: API data, server-side data
 const { data, isLoading } = useQuery({
@@ -195,7 +212,9 @@ const mutation = useMutation({
 ```
 
 #### 3. Zustand Store
+
 **Use for**: Global client state that needs to persist or be shared across components
+
 ```tsx
 // ✅ Good: Theme preference, user preferences, app config
 const theme = useAppConfigStore((s) => s.theme);
@@ -208,13 +227,15 @@ export const useAppConfigStore = create<AppConfigState>()(
       theme: "light",
       setTheme: (mode) => set({ theme: mode }),
     }),
-    { name: "boilerplate-app-config" }
-  )
+    { name: "boilerplate-app-config" },
+  ),
 );
 ```
 
 #### 4. React Context API
+
 **Use for**: Dependency injection, providing values down the component tree
+
 ```tsx
 // ✅ Good: Theme provider, i18n provider, feature flags
 const ThemeContext = createContext<ThemeMode | undefined>(undefined);
@@ -229,6 +250,7 @@ export function ThemeProvider({ children, initialTheme }: Props) {
 ```
 
 ### Decision Flow
+
 ```
 Need to share state?
 ├─ NO → useState/useReducer
@@ -262,6 +284,7 @@ export default async function MyPage() {
 ```
 
 **Add translations** to `locales/en.json` and `locales/vi.json`:
+
 ```json
 {
   "myPage": {
@@ -304,7 +327,7 @@ import createClient from "openapi-fetch";
 import type { paths } from "./schema";
 
 const client = createClient<paths>({
-  baseUrl: "https://api.example.com"
+  baseUrl: "https://api.example.com",
 });
 
 export async function getUsers() {
@@ -314,7 +337,7 @@ export async function getUsers() {
 }
 
 // hooks/useUsers.ts
-"use client";
+("use client");
 
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "@/lib/api/users";
@@ -327,7 +350,7 @@ export function useUsers() {
 }
 
 // Usage in component
-"use client";
+("use client");
 import { useUsers } from "@/hooks/useUsers";
 
 export function UserList() {
@@ -336,7 +359,13 @@ export function UserList() {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  return <ul>{data?.map(user => <li key={user.id}>{user.name}</li>)}</ul>;
+  return (
+    <ul>
+      {data?.map((user) => (
+        <li key={user.id}>{user.name}</li>
+      ))}
+    </ul>
+  );
 }
 ```
 
@@ -370,12 +399,12 @@ export const useMyPersistedStore = create<MyStoreState>()(
     }),
     {
       name: "my-store-key", // localStorage key
-    }
-  )
+    },
+  ),
 );
 
 // Usage in component
-"use client";
+("use client");
 export function Counter() {
   const count = useMyStore((s) => s.count);
   const increment = useMyStore((s) => s.increment);
@@ -392,12 +421,14 @@ export function Counter() {
 ## i18n Patterns
 
 ### Configuration
+
 - **Supported locales**: `en` (default), `vi`
 - **Locale prefix**: `as-needed` - default locale (`en`) has no prefix in URL
   - English: `/` or `/about`
   - Vietnamese: `/vi` or `/vi/about`
 
 ### Server Components (Recommended)
+
 ```tsx
 import { getTranslations, getLocale } from "next-intl/server";
 
@@ -415,6 +446,7 @@ export default async function Page() {
 ```
 
 ### Client Components
+
 ```tsx
 "use client";
 import { useTranslations, useLocale } from "next-intl";
@@ -428,6 +460,7 @@ export function ClientComponent() {
 ```
 
 ### Translation File Structure
+
 ```json
 // locales/en.json
 {
@@ -446,6 +479,7 @@ export function ClientComponent() {
 ```
 
 ### Dynamic Parameters
+
 ```tsx
 const t = await getTranslations("messages");
 
@@ -459,11 +493,13 @@ t("messageCount", { count: 5 }); // → "You have 5 messages"
 ## Theme System
 
 ### Dark Mode Implementation
+
 - **Storage**: Zustand persist → localStorage (`boilerplate-app-config`)
 - **SSR**: Cookie-based (`boilerplate-theme`) to prevent FOUC
 - **Modes**: `light` | `dark` (no system mode)
 
 ### Using Theme in Components
+
 ```tsx
 "use client";
 import { useTheme } from "@/app/providers/ThemeProvider";
@@ -480,14 +516,18 @@ export function MyComponent() {
 ```
 
 ### Ant Design Theme Tokens
+
 See `lib/theme.ts` for full configuration:
-- **Primary color**: `#ea580c` (orange-600)
+
+- **Primary color**: `#2563eb` (blue-600)
 - **Border radius**: `12px`
 - **Control heights**: SM=32px, MD=40px, LG=48px
 - **Font**: Be Vietnam Pro (Google Fonts)
 
 ### TailwindCSS Dark Mode
+
 Use `dark:` prefix for dark mode styles:
+
 ```tsx
 <div className="bg-white dark:bg-zinc-900 text-black dark:text-white">
   Content
@@ -497,12 +537,15 @@ Use `dark:` prefix for dark mode styles:
 ## Reference to Existing Skills
 
 ### Available Skills
+
 This project includes comprehensive coding guidelines in `.claude/skills/`:
 
 #### 1. UI Guidelines (`ui-guidelines`)
+
 **Location**: `.claude/skills/ui-guidelines/`
 
 Comprehensive UI/UX guidelines covering:
+
 - Color system & design tokens
 - Component selection (Ant Design vs Tailwind)
 - Layout patterns (container, grid, page header)
@@ -518,9 +561,11 @@ Comprehensive UI/UX guidelines covering:
 **Invoke with**: Check skill files for detailed patterns
 
 #### 2. Vercel React Best Practices (`vercel-react-best-practices`)
+
 **Location**: `.claude/skills/vercel-react-best-practices/`
 
 Performance optimization patterns:
+
 - Rendering optimization
 - Re-render prevention
 - Async/await patterns
@@ -530,6 +575,7 @@ Performance optimization patterns:
 - JavaScript optimization
 
 **Key patterns**:
+
 - Memo usage
 - Derived state
 - Effect optimization
@@ -537,9 +583,11 @@ Performance optimization patterns:
 - Lazy loading
 
 #### 3. Vercel Composition Patterns (`vercel-composition-patterns`)
+
 **Location**: `.claude/skills/vercel-composition-patterns/`
 
 Component architecture patterns:
+
 - Compound components
 - Children over render props
 - Explicit variants
@@ -548,12 +596,15 @@ Component architecture patterns:
 - React 19 patterns (no forwardRef)
 
 **Key patterns**:
+
 - Composition over configuration
 - Context for complex state
 - Lift state appropriately
 
 ### Using Skills
+
 When working on specific features:
+
 - **UI work**: Refer to `ui-guidelines` for design system
 - **Performance issues**: Consult `vercel-react-best-practices`
 - **Component design**: Follow `vercel-composition-patterns`
@@ -561,6 +612,7 @@ When working on specific features:
 ## Development Workflow
 
 ### Available Scripts
+
 ```bash
 # Development
 npm run dev              # Start dev server (http://localhost:3000)
@@ -578,6 +630,7 @@ npm run api:generate     # Generate TypeScript types from OpenAPI spec
 ```
 
 ### Development Process
+
 1. **Start dev server**: `npm run dev`
 2. **Create feature branch**: `git checkout -b feature/my-feature`
 3. **Make changes** following conventions above
@@ -587,12 +640,15 @@ npm run api:generate     # Generate TypeScript types from OpenAPI spec
 7. **Push & PR**: Create pull request
 
 ### Environment Setup
+
 - **Node.js**: Version 20+ recommended
 - **Package manager**: npm (lockfile: `package-lock.json`)
 - **Port**: 3000 (default)
 
 ### Hot Reload
+
 Next.js 16 supports:
+
 - Fast Refresh for components
 - Instant updates for CSS/Tailwind
 - Server component updates (may require hard refresh)
@@ -600,6 +656,7 @@ Next.js 16 supports:
 ## Best Practices Summary
 
 ### DO ✅
+
 - Use Server Components by default (better performance)
 - Add `"use client"` only when needed (hooks, events, Ant Design)
 - Use TanStack Query for all API calls
@@ -616,6 +673,7 @@ Next.js 16 supports:
 - Persist important state (theme, preferences)
 
 ### DON'T ❌
+
 - Don't create new patterns without checking existing skills
 - Don't use inline styles (use Tailwind or Ant Design)
 - Don't hardcode strings (use i18n)
@@ -632,6 +690,7 @@ Next.js 16 supports:
 ### File Templates
 
 #### New Page (Server Component)
+
 ```tsx
 // app/[locale]/my-page/page.tsx
 import { getTranslations } from "next-intl/server";
@@ -649,6 +708,7 @@ export default async function MyPage() {
 ```
 
 #### New Client Component
+
 ```tsx
 // components/ui/MyComponent.tsx
 "use client";
@@ -665,6 +725,7 @@ export function MyComponent() {
 ```
 
 #### New Hook
+
 ```tsx
 // hooks/useMyHook.ts
 "use client";

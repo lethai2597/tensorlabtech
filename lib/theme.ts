@@ -19,8 +19,8 @@ export const antdThemeConfig: ThemeConfig = {
     fontFamily: "var(--font-be-vietnam-pro), sans-serif",
 
     // --color-primary inline trong app/globals.css
-    colorPrimary: "#ea580c",
-    colorInfo: "#ea580c",
+    colorPrimary: "#2563eb",
+    colorInfo: "#2563eb",
     sizeUnit: 6,
     borderRadius: 12,
     controlHeightSM: 32,
@@ -51,7 +51,7 @@ export const antdThemeConfig: ThemeConfig = {
 /** Override token khi dark: nền đen hoàn toàn */
 export const antdDarkTokenOverrides: ThemeConfig["token"] = {
   // --color-surface dark trong app/globals.css
-  colorBgContainer: "#18181b",
+  colorBgContainer: "#121213",
 
   // --color-border dark trong app/globals.css
   colorBorder: "#27272a80",

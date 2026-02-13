@@ -1,6 +1,5 @@
-import { getTranslations } from "next-intl/server";
+import { TensorLabLandingPage } from "@/components/landing/TensorLabLandingPage";
 
 export default async function HomePage() {
-  const t = await getTranslations("home");
-  return <>{t("welcome")}</>;
+  return <TensorLabLandingPage />;
 }

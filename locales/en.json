@@ -30,5 +30,263 @@
   "aria": {
     "switchTheme": "Switch theme",
     "changeLanguage": "Change language"
+  },
+  "nav": {
+    "capabilities": "Capabilities",
+    "engagement": "Partnership",
+    "process": "Process",
+    "caseStudies": "Case studies",
+    "testimonials": "Testimonials",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "landing": {
+    "hero": {
+      "badge": "TensorLab — Digital transformation • AI • Web3",
+      "titlePrefix": "Your tech partner to",
+      "titleHighlight": "build & scale",
+      "titleSuffix": "digital products",
+      "subtitle": "TensorLab supports you from architecture consulting and product development to production operations. Partner with us via:",
+      "ctaProduct": "Product partnership",
+      "ctaOutsource": "Hire outsource team",
+      "proofStrong": "Execution quality",
+      "proofRest": "and business impact come first.",
+      "previewUrl": "tensorlab.vn/#overview",
+      "previewCaption": "Product delivery • Tech consulting • AI enablement"
+    },
+    "logos": {
+      "title": "Some teams we’ve talked to / worked with"
+    },
+    "capabilities": {
+      "tag": "Capabilities",
+      "title": "From consulting to production delivery",
+      "desc": "Outcome-focused delivery with fast time-to-market and long-term operability.",
+      "items": {
+        "consulting": {
+          "title": "Tech & architecture consulting",
+          "desc": "Architecture, technical roadmap, quality standards, and delivery plan aligned to business goals."
+        },
+        "dx": {
+          "title": "Digital transformation & operations",
+          "desc": "Process standardization, system integration, workflow automation, and data enablement to improve efficiency."
+        },
+        "product": {
+          "title": "End-to-end product build",
+          "desc": "Discovery, UI/UX, MVP, then scale. Optimized for maintainability, speed, and cost awareness."
+        },
+        "ai": {
+          "title": "AI enablement: from POC to production",
+          "desc": "RAG/knowledge base, agent, recommendations… with MLOps/monitoring"
+        },
+        "web3": {
+          "title": "Web3 & access control",
+          "desc": "dApps, wallet integrations, token gating, RBAC & audit logs — with security and UX as priorities."
+        },
+        "cloud": {
+          "title": "Cloud, DevOps & operations",
+          "desc": "CI/CD, observability, scaling, hardening, and cost optimization for stable production."
+        }
+      }
+    },
+    "engagement": {
+      "tag": "Engagement",
+      "title": "Two ways to partner with TensorLab",
+      "desc": "Choose the model that fits: product co-build or outsource delivery.",
+      "activeLabel": "Selected",
+      "product": {
+        "title": "Product partnership",
+        "subtitle": "Co-build with outcome ownership and fast iteration.",
+        "cta": "Discuss opportunity",
+        "items": [
+          "Best when you need a co-build partner from MVP to scale with shared quality ownership.",
+          "We cover discovery, architecture, build & operations — not just task execution.",
+          "Flexible models: milestone-based, co-build, or long-term — tailored to your context."
+        ]
+      },
+      "outsource": {
+        "title": "Outsource",
+        "subtitle": "Dedicated team / project-based / augmentation.",
+        "cta": "Send brief",
+        "items": [
+          "Engage via dedicated team, project-based, or augmentation.",
+          "Roles: PM/BA, UI/UX, FE, BE, Mobile, AI Engineer, DevOps.",
+          "Transparent delivery: weekly updates, demos, PR reviews, QA checklists, and clear handover docs."
+        ]
+      }
+    },
+    "process": {
+      "tag": "How we work",
+      "title": "Clear and transparent delivery process",
+      "desc": "Ship the right things, ensure quality, and scale confidently.",
+      "stepLabel": "Step {step}",
+      "steps": {
+        "discovery": {
+          "title": "Discovery & problem framing",
+          "desc": "Align on goals, users, constraints, and success metrics. Confirm MVP scope or phased plan."
+        },
+        "architecture": {
+          "title": "Solution & architecture",
+          "desc": "Design solution, data flows, security, and cloud setup. Choose the right stack and trade-offs."
+        },
+        "delivery": {
+          "title": "Sprint-based delivery",
+          "desc": "Build in sprints with regular demos and impact measurement. Prioritize value-first."
+        },
+        "release": {
+          "title": "QA, release & observability",
+          "desc": "Test strategy, release pipeline, logging/monitoring, alerting — for stable production operations."
+        },
+        "scale": {
+          "title": "Maintain & scale",
+          "desc": "Optimize performance, cost, and security; evolve with roadmap. Clean handover for your internal team."
+        }
+      }
+    },
+    "caseStudies": {
+      "tag": "Case studies",
+      "title": "Selected work (samples)",
+      "desc": "Replace with real cases, or keep anonymous when needed.",
+      "labels": {
+        "problem": "Problem",
+        "solution": "Solution",
+        "outcome": "Outcome"
+      },
+      "cta": "View details",
+      "items": {
+        "vibeCoding": {
+          "title": "Vibe coding workshop (for everyone)",
+          "tags": ["Workshop", "LLM", "Hands-on"],
+          "desc": "A hands-on workshop to help people get into the vibe coding flow and build faster with confidence."
+        },
+        "agenticIntro": {
+          "title": "Intro workshop: building agentic systems",
+          "tags": ["Agents", "Tools", "Prompting"],
+          "desc": "A practical intro to agents: tool-use, workflows, guardrails, and how to iterate effectively."
+        },
+        "ecommerceChatbot": {
+          "title": "Ecommerce agentic chatbot",
+          "tags": ["RAG", "Ecommerce", "Automation"],
+          "desc": "An agent-style chatbot for product advice, policy Q&A, and ops support with a clear workflow."
+        }
+      }
+    },
+    "insights": {
+      "tag": "Insights",
+      "title": "Few posts, high quality",
+      "desc": "We write less, but we write deep and practical.",
+      "read": "Read",
+      "ctaAll": "View all posts",
+      "items": {
+        "rag": {
+          "title": "From POC to production RAG: common pitfalls",
+          "desc": "A practical RAG playbook: ingestion, chunking, evaluation, monitoring, and reducing hallucinations in enterprise contexts.",
+          "tags": ["AI", "RAG", "MLOps"],
+          "meta": "8 min read • High quality"
+        },
+        "multitenant": {
+          "title": "Multi-tenant architecture: scale with cost control",
+          "desc": "Tenant models, data isolation, RBAC/audit logs, and trade-offs that directly impact cost and operability.",
+          "tags": ["Architecture", "SaaS", "Cloud"],
+          "meta": "10 min read • Deep dive"
+        },
+        "dxImpact": {
+          "title": "Digital transformation: how to measure real impact",
+          "desc": "Set the right KPIs, prioritize workflows, and deliver in phases to avoid turning projects into a black hole.",
+          "tags": ["Digital transformation", "Process", "KPI"],
+          "meta": "7 min read • Practical"
+        }
+      }
+    },
+    "testimonials": {
+      "tag": "Testimonials",
+      "title": "What partners say",
+      "desc": "Sample quotes — replace with real feedback or keep anonymous.",
+      "starsAria": "{count} stars",
+      "items": {
+        "t1": {
+          "name": "An Nguyen",
+          "role": "CTO, TechViet",
+          "quote": "TensorLab helped us unblock architecture bottlenecks and deliver with a clear roadmap. Transparent, proactive, and strong code quality."
+        },
+        "t2": {
+          "name": "Mai Tran",
+          "role": "Lead Engineer, DataFlow",
+          "quote": "Ownership stands out: not only delivering requirements, but also advising on trade-offs, risks, and long-term operability."
+        },
+        "t3": {
+          "name": "Phuc Le",
+          "role": "Founder, ScaleUp",
+          "quote": "MVP to production was smooth. Fast collaboration, clear comms, consistent demos — it boosted confidence when meeting customers."
+        }
+      }
+    },
+    "faq": {
+      "tag": "FAQ",
+      "title": "Frequently asked questions",
+      "desc": "Didn’t find your answer? Leave a note and we’ll get back to you.",
+      "items": {
+        "f1": {
+          "q": "Is TensorLab a good fit if I’m not sure about technical requirements yet?",
+          "a": "Yes. We can start with a short Discovery to clarify goals, scope, and propose a suitable solution/roadmap before building."
+        },
+        "f2": {
+          "q": "How do you manage progress and quality for outsourcing?",
+          "a": "Sprint/weekly transparency: updates, demos, PR reviews, QA checklists, and handover docs. We can adapt to your existing tools."
+        },
+        "f3": {
+          "q": "How is product partnership different from typical outsourcing?",
+          "a": "Product partnership emphasizes long-term collaboration and outcome ownership: framing the problem, advising on trade-offs, and ensuring operability."
+        },
+        "f4": {
+          "q": "What about security & NDA?",
+          "a": "We can sign an NDA upfront. Access control to repos/environments, secret management, and audit/logging practices are aligned early."
+        },
+        "f5": {
+          "q": "Do you actually do AI/Web3 or is it just buzzwords?",
+          "a": "We do, when it fits. For AI we focus on valuable use-cases and reliable production (eval/monitoring). For Web3 we prioritize security and UX."
+        }
+      }
+    },
+    "finalCta": {
+      "title": "Ready to start with TensorLab?",
+      "desc": "Send a brief or book a 30-minute call — we’ll review the problem and propose an optimal delivery approach.",
+      "ctaBrief": "Send brief",
+      "ctaCall": "Book a call"
+    },
+    "footer": {
+      "brand": "TensorLab",
+      "desc": "Tech partner for product partnership and outsourcing. Focused on AI, Web3, and pragmatic digital transformation.",
+      "rights": "All rights reserved.",
+      "columns": {
+        "solutions": {
+          "title": "Solutions",
+          "links": [
+            "Tech consulting",
+            "Digital transformation",
+            "AI enablement",
+            "Web3",
+            "Cloud & DevOps"
+          ]
+        },
+        "engagement": {
+          "title": "Engagement",
+          "links": [
+            "Product partnership",
+            "Outsource",
+            "Delivery process",
+            "Case studies",
+            "Insights"
+          ]
+        },
+        "company": {
+          "title": "Company",
+          "links": ["About", "Blog", "Careers", "Contact", "Press"]
+        },
+        "legal": {
+          "title": "Legal",
+          "links": ["Terms", "Privacy", "Cookies", "NDA", ""]
+        }
+      }
+    }
   }
 }

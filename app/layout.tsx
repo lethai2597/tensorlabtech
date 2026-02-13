@@ -7,6 +7,7 @@ import { Providers } from "./providers";
 import {
   APP_CONFIG_STORAGE_KEY,
   DEFAULT_METADATA,
+  SITE_URL,
   THEME_COOKIE_NAME,
 } from "@/lib/constants";
 import { parseTheme } from "@/lib/theme";
@@ -19,8 +20,42 @@ const beVietnamPro = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: DEFAULT_METADATA.title,
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: DEFAULT_METADATA.title,
+    template: `%s | ${DEFAULT_METADATA.siteName}`,
+  },
   description: DEFAULT_METADATA.description,
+  keywords: [...DEFAULT_METADATA.keywords],
+  authors: [{ name: DEFAULT_METADATA.siteName, url: SITE_URL }],
+  creator: DEFAULT_METADATA.siteName,
+  openGraph: {
+    type: "website",
+    locale: "vi_VN",
+    alternateLocale: "en_US",
+    siteName: DEFAULT_METADATA.siteName,
+    title: DEFAULT_METADATA.title,
+    description: DEFAULT_METADATA.description,
+    url: SITE_URL,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: DEFAULT_METADATA.siteName,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: DEFAULT_METADATA.title,
+    description: DEFAULT_METADATA.description,
+    images: ["/og.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default async function RootLayout({

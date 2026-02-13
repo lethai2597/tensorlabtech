@@ -30,5 +30,263 @@
   "aria": {
     "switchTheme": "Đổi giao diện",
     "changeLanguage": "Đổi ngôn ngữ"
+  },
+  "nav": {
+    "capabilities": "Năng lực",
+    "engagement": "Hợp tác",
+    "process": "Quy trình",
+    "caseStudies": "Case studies",
+    "testimonials": "Đánh giá",
+    "faq": "FAQ",
+    "contact": "Liên hệ"
+  },
+  "landing": {
+    "hero": {
+      "badge": "TensorLab — Chuyển đổi số • AI • Web3",
+      "titlePrefix": "Đối tác công nghệ để",
+      "titleHighlight": "xây & scale",
+      "titleSuffix": "sản phẩm số",
+      "subtitle": "TensorLab đồng hành từ tư vấn kiến trúc, phát triển sản phẩm đến vận hành production. Bạn có thể hợp tác theo 2 hướng:",
+      "ctaProduct": "Hợp tác Product",
+      "ctaOutsource": "Thuê Outsource",
+      "proofStrong": "Chất lượng triển khai",
+      "proofRest": "và hiệu quả kinh doanh là ưu tiên số 1.",
+      "previewUrl": "tensorlab.vn/#overview",
+      "previewCaption": "Product delivery • Tech consulting • AI enablement"
+    },
+    "logos": {
+      "title": "Một vài đơn vị đã từng trao đổi / hợp tác cùng TensorLab"
+    },
+    "capabilities": {
+      "tag": "Năng lực",
+      "title": "Từ tư vấn đến triển khai production",
+      "desc": "Tập trung vào kết quả, tối ưu tốc độ ra mắt và chất lượng vận hành dài hạn.",
+      "items": {
+        "consulting": {
+          "title": "Tư vấn công nghệ & kiến trúc",
+          "desc": "Định hình kiến trúc, roadmap kỹ thuật, tiêu chuẩn chất lượng và kế hoạch triển khai theo mục tiêu kinh doanh."
+        },
+        "dx": {
+          "title": "Chuyển đổi số & tối ưu vận hành",
+          "desc": "Chuẩn hoá quy trình, tích hợp hệ thống, tự động hoá workflow và dữ liệu để tăng năng suất vận hành."
+        },
+        "product": {
+          "title": "Xây sản phẩm end-to-end",
+          "desc": "Discovery, UI/UX, build MVP và mở rộng. Tập trung time-to-market, maintainability và cost awareness."
+        },
+        "ai": {
+          "title": "AI enablement: từ POC đến production",
+          "desc": "RAG, knowledge base, agent, OCR, recommendation; kèm theo MLOps và monitoring."
+        },
+        "web3": {
+          "title": "Web3 & hệ thống phân quyền",
+          "desc": "Xây dApp, tích hợp ví, token-gating, RBAC và audit log. Ưu tiên bảo mật và trải nghiệm người dùng."
+        },
+        "cloud": {
+          "title": "Cloud, DevOps & vận hành",
+          "desc": "CI/CD, observability, scaling, hardening và tối ưu chi phí. Đưa sản phẩm lên production ổn định."
+        }
+      }
+    },
+    "engagement": {
+      "tag": "Hợp tác",
+      "title": "2 hướng hợp tác cùng TensorLab",
+      "desc": "Chọn mô hình phù hợp: đồng hành xây sản phẩm theo mô hình Product hoặc thuê đội ngũ triển khai theo mô hình Outsource.",
+      "activeLabel": "Đang chọn",
+      "product": {
+        "title": "Hợp tác Product",
+        "subtitle": "Co-build sản phẩm, tập trung outcome & tốc độ ra mắt.",
+        "cta": "Trao đổi cơ hội",
+        "items": [
+          "Phù hợp khi bạn cần đối tác co-build sản phẩm, từ MVP đến scale, và cùng ownership chất lượng.",
+          "Tham gia discovery, kiến trúc, build & vận hành — không chỉ “code theo task”.",
+          "Linh hoạt mô hình: milestone-based, co-build hoặc dài hạn — tuỳ thực tế."
+        ]
+      },
+      "outsource": {
+        "title": "Thuê Outsource",
+        "subtitle": "Dedicated team / project-based / augmentation.",
+        "cta": "Gửi brief",
+        "items": [
+          "Thuê theo: dedicated team / project-based / augmentation.",
+          "Cung cấp vai trò: PM/BA, UI/UX, FE, BE, Mobile, AI Engineer, DevOps.",
+          "Minh bạch tiến độ: weekly update, demo định kỳ, code review và tài liệu bàn giao."
+        ]
+      }
+    },
+    "process": {
+      "tag": "Cách làm",
+      "title": "Quy trình triển khai rõ ràng, minh bạch",
+      "desc": "Tập trung ship đúng thứ cần ship, đảm bảo chất lượng và khả năng mở rộng.",
+      "stepLabel": "Bước {step}",
+      "steps": {
+        "discovery": {
+          "title": "Discovery & định hình bài toán",
+          "desc": "Làm rõ mục tiêu, người dùng, ràng buộc kỹ thuật và tiêu chí thành công. Chốt phạm vi MVP hoặc plan theo phase."
+        },
+        "architecture": {
+          "title": "Giải pháp & kiến trúc",
+          "desc": "Thiết kế solution, data flow, security, triển khai cloud. Xác định stack phù hợp và những trade-off quan trọng."
+        },
+        "delivery": {
+          "title": "Delivery theo sprint",
+          "desc": "Xây theo từng sprint, demo định kỳ, đo lường impact. Ưu tiên những phần tạo giá trị trước."
+        },
+        "release": {
+          "title": "QA, release & observability",
+          "desc": "Thiết lập test strategy, release pipeline, logging/monitoring, alerting. Đảm bảo vận hành ổn định."
+        },
+        "scale": {
+          "title": "Bảo trì & mở rộng",
+          "desc": "Tối ưu hiệu năng, chi phí, bảo mật; nâng cấp theo roadmap. Handover rõ ràng để đội nội bộ tiếp quản dễ dàng."
+        }
+      }
+    },
+    "caseStudies": {
+      "tag": "Case studies",
+      "title": "Một vài dự án tiêu biểu (mẫu)",
+      "desc": "Bạn có thể thay bằng case thật, hoặc giữ ẩn danh nếu cần bảo mật.",
+      "labels": {
+        "problem": "Bài toán",
+        "solution": "Giải pháp",
+        "outcome": "Kết quả"
+      },
+      "cta": "Xem chi tiết",
+      "items": {
+        "vibeCoding": {
+          "title": "Workshop vibe coding cho mọi người",
+          "tags": ["Workshop", "LLM", "Hands-on"],
+          "desc": "Một buổi workshop thực hành, giúp mọi người “vào nhịp” vibe coding và tự tin bắt đầu build nhanh hơn."
+        },
+        "agenticIntro": {
+          "title": "Workshop nhập môn build Agentic",
+          "tags": ["Agents", "Tools", "Prompting"],
+          "desc": "Giới thiệu nền tảng tư duy + thực hành build agent: tool-use, workflow, guardrails và cách iterate hiệu quả."
+        },
+        "ecommerceChatbot": {
+          "title": "Ecommerce Agentic Chatbot",
+          "tags": ["RAG", "Ecommerce", "Automation"],
+          "desc": "Chatbot dạng agent hỗ trợ tư vấn sản phẩm, hỏi đáp chính sách và hỗ trợ vận hành với luồng xử lý rõ ràng."
+        }
+      }
+    },
+    "insights": {
+      "tag": "Insights",
+      "title": "Bài viết ít nhưng cực chất",
+      "desc": "TensorLab ưu tiên nội dung chuyên sâu: ít bài, nhưng dùng được ngay.",
+      "read": "Đọc bài",
+      "ctaAll": "Xem tất cả bài viết",
+      "items": {
+        "rag": {
+          "title": "Từ POC đến production cho RAG: những bẫy thường gặp",
+          "desc": "Khung triển khai RAG thực chiến: ingestion, chunking, eval, monitoring và cách tránh ảo giác trong bối cảnh doanh nghiệp.",
+          "tags": ["AI", "RAG", "MLOps"],
+          "meta": "8 phút đọc • Chất lượng cao"
+        },
+        "multitenant": {
+          "title": "Kiến trúc multi-tenant: scale mà vẫn kiểm soát chi phí",
+          "desc": "Chọn mô hình tenant, tách dữ liệu, RBAC/audit log và những trade-off ảnh hưởng trực tiếp tới cost & vận hành.",
+          "tags": ["Architecture", "SaaS", "Cloud"],
+          "meta": "10 phút đọc • Deep dive"
+        },
+        "dxImpact": {
+          "title": "Chuyển đổi số không phải làm cho có: cách đo impact",
+          "desc": "Đặt KPI đúng, ưu tiên workflow, triển khai theo phase để tạo hiệu quả thật (không biến dự án thành hố đen).",
+          "tags": ["Chuyển đổi số", "Process", "KPI"],
+          "meta": "7 phút đọc • Practical"
+        }
+      }
+    },
+    "testimonials": {
+      "tag": "Đánh giá",
+      "title": "Khách hàng & đối tác nói gì",
+      "desc": "Một vài nhận xét mẫu (bạn thay bằng feedback thật hoặc để ẩn danh).",
+      "starsAria": "{count} sao",
+      "items": {
+        "t1": {
+          "name": "Nguyễn Văn An",
+          "role": "CTO, TechViet",
+          "quote": "TensorLab giúp team chúng tôi gỡ nút thắt kiến trúc và triển khai theo roadmap rõ ràng. Minh bạch, chủ động và chất lượng code rất tốt."
+        },
+        "t2": {
+          "name": "Trần Thị Mai",
+          "role": "Lead Engineer, DataFlow",
+          "quote": "Điểm mình đánh giá cao là ownership: không chỉ làm đúng yêu cầu mà còn tư vấn trade-off, rủi ro và phương án tối ưu cho vận hành dài hạn."
+        },
+        "t3": {
+          "name": "Lê Hoàng Phúc",
+          "role": "Founder, ScaleUp",
+          "quote": "Từ MVP đến production diễn ra mượt. TensorLab phối hợp nhanh, giao tiếp rõ, demo đều và giúp mình tự tin hơn khi gặp khách hàng."
+        }
+      }
+    },
+    "faq": {
+      "tag": "FAQ",
+      "title": "Câu hỏi thường gặp",
+      "desc": "Chưa tìm thấy câu trả lời? Hãy để lại thông tin và TensorLab sẽ liên hệ.",
+      "items": {
+        "f1": {
+          "q": "TensorLab có phù hợp nếu tôi chưa rõ yêu cầu kỹ thuật?",
+          "a": "Có. Chúng tôi có thể bắt đầu bằng Discovery ngắn để làm rõ bài toán, mục tiêu, phạm vi và đề xuất solution/roadmap phù hợp trước khi vào build."
+        },
+        "f2": {
+          "q": "Nếu thuê Outsource thì quản lý tiến độ và chất lượng ra sao?",
+          "a": "Minh bạch theo sprint/weekly: update tiến độ, demo định kỳ, PR review, checklist QA và tài liệu bàn giao. Có thể tích hợp vào quy trình hiện tại của bạn."
+        },
+        "f3": {
+          "q": "Hợp tác Product khác gì so với Outsource thông thường?",
+          "a": "Hợp tác Product thiên về đồng hành dài hạn và ownership outcome: định hình bài toán, tư vấn trade-off, ưu tiên roadmap và cùng chịu trách nhiệm chất lượng vận hành."
+        },
+        "f4": {
+          "q": "Bảo mật & NDA như thế nào?",
+          "a": "TensorLab sẵn sàng ký NDA trước khi chia sẻ thông tin. Quy trình phân quyền truy cập repo/môi trường, quản lý secrets và logging/audit sẽ được thống nhất ngay từ đầu."
+        },
+        "f5": {
+          "q": "TensorLab có làm AI/Web3 không hay chỉ buzzword?",
+          "a": "Có thể làm, nhưng chỉ đề xuất khi phù hợp. Với AI ưu tiên use case tạo value và triển khai chạy bền (eval/monitoring). Với Web3 ưu tiên security & UX, không phức tạp hoá nếu không cần."
+        }
+      }
+    },
+    "finalCta": {
+      "title": "Sẵn sàng bắt đầu với TensorLab?",
+      "desc": "Gửi brief hoặc đặt lịch 30 phút để chúng ta cùng nhìn bài toán và đề xuất hướng triển khai tối ưu.",
+      "ctaBrief": "Gửi brief",
+      "ctaCall": "Đặt lịch trao đổi"
+    },
+    "footer": {
+      "brand": "TensorLab",
+      "desc": "Đối tác công nghệ cho Product partnership và Outsourcing. Tập trung AI, Web3 và chuyển đổi số theo hướng thực chiến.",
+      "rights": "All rights reserved.",
+      "columns": {
+        "solutions": {
+          "title": "Giải pháp",
+          "links": [
+            "Tư vấn công nghệ",
+            "Chuyển đổi số",
+            "AI enablement",
+            "Web3",
+            "Cloud & DevOps"
+          ]
+        },
+        "engagement": {
+          "title": "Hợp tác",
+          "links": [
+            "Hợp tác Product",
+            "Thuê Outsource",
+            "Quy trình triển khai",
+            "Case studies",
+            "Insights"
+          ]
+        },
+        "company": {
+          "title": "Công ty",
+          "links": ["Về TensorLab", "Blog", "Tuyển dụng", "Liên hệ", "Báo chí"]
+        },
+        "legal": {
+          "title": "Pháp lý",
+          "links": ["Điều khoản", "Chính sách bảo mật", "Cookie", "NDA", ""]
+        }
+      }
+    }
   }
 }
