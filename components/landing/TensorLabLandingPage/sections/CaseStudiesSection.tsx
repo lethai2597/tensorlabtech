@@ -3,7 +3,12 @@
 import { Button, Tag } from "antd";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { ChevronRight, MessageSquareCode, ShoppingBag, Sparkles } from "lucide-react";
+import {
+  ChevronRight,
+  MessageSquareCode,
+  ShoppingBag,
+  Sparkles,
+} from "lucide-react";
 
 import ShinyText from "@/components/ShinyText";
 import SpotlightCard from "@/components/SpotlightCard";
@@ -65,9 +70,7 @@ export function CaseStudiesSection() {
 
             return (
               <motion.div key={key} variants={fadeUp}>
-                <SpotlightCard
-                  className="h-full flex flex-col justify-between"
-                >
+                <SpotlightCard className="h-full flex flex-col justify-between">
                   <div className="space-y-6">
                     <div className="rounded-2xl border border-border bg-background dark:bg-surface overflow-hidden">
                       <div className="relative aspect-video">
@@ -99,7 +102,7 @@ export function CaseStudiesSection() {
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap">
                       {tags.map((tag) => (
                         <Tag
                           key={`${key}-${tag}`}
