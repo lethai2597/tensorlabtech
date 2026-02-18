@@ -168,6 +168,14 @@ export function HeroSection() {
 
 
       </div>
+      {/* Bottom accent line */}
+      <div
+        className="absolute bottom-0 left-0 h-px w-full"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, var(--color-primary), var(--color-info), transparent)",
+        }}
+      />
     </motion.section>
   );
 }

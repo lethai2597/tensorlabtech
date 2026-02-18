@@ -556,45 +556,28 @@
       "brand": "TensorLab",
       "desc": "Đối tác công nghệ cho Product partnership và Outsourcing. Tập trung AI, Web3 và chuyển đổi số theo hướng thực chiến.",
       "rights": "All rights reserved.",
+      "status": "Đang nhận dự án mới",
+      "cta": {
+        "title": "Sẵn sàng bắt đầu dự án?",
+        "desc": "Liên hệ ngay để thảo luận về ý tưởng của bạn.",
+        "button": "Bắt đầu ngay"
+      },
       "columns": {
-        "solutions": {
-          "title": "Giải pháp",
+        "services": {
+          "title": "Dịch vụ",
           "links": [
-            "Tư vấn công nghệ",
-            "Chuyển đổi số",
-            "AI enablement",
-            "Web3",
-            "Cloud & DevOps"
+            "Năng lực",
+            "Hướng hợp tác",
+            "Quy trình triển khai",
+            "Sự kiện"
           ]
         },
-        "engagement": {
+        "partnership": {
           "title": "Hợp tác",
           "links": [
             "Hợp tác Product",
             "Thuê Outsource",
-            "Quy trình triển khai",
-            "Case studies",
-            "Insights"
-          ]
-        },
-        "company": {
-          "title": "Công ty",
-          "links": [
-            "Về TensorLab",
-            "Blog",
-            "Tuyển dụng",
-            "Liên hệ",
-            "Báo chí"
-          ]
-        },
-        "legal": {
-          "title": "Pháp lý",
-          "links": [
-            "Điều khoản",
-            "Chính sách bảo mật",
-            "Cookie",
-            "NDA",
-            ""
+            "Liên hệ"
           ]
         }
       }

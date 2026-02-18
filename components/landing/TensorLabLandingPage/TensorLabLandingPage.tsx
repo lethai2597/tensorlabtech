@@ -12,7 +12,7 @@ import { FinalCTASection } from "./sections/FinalCTASection";
 
 export function TensorLabLandingPage() {
   return (
-    <div className="-mt-16">
+    <div className="-mt-32">
       <HeroSection />
       <CapabilitiesSection />
       <EngagementModelsSection />

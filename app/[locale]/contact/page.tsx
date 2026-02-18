@@ -187,7 +187,9 @@ function ContactPageContent() {
 export default function ContactPage() {
     return (
         <Suspense>
-            <ContactPageContent />
+            <div className="-mt-16">
+                <ContactPageContent />
+            </div>
         </Suspense>
     );
 }

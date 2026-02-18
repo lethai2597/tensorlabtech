@@ -549,45 +549,28 @@
       "brand": "TensorLab",
       "desc": "Tech partner for product partnership and outsourcing. Focused on AI, Web3, and pragmatic digital transformation.",
       "rights": "All rights reserved.",
+      "status": "Accepting new projects",
+      "cta": {
+        "title": "Ready to start your project?",
+        "desc": "Get in touch to discuss your ideas.",
+        "button": "Get started"
+      },
       "columns": {
-        "solutions": {
-          "title": "Solutions",
+        "services": {
+          "title": "Services",
           "links": [
-            "Tech consulting",
-            "Digital transformation",
-            "AI enablement",
-            "Web3",
-            "Cloud & DevOps"
+            "Capabilities",
+            "Engagement models",
+            "Delivery process",
+            "Events"
           ]
         },
-        "engagement": {
-          "title": "Engagement",
+        "partnership": {
+          "title": "Partnership",
           "links": [
             "Product partnership",
             "Outsource",
-            "Delivery process",
-            "Case studies",
-            "Insights"
-          ]
-        },
-        "company": {
-          "title": "Company",
-          "links": [
-            "About",
-            "Blog",
-            "Careers",
-            "Contact",
-            "Press"
-          ]
-        },
-        "legal": {
-          "title": "Legal",
-          "links": [
-            "Terms",
-            "Privacy",
-            "Cookies",
-            "NDA",
-            ""
+            "Contact"
           ]
         }
       }
