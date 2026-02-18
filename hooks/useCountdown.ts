@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+type CountdownSegment = { value: string; unit: string };
+
 type CountdownResult = {
     days: number;
     hours: number;
@@ -9,6 +11,7 @@ type CountdownResult = {
     seconds: number;
     isExpired: boolean;
     label: string;
+    segments: CountdownSegment[];
 };
 
 /**
@@ -29,7 +32,7 @@ export function useCountdown(targetIso?: string): CountdownResult | null {
     const diff = new Date(targetIso).getTime() - now;
 
     if (diff <= 0) {
-        return { days: 0, hours: 0, minutes: 0, seconds: 0, isExpired: true, label: "" };
+        return { days: 0, hours: 0, minutes: 0, seconds: 0, isExpired: true, label: "", segments: [] };
     }
 
     const days = Math.floor(diff / 86_400_000);
@@ -37,11 +40,13 @@ export function useCountdown(targetIso?: string): CountdownResult | null {
     const minutes = Math.floor((diff % 3_600_000) / 60_000);
     const seconds = Math.floor((diff % 60_000) / 1_000);
 
-    const parts: string[] = [];
-    if (days > 0) parts.push(`${days}d`);
-    parts.push(`${String(hours).padStart(2, "0")}h`);
-    parts.push(`${String(minutes).padStart(2, "0")}m`);
-    parts.push(`${String(seconds).padStart(2, "0")}s`);
+    const segments: CountdownSegment[] = [];
+    if (days > 0) segments.push({ value: String(days).padStart(2, "0"), unit: "d" });
+    segments.push({ value: String(hours).padStart(2, "0"), unit: "h" });
+    segments.push({ value: String(minutes).padStart(2, "0"), unit: "m" });
+    segments.push({ value: String(seconds).padStart(2, "0"), unit: "s" });
 
-    return { days, hours, minutes, seconds, isExpired: false, label: parts.join(" : ") };
+    const label = segments.map(s => `${s.value}${s.unit}`).join(" : ");
+
+    return { days, hours, minutes, seconds, isExpired: false, label, segments };
 }

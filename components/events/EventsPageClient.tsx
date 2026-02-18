@@ -40,8 +40,16 @@ function CountdownOverlay({ startAt }: { startAt?: string }) {
 
   return (
     <div className="absolute bottom-3 right-3 z-10">
-      <Tag color="warning" bordered={false} className="rounded-xl! font-mono text-xs! tracking-wider m-0!">
-        {cd.label}
+      <Tag color="warning" bordered={false} className="rounded-xl! text-xs! tracking-wider m-0!">
+        <span className="inline-flex items-center font-mono">
+          {cd.segments.map((seg, i) => (
+            <span key={seg.unit} className="inline-flex items-center">
+              {i > 0 && <span className="mx-0.5 opacity-60">:</span>}
+              <span style={{ display: "inline-block", width: "1.6em", textAlign: "right" }}>{seg.value}</span>
+              <span className="opacity-70">{seg.unit}</span>
+            </span>
+          ))}
+        </span>
       </Tag>
     </div>
   );

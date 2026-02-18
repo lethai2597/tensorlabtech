@@ -54,8 +54,17 @@ function CountdownBadge({ startAt }: { startAt?: string }) {
   if (!cd || cd.isExpired) return null;
 
   return (
-    <Tag color="warning" bordered={false} className="rounded-xl! font-mono text-sm! tracking-wider px-4! py-1! mr-0!">
-      Còn {cd.label}
+    <Tag color="warning" bordered={false} className="rounded-xl! text-sm! tracking-wider px-4! py-1! mr-0!">
+      <span className="inline-flex items-center font-mono">
+        Còn{" "}
+        {cd.segments.map((seg, i) => (
+          <span key={seg.unit} className="inline-flex items-center">
+            {i > 0 && <span className="mx-0.5 opacity-60">:</span>}
+            <span style={{ display: "inline-block", width: "1.6em", textAlign: "right" }}>{seg.value}</span>
+            <span className="opacity-70">{seg.unit}</span>
+          </span>
+        ))}
+      </span>
     </Tag>
   );
 }

@@ -8,5 +8,5 @@ export const EVENT_META: EventMeta = {
     desc: "Không cần biết code, không cần cài công cụ. Chỉ cần một tài khoản Gmail — bạn sẽ tự tay tạo ứng dụng web bằng AI ngay trong workshop.",
     startAt: "2026-03-27T20:00:00+07:00",
     format: "Google Meet",
-    registrationUrl: "https://calendar.app.google/jj1Aqg2ta2fEjggG6",
+    registrationUrl: "https://calendar.app.google/99xh8uwEjGhg34oU8",
 };
