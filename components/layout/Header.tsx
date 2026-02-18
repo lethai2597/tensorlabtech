@@ -12,12 +12,9 @@ export function Header() {
   const isHome = pathname === "/" || pathname === "/vi";
 
   const items = [
-    { key: "capabilities", label: t("capabilities"), hash: "capabilities" },
+    { key: "home", label: t("home"), href: "/" },
     { key: "engagement", label: t("engagement"), hash: "engagement" },
-    { key: "process", label: t("process"), hash: "process" },
-    { key: "caseStudies", label: t("caseStudies"), hash: "case-studies" },
-    { key: "testimonials", label: t("testimonials"), hash: "testimonials" },
-    { key: "faq", label: t("faq"), hash: "faq" },
+    { key: "events", label: t("events"), href: "/events" },
     { key: "contact", label: t("contact"), hash: "contact" },
   ] as const;
 
@@ -33,24 +30,31 @@ export function Header() {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-6">
-          {items.map((item) => (
-            <Link
-              key={item.key}
-              href={{ pathname: "/", hash: item.hash }}
-              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-foreground transition-colors"
-              onClick={(e) => {
-                if (isHome) {
-                  const el = document.getElementById(item.hash);
-                  if (el) {
-                    e.preventDefault();
-                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+          {items.map((item) => {
+            const isPageLink = "href" in item && item.href;
+            const href =
+              "hash" in item
+                ? { pathname: "/" as const, hash: item.hash }
+                : item.href;
+            return (
+              <Link
+                key={item.key}
+                href={href}
+                className="text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-foreground transition-colors"
+                onClick={(e) => {
+                  if (!isPageLink && isHome && "hash" in item) {
+                    const el = document.getElementById(item.hash);
+                    if (el) {
+                      e.preventDefault();
+                      el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
                   }
-                }
-              }}
-            >
-              {item.label}
-            </Link>
-          ))}
+                }}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-3">

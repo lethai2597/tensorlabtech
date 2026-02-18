@@ -7,7 +7,6 @@ import {
   ChevronRight,
   MessageSquareCode,
   ShoppingBag,
-  Sparkles,
 } from "lucide-react";
 
 import ShinyText from "@/components/ShinyText";
@@ -16,12 +15,11 @@ import { SectionBackdrop } from "@/components/landing/TensorLabLandingPage/Secti
 import { landingViewport, useSectionVariants } from "@/lib/landingMotion";
 
 const caseIcons = {
-  vibeCoding: Sparkles,
   agenticIntro: MessageSquareCode,
   ecommerceChatbot: ShoppingBag,
 } as const;
 
-const caseKeys = ["vibeCoding", "agenticIntro", "ecommerceChatbot"] as const;
+const caseKeys = ["agenticIntro", "ecommerceChatbot"] as const;
 
 export function CaseStudiesSection() {
   const t = useTranslations("landing.caseStudies");
@@ -71,9 +69,10 @@ export function CaseStudiesSection() {
             return (
               <motion.div key={key} variants={fadeUp}>
                 <SpotlightCard className="h-full flex flex-col justify-between">
-                  <div className="space-y-6">
+                  <div className="space-y-5">
+                    {/* Thumbnail — pure visual area */}
                     <div className="rounded-2xl border border-border bg-background dark:bg-surface overflow-hidden">
-                      <div className="relative aspect-video">
+                      <div className="relative aspect-[16/9]">
                         <div
                           aria-hidden="true"
                           className="absolute inset-0 bg-linear-to-br from-primary/14 via-transparent to-primary/6 dark:from-primary/10 dark:to-primary/4"
@@ -87,21 +86,21 @@ export function CaseStudiesSection() {
                           className="absolute -bottom-24 -left-24 size-72 rounded-full bg-primary/7 blur-3xl dark:bg-primary/5"
                         />
 
-                        <div className="relative h-full w-full p-6 flex items-end justify-between gap-4">
-                          <div className="flex items-center gap-3">
-                            <div className="size-11 rounded-2xl bg-surface/80 border border-border flex items-center justify-center text-primary">
-                              <Icon size={22} aria-hidden="true" />
-                            </div>
-                            <div className="min-w-0">
-                              <p className="text-sm font-semibold text-foreground truncate">
-                                {t(`items.${key}.title`)}
-                              </p>
-                            </div>
+                        {/* Centered icon as visual anchor */}
+                        <div className="relative h-full w-full flex items-center justify-center">
+                          <div className="size-14 rounded-2xl bg-surface/80 border border-border flex items-center justify-center text-primary backdrop-blur-sm">
+                            <Icon size={26} aria-hidden="true" />
                           </div>
                         </div>
                       </div>
                     </div>
 
+                    {/* Title below thumbnail */}
+                    <h3 className="text-xl font-bold text-foreground leading-snug">
+                      {t(`items.${key}.title`)}
+                    </h3>
+
+                    {/* Tags */}
                     <div className="flex flex-wrap">
                       {tags.map((tag) => (
                         <Tag
@@ -115,6 +114,7 @@ export function CaseStudiesSection() {
                       ))}
                     </div>
 
+                    {/* Description */}
                     <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
                       {t(`items.${key}.desc`)}
                     </p>

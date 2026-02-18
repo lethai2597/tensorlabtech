@@ -32,13 +32,150 @@
     "changeLanguage": "Đổi ngôn ngữ"
   },
   "nav": {
-    "capabilities": "Năng lực",
+    "home": "Trang chủ",
     "engagement": "Hợp tác",
-    "process": "Quy trình",
-    "caseStudies": "Case studies",
-    "testimonials": "Đánh giá",
-    "faq": "FAQ",
+    "events": "Sự kiện",
     "contact": "Liên hệ"
+  },
+  "events": {
+    "title": "Sự kiện",
+    "desc": "Workshop, webinar và các sự kiện do TensorLab tổ chức. Cùng học và cùng build.",
+    "backToEvents": "Sự kiện",
+    "addToCalendar": "Thêm vào lịch",
+    "priceFree": "Miễn phí",
+    "date": "Ngày",
+    "format": "Hình thức",
+    "registerNow": "Đăng ký tham gia",
+    "items": {
+      "aiAppEngineerIntro": {
+        "landing": {
+          "overview": {
+            "tag": "Kỹ năng được săn đón bậc nhất thời đại AI",
+            "title": "AI Application Engineer",
+            "subtitle": "Người xây dựng ứng dụng AI end-to-end, một kỹ năng lập trình được săn đón bậc nhất của thời đại",
+            "cards": {
+              "whatIsIt": {
+                "title": "Là gì?",
+                "desc": "AI Application Engineer là người biến các công nghệ AI (như ChatGPT, Gemini) thành sản phẩm thực tế. Bạn không cần nghiên cứu hay tạo ra AI mới — bạn là người kết nối, thiết kế và xây dựng ứng dụng để AI giải quyết bài toán thực.",
+                "points": [
+                  "Không cần PhD hay background nghiên cứu",
+                  "Cần biết lập trình và tư duy hệ thống",
+                  "Giống Full-stack Developer, nhưng cho AI"
+                ]
+              },
+              "whatCanYouDo": {
+                "title": "Làm được gì?",
+                "desc": "Bạn sẽ xây dựng các sản phẩm AI mà doanh nghiệp đang cần nhất — từ chatbot thông minh đến hệ thống tự động hoá quy trình.",
+                "points": [
+                  "Chatbot trả lời dựa trên dữ liệu riêng công ty",
+                  "Hệ thống tìm kiếm thông minh trên tài liệu nội bộ",
+                  "AI tự động phân tích dữ liệu, tạo báo cáo, code review"
+                ]
+              }
+            }
+          },
+          "whatYouLearn": {
+            "tag": "Bạn sẽ học được gì",
+            "title": "Nắm vững kiến thức từ cơ bản đến nâng cao",
+            "desc": "Sau khóa học, bạn sẽ có đủ kiến thức và kỹ năng để xây dựng các ứng dụng AI thực tế.",
+            "items": [
+              {
+                "title": "Hiểu bức tranh tổng thể",
+                "desc": "Biết AI Application Engineer làm gì, các thành phần cần học và cách chúng kết nối với nhau."
+              },
+              {
+                "title": "6 giai đoạn, 18 chủ đề",
+                "desc": "Từ LLM Fundamentals, RAG, Orchestration, Agents đến Production và Advanced topics."
+              },
+              {
+                "title": "Thực hành với Demo",
+                "desc": "Mỗi chủ đề đều có Demo thực tế để bạn chạy thử và hiểu cách hoạt động."
+              },
+              {
+                "title": "Xây dựng Side Project",
+                "desc": "Song song học lý thuyết, bạn sẽ build một sản phẩm thực tế áp dụng kiến thức đã học."
+              }
+            ]
+          },
+          "whoShouldAttend": {
+            "tag": "Dành cho ai",
+            "title": "Webinar này phù hợp với bạn nếu",
+            "suitableFor": "Phù hợp với bạn nếu:",
+            "items": [
+              "Bạn là developer muốn chuyển hướng sang AI/ML application",
+              "Bạn đã biết lập trình web/app và muốn tích hợp AI vào sản phẩm",
+              "Bạn muốn hiểu cách xây dựng chatbot, RAG, AI agents từ đầu",
+              "Bạn đang tìm kiếm cơ hội việc làm trong lĩnh vực AI"
+            ],
+            "notFor": "Lưu ý: Đây là kiến thức cho người mới bắt đầu. Bạn cần có ít nhất kiến thức cơ bản về lập trình."
+          },
+          "agenda": {
+            "tag": "Nội dung chương trình",
+            "title": "Lộ trình 6 giai đoạn",
+            "desc": "Học tuần tự từ cơ bản đến nâng cao, mỗi giai đoạn có slide, docs và source code.",
+            "items": [
+              {
+                "phase": "01",
+                "title": "LLM Fundamentals",
+                "desc": "Prompt Engineering, JSON Mode, Streaming, Model Selection"
+              },
+              {
+                "phase": "02",
+                "title": "RAG",
+                "desc": "Embeddings, Vector Database, Chunking Strategies"
+              },
+              {
+                "phase": "03",
+                "title": "Orchestration",
+                "desc": "Memory Management, Chains, Routing Logic"
+              },
+              {
+                "phase": "04",
+                "title": "Agents",
+                "desc": "Tool Calling, ReAct Pattern, Agent Workflows"
+              },
+              {
+                "phase": "05",
+                "title": "Production",
+                "desc": "Evaluation, Observability, Cost Optimization, Security"
+              },
+              {
+                "phase": "06",
+                "title": "Advanced",
+                "desc": "Multi-modal, Fine-tuning, Local Deployment"
+              }
+            ]
+          },
+          "resources": {
+            "tag": "Tài nguyên đi kèm",
+            "title": "Bạn sẽ nhận được gì",
+            "items": [
+              {
+                "title": "Slide bài giảng",
+                "desc": "Slide chi tiết cho từng chủ đề, dễ theo dõi và ôn tập."
+              },
+              {
+                "title": "Tài liệu Markdown",
+                "desc": "Docs chi tiết giải thích lý thuyết và best practices."
+              },
+              {
+                "title": "Source code FE/BE",
+                "desc": "Code mẫu Next.js + NestJS chạy được ngay."
+              },
+              {
+                "title": "Project Ideas",
+                "desc": "4 ý tưởng dự án kèm guideline từng bước để thực hành."
+              }
+            ]
+          },
+          "cta": {
+            "title": "Sẵn sàng bắt đầu hành trình?",
+            "desc": "Tham gia ngay để nhận toàn bộ tài liệu và bắt đầu học AI Application Engineer.",
+            "button": "Xem tài liệu trên GitHub"
+          }
+        }
+      }
+    }
   },
   "landing": {
     "hero": {
@@ -147,8 +284,8 @@
     },
     "caseStudies": {
       "tag": "Case studies",
-      "title": "Một vài dự án tiêu biểu (mẫu)",
-      "desc": "Bạn có thể thay bằng case thật, hoặc giữ ẩn danh nếu cần bảo mật.",
+      "title": "Một vài dự án tiêu biểu",
+      "desc": "Các dự án đã triển khai, từ workshop AI đến sản phẩm thực tế.",
       "labels": {
         "problem": "Bài toán",
         "solution": "Giải pháp",
@@ -156,19 +293,22 @@
       },
       "cta": "Xem chi tiết",
       "items": {
-        "vibeCoding": {
-          "title": "Workshop vibe coding cho mọi người",
-          "tags": ["Workshop", "LLM", "Hands-on"],
-          "desc": "Một buổi workshop thực hành, giúp mọi người “vào nhịp” vibe coding và tự tin bắt đầu build nhanh hơn."
-        },
         "agenticIntro": {
           "title": "Workshop nhập môn build Agentic",
-          "tags": ["Agents", "Tools", "Prompting"],
+          "tags": [
+            "Agents",
+            "Tools",
+            "Prompting"
+          ],
           "desc": "Giới thiệu nền tảng tư duy + thực hành build agent: tool-use, workflow, guardrails và cách iterate hiệu quả."
         },
         "ecommerceChatbot": {
           "title": "Ecommerce Agentic Chatbot",
-          "tags": ["RAG", "Ecommerce", "Automation"],
+          "tags": [
+            "RAG",
+            "Ecommerce",
+            "Automation"
+          ],
           "desc": "Chatbot dạng agent hỗ trợ tư vấn sản phẩm, hỏi đáp chính sách và hỗ trợ vận hành với luồng xử lý rõ ràng."
         }
       }
@@ -183,19 +323,31 @@
         "rag": {
           "title": "Từ POC đến production cho RAG: những bẫy thường gặp",
           "desc": "Khung triển khai RAG thực chiến: ingestion, chunking, eval, monitoring và cách tránh ảo giác trong bối cảnh doanh nghiệp.",
-          "tags": ["AI", "RAG", "MLOps"],
+          "tags": [
+            "AI",
+            "RAG",
+            "MLOps"
+          ],
           "meta": "8 phút đọc • Chất lượng cao"
         },
         "multitenant": {
           "title": "Kiến trúc multi-tenant: scale mà vẫn kiểm soát chi phí",
           "desc": "Chọn mô hình tenant, tách dữ liệu, RBAC/audit log và những trade-off ảnh hưởng trực tiếp tới cost & vận hành.",
-          "tags": ["Architecture", "SaaS", "Cloud"],
+          "tags": [
+            "Architecture",
+            "SaaS",
+            "Cloud"
+          ],
           "meta": "10 phút đọc • Deep dive"
         },
         "dxImpact": {
           "title": "Chuyển đổi số không phải làm cho có: cách đo impact",
           "desc": "Đặt KPI đúng, ưu tiên workflow, triển khai theo phase để tạo hiệu quả thật (không biến dự án thành hố đen).",
-          "tags": ["Chuyển đổi số", "Process", "KPI"],
+          "tags": [
+            "Chuyển đổi số",
+            "Process",
+            "KPI"
+          ],
           "meta": "7 phút đọc • Practical"
         }
       }
@@ -283,11 +435,23 @@
         },
         "company": {
           "title": "Công ty",
-          "links": ["Về TensorLab", "Blog", "Tuyển dụng", "Liên hệ", "Báo chí"]
+          "links": [
+            "Về TensorLab",
+            "Blog",
+            "Tuyển dụng",
+            "Liên hệ",
+            "Báo chí"
+          ]
         },
         "legal": {
           "title": "Pháp lý",
-          "links": ["Điều khoản", "Chính sách bảo mật", "Cookie", "NDA", ""]
+          "links": [
+            "Điều khoản",
+            "Chính sách bảo mật",
+            "Cookie",
+            "NDA",
+            ""
+          ]
         }
       }
     }

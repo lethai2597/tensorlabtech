@@ -10,7 +10,6 @@ import { CaseStudiesSection } from "./sections/CaseStudiesSection";
 import { TestimonialsSection } from "./sections/TestimonialsSection";
 import { FAQSection } from "./sections/FAQSection";
 import { FinalCTASection } from "./sections/FinalCTASection";
-import { FooterSection } from "./sections/FooterSection";
 
 export function TensorLabLandingPage() {
   return (
@@ -25,8 +24,6 @@ export function TensorLabLandingPage() {
       <TestimonialsSection />
       <FAQSection />
       <FinalCTASection />
-      <FooterSection />
     </div>
   );
 }
-

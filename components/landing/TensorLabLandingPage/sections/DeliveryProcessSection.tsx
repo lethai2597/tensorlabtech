@@ -38,7 +38,7 @@ export function DeliveryProcessSection() {
       whileInView="visible"
       viewport={landingViewport}
       variants={stagger}
-      className="relative overflow-hidden bg-background py-20 md:py-28 border-y border-border"
+      className="relative overflow-hidden bg-background py-20 md:py-28"
     >
       <SectionBackdrop variant="neutral" />
 
@@ -49,7 +49,7 @@ export function DeliveryProcessSection() {
         >
           <Tag
             bordered={false}
-            color="blue"
+            color="geekblue"
             className="rounded-full! px-3! py-0.5!"
           >
             <ShinyText

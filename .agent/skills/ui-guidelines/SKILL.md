@@ -1,6 +1,11 @@
-# UI Guidelines for Ant Design + TailwindCSS
+---
+name: ui-guidelines
+description: Complete UI design system for Ant Design + TailwindCSS with Modern Minimalism style. Covers layout, spacing (8/4 system), typography, components, states, and accessibility. Use when creating/updating pages, components, or any UI elements.
+---
 
-**Version 2.0.0**
+# UI Guidelines (Ant Design + TailwindCSS)
+
+**Version 2.1.0**
 lethai
 February 2026
 
@@ -14,7 +19,7 @@ February 2026
 
 ## Abstract
 
-Modern Minimalism design system combining Ant Design components with TailwindCSS layout/spacing. Key principles: token-first colors, no shadows, 8/4 spacing system, large radius (3xl/2xl). This guide covers 17 rules across 10 categories, prioritized by impact from HIGH (layout & section structure) to LOW (responsive & states).
+Modern Minimalism design system combining Ant Design components with TailwindCSS layout/spacing. Key principles: token-first colors, no shadows, 8/4 spacing system, large radius (3xl/2xl). This guide covers 22 rules across 11 categories, prioritized by impact from HIGH (layout & section structure) to LOW (responsive & states).
 
 ---
 
@@ -58,7 +63,59 @@ Modern Minimalism design system combining Ant Design components with TailwindCSS
    - 9.1 [Loading, Empty, and Error States](#91-loading-empty-and-error-states)
 
 10. [Responsive](#10-responsive) — **LOW**
-   - 10.1 [Responsive Design (3-tier System)](#101-responsive-design-3-tier-system)
+    - 10.1 [Responsive Design (3-tier System)](#101-responsive-design-3-tier-system)
+
+### LANDING PAGE Rules
+11. [Landing Page Patterns](#11-landing-page-patterns) — **HIGH**
+    - 11.1 [Landing Section Wrapper](#111-landing-section-wrapper)
+    - 11.2 [Landing Section Header](#112-landing-section-header)
+    - 11.3 [SpotlightCard](#113-spotlightcard)
+    - 11.4 [Landing Card Content](#114-landing-card-content)
+    - 11.5 [Landing Animation & A11y](#115-landing-animation--a11y)
+
+---
+
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix | Count |
+|----------|----------|--------|--------|-------|
+| 1 | Layout & Container | HIGH | `layout-` | 3 |
+| 2 | Section & Block | HIGH | `section-` | 3 |
+| 3 | Spacing System | MEDIUM | `spacing-` | 2 |
+| 4 | Component Choice | MEDIUM | `components-` | 3 |
+| 5 | Typography | MEDIUM | `typography-` | 1 |
+| 6 | Colors & Tokens | MEDIUM | `colors-` | 1 |
+| 7 | Radius System | MEDIUM | `radius-` | 1 |
+| 8 | Icons & Visual | LOW | `icons-` | 1 |
+| 9 | States | LOW | `states-` | 1 |
+| 10 | Responsive | LOW | `responsive-` | 1 |
+| 11 | Landing Page Patterns | HIGH | `landing-` | 5 |
+
+**Total: 22 rules**
+
+Xem chi tiết từng rule trong folder `rules/`:
+- `rules/layout-container.md`
+- `rules/layout-grid.md`
+- `rules/layout-page-header.md`
+- `rules/section-card-structure.md`
+- `rules/section-header.md`
+- `rules/section-sub-block.md`
+- `rules/spacing-level-system.md`
+- `rules/spacing-micro-system.md`
+- `rules/components-antd-vs-tailwind.md`
+- `rules/components-table.md`
+- `rules/components-form.md`
+- `rules/typography-hierarchy.md`
+- `rules/colors-token-first.md`
+- `rules/radius-system.md`
+- `rules/icons-usage.md`
+- `rules/states-loading-empty-error.md`
+- `rules/responsive-breakpoints.md`
+- `rules/landing-section-wrapper.md`
+- `rules/landing-section-header.md`
+- `rules/landing-spotlight-card.md`
+- `rules/landing-card-content.md`
+- `rules/landing-animation-a11y.md`
 
 ---
 
@@ -70,6 +127,7 @@ Modern Minimalism design system combining Ant Design components with TailwindCSS
 4. **Token-first**: màu nền/viền/chữ theo token CSS (`bg-background`, `text-foreground`, `bg-surface`, `border-border`, `text-primary`)
 5. **Spacing system**: Hệ 8 cho layout lớn (page/section/block), hệ 4 cho chi tiết nhỏ (list items, micro spacing)
 6. **Large radius**: `rounded-3xl` (section), `rounded-2xl` (sub-block), `rounded-xl` (smallest)
+7. **Font**: `Be Vietnam Pro` (`--font-be-vietnam-pro`) — set trong `globals.css`, dùng làm `--font-sans` và `--font-mono`
 
 ---
 
@@ -607,6 +665,8 @@ Mặc định (không cần set thêm nếu không cần):
 - 100% chữ ngoài AntD component dùng Tailwind
 - Text nhỏ/secondary: `text-sm text-zinc-500` (dark: `dark:text-zinc-400` khi cần)
 
+> **Landing page exception:** H2 trên landing dùng `text-3xl font-semibold` (không phải `text-2xl font-bold` của dashboard) vì cần headline lớn hơn. Xem thêm [11.2 Landing Section Header](#112-landing-section-header).
+
 ---
 
 ## 6. Colors & Tokens
@@ -675,6 +735,25 @@ Luôn đảm bảo UI "nhìn thấy primary" ở các điểm nhấn:
 - Không dùng shadow, chỉ dùng `bg-surface` + `border-border` để phân lớp
 - Có thể kết hợp màu khác để "sinh động"/phân cấp thông tin, nhưng không lấn át primary
 - Ưu tiên dùng trong data viz/tag phụ, không dùng làm màu chủ đạo
+
+**Gradient & color-mix (landing page):**
+
+```tsx
+// Gradient text (primary → info)
+<span className="bg-linear-to-r from-(--color-primary) to-(--color-info) bg-clip-text text-transparent">
+  Highlighted text
+</span>
+
+// Gradient button
+style={{ backgroundImage: "linear-gradient(90deg, var(--color-primary) 0%, var(--color-info) 100%)" }}
+
+// Radial glow background
+style={{ backgroundImage: `radial-gradient(800px circle at 20% 10%, color-mix(in srgb, var(--color-primary) 22%, transparent) 0%, transparent 60%)` }}
+
+// Opacity variants cho hiệu ứng depth
+className="bg-primary/10"  // 10% opacity
+className="bg-primary/7"   // dark mode, subtle
+```
 
 ---
 
@@ -963,8 +1042,251 @@ Chỉ thiết kế theo 3 mức: **mobile / tablet / desktop**.
 
 ---
 
+## 11. Landing Page Patterns
+
+> Các rules dưới đây áp dụng cho **landing/marketing pages**. Dashboard pages vẫn dùng rules 1–10.
+
+---
+
+### 11.1 Landing Section Wrapper
+
+**Impact:** HIGH
+**Impact Description:** Cấu trúc chuẩn cho mọi landing section
+
+Mỗi landing section là một `motion.section` full-width với ambient glow background.
+
+**Chuẩn:**
+
+```tsx
+import { motion, useReducedMotion } from "framer-motion";
+import { SectionBackdrop } from "@/components/landing/TensorLabLandingPage/SectionBackdrop";
+import { landingViewport, useSectionVariants } from "@/lib/landingMotion";
+
+export function ExampleSection() {
+  const shouldReduceMotion = useReducedMotion();
+  const { fadeUp, stagger } = useSectionVariants(Boolean(shouldReduceMotion));
+
+  return (
+    <motion.section
+      id="section-id"
+      initial="hidden"
+      whileInView="visible"
+      viewport={landingViewport}
+      variants={stagger}
+      className="relative overflow-hidden bg-background py-20 md:py-28"
+    >
+      <SectionBackdrop variant="primary" />
+
+      <div className="container mx-auto px-8 relative z-10">
+        {/* Section content */}
+      </div>
+    </motion.section>
+  );
+}
+```
+
+**SectionBackdrop variants:**
+- `primary` — Warm primary glow (CTA, capabilities)
+- `cool` — Cool blue glow (engagement, testimonials)
+- `neutral` — Subtle neutral (delivery process, FAQ)
+
+**Notes:**
+- Padding: `py-20 md:py-28` (KHÔNG dùng `py-8` như dashboard)
+- Luôn `relative overflow-hidden` + `z-10` cho content
+- Luôn wrap content trong `container mx-auto px-8`
+- Sections đặc biệt (Hero, LogoCloud, Footer) có padding/bg riêng — không áp dụng rule này
+
+---
+
+### 11.2 Landing Section Header
+
+**Impact:** HIGH
+**Impact Description:** Header nhất quán cho mọi landing content section
+
+Pattern: **Tag pill → H2 → Description**, căn giữa.
+
+**Chuẩn:**
+
+```tsx
+import { Tag } from "antd";
+import ShinyText from "@/components/ShinyText";
+
+<motion.div
+  variants={fadeUp}
+  className="max-w-2xl mx-auto text-center flex flex-col items-center gap-4 mb-16"
+>
+  <Tag
+    bordered={false}
+    color="geekblue"
+    className="rounded-full! px-3! py-0.5!"
+  >
+    <ShinyText
+      text={t("tag")}
+      disabled={Boolean(shouldReduceMotion)}
+      speed={2}
+      color="var(--color-primary)"
+      shineColor="rgba(255, 255, 255, 0.7)"
+    />
+  </Tag>
+  <h2 className="text-3xl font-semibold text-foreground">
+    {t("title")}
+  </h2>
+  <p className="text-zinc-500 dark:text-zinc-400">{t("desc")}</p>
+</motion.div>
+```
+
+**Notes:**
+- Tag color: **luôn `"geekblue"`** — không dùng `"blue"` hay color khác
+- ShinyText: luôn disable khi `shouldReduceMotion` = true
+- H2: `text-3xl font-semibold` (khác dashboard `text-2xl font-bold`)
+- Spacing dưới header: `mb-16` (KHÔNG dùng `mb-8`)
+- Container `max-w-2xl` giới hạn độ rộng text
+
+---
+
+### 11.3 SpotlightCard
+
+**Impact:** HIGH
+**Impact Description:** Interactive card component cho landing page
+
+Dùng `SpotlightCard` thay cho static `bg-surface border border-border rounded-3xl p-8`.
+
+```tsx
+import SpotlightCard from "@/components/SpotlightCard";
+
+<SpotlightCard
+  className="h-full flex flex-col justify-between"
+  spotlightColor="rgba(37, 99, 235, 0.35)"  {/* Optional, default = blue */}
+>
+  <div className="space-y-5">
+    {/* Card content */}
+  </div>
+  <div className="pt-6">
+    {/* CTA button */}
+  </div>
+</SpotlightCard>
+```
+
+**Notes:**
+- SpotlightCard tự bọc `rounded-3xl border border-border bg-surface p-8`
+- Không thêm border/bg/padding bên ngoài, chỉ truyền via `className` nếu cần
+- Prop `spotlightColor` tùy biến radial-gradient color khi hover
+- Focus-visible: tự xử lý `ring-2 ring-primary/30`
+- Grid cards: bọc mỗi `SpotlightCard` trong `motion.div variants={fadeUp}`
+
+---
+
+### 11.4 Landing Card Content
+
+**Impact:** MEDIUM
+**Impact Description:** Nội dung card nhất quán trên landing
+
+**Card title (H3):**
+```tsx
+<h3 className="text-xl font-bold text-foreground">
+  Card Title
+</h3>
+```
+
+**Card description:**
+```tsx
+<p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+  Card description text.
+</p>
+```
+
+**Tags trong card:**
+```tsx
+<div className="flex flex-wrap">
+  <Tag bordered={false} color="blue" className="rounded-full! px-3!">
+    Tag Label
+  </Tag>
+</div>
+```
+
+**CTA button trong card:**
+```tsx
+import { ChevronRight } from "lucide-react";
+
+<Button
+  size="large"
+  href="#contact"
+  className="rounded-xl! h-11! font-semibold!"
+  block
+>
+  CTA Text <ChevronRight className="size-4" />
+</Button>
+```
+
+**Notes:**
+- Card title: `text-xl font-bold` (KHÔNG dùng `text-lg font-semibold`)
+- Card content spacing: dùng `space-y-5` (systematic, không dùng individual margins)
+- Button height: `h-11!` cho card CTA, `h-12!` cho hero CTA
+- Button radius: `rounded-xl!`
+
+---
+
+### 11.5 Landing Animation & A11y
+
+**Impact:** MEDIUM
+**Impact Description:** Animation patterns và accessibility cho landing
+
+**Animation setup:**
+
+```tsx
+import { motion, useReducedMotion } from "framer-motion";
+import { landingViewport, useSectionVariants } from "@/lib/landingMotion";
+
+const shouldReduceMotion = useReducedMotion();
+const { fadeUp, fadeIn, stagger } = useSectionVariants(Boolean(shouldReduceMotion));
+```
+
+**Variants:**
+- `stagger` — Container variant, dùng cho `motion.section`
+- `fadeUp` — Fade in + slide up (y: 24 → 0), dùng cho content items
+- `fadeIn` — Fade in only, dùng cho subtle elements
+
+**Usage pattern:**
+```tsx
+<motion.section variants={stagger} initial="hidden" whileInView="visible" viewport={landingViewport}>
+  <motion.div variants={fadeUp}>
+    {/* Header */}
+  </motion.div>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {items.map((item) => (
+      <motion.div key={item.key} variants={fadeUp}>
+        <SpotlightCard>{/* ... */}</SpotlightCard>
+      </motion.div>
+    ))}
+  </div>
+</motion.section>
+```
+
+**Accessibility:**
+```tsx
+// Decorative elements
+<div aria-hidden="true" className="..." />
+
+// Decorative icons
+<Icon size={22} aria-hidden="true" />
+
+// Reduce motion
+const shouldReduceMotion = useReducedMotion();
+// Pass to useSectionVariants — tự disable tất cả animations
+// Pass to ShinyText disabled prop
+```
+
+**Notes:**
+- `useReducedMotion()` — BẮT BUỘC kiểm tra trong mọi section
+- `landingViewport` — `{ once: true, amount: 0.2, margin: "0px 0px -120px 0px" }`, trigger animation 1 lần
+- Không tự define animation variants, luôn dùng `useSectionVariants`
+- Decorative elements: SectionBackdrop, gradient divs, blur divs → luôn `aria-hidden="true"`
+
+---
+
 ## Checklist trước khi "xong UI page"
 
+### Dashboard / App pages
 - ✅ Có dùng `container mx-auto px-8` cho page wrapper
 - ✅ Mọi section chính là `bg-surface border border-border rounded-3xl p-8`
 - ✅ Section header có cấu trúc title (optional icon + subtitle) + actions, spacing `gap-8` / `gap-4` đúng
@@ -975,3 +1297,13 @@ Chỉ thiết kế theo 3 mức: **mobile / tablet / desktop**.
 - ✅ Empty/Error dùng AntD "info" (Result/Empty/Alert)
 - ✅ Loading dùng skeleton (match size)
 - ✅ Responsive chỉ dùng default + `md:` + `lg:`
+
+### Landing / Marketing pages
+- ✅ Section wrapper: `motion.section` + `SectionBackdrop` + `py-20 md:py-28`
+- ✅ Section header: Tag `geekblue` + ShinyText → H2 `text-3xl font-semibold` → desc, `mb-16`
+- ✅ Cards dùng `SpotlightCard` (có spotlight hover effect)
+- ✅ Card title: `text-xl font-bold` (không `text-lg font-semibold`)
+- ✅ `useReducedMotion()` + `useSectionVariants()` trong mọi section
+- ✅ Decorative elements có `aria-hidden="true"`
+- ✅ Grid cards: `grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8`
+- ✅ Button: `rounded-xl! h-11!` (card) hoặc `h-12!` (hero)

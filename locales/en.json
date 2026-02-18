@@ -32,13 +32,144 @@
     "changeLanguage": "Change language"
   },
   "nav": {
-    "capabilities": "Capabilities",
+    "home": "Home",
     "engagement": "Partnership",
-    "process": "Process",
-    "caseStudies": "Case studies",
-    "testimonials": "Testimonials",
-    "faq": "FAQ",
+    "events": "Events",
     "contact": "Contact"
+  },
+  "events": {
+    "title": "Events",
+    "desc": "Workshops, webinars, and events by TensorLab. Join us to learn and build together.",
+    "backToEvents": "Events",
+    "addToCalendar": "Add to calendar",
+    "priceFree": "Free",
+    "date": "Date",
+    "format": "Format",
+    "registerNow": "Register Now",
+    "items": {
+      "aiAppEngineerIntro": {
+        "landing": {
+          "overview": {
+            "tag": "What is an AI Application Engineer?",
+            "title": "The most in-demand role in the AI industry",
+            "desc": "AI Application Engineers build end-to-end AI applications — from LLM integration, RAG pipeline design, to production deployment. No PhD or research background needed — just coding skills and the ability to connect AI tools together.",
+            "highlights": [
+              {
+                "title": "Chatbot & Virtual Assistant",
+                "desc": "Build intelligent chatbots that answer based on your company's data, supporting customers 24/7."
+              },
+              {
+                "title": "RAG-powered Search",
+                "desc": "Create semantic search systems on internal documents — more accurate than traditional keyword search."
+              },
+              {
+                "title": "AI Agents & Automation",
+                "desc": "Design AI agents that automate complex tasks: data analysis, report generation, code review."
+              }
+            ]
+          },
+          "whatYouLearn": {
+            "tag": "What You'll Learn",
+            "title": "Master knowledge from basics to advanced",
+            "desc": "After this course, you'll have the skills to build real AI applications.",
+            "items": [
+              {
+                "title": "Understand the big picture",
+                "desc": "Know what an AI Application Engineer does, what to learn, and how components connect."
+              },
+              {
+                "title": "6 phases, 18 topics",
+                "desc": "From LLM Fundamentals, RAG, Orchestration, Agents to Production and Advanced topics."
+              },
+              {
+                "title": "Hands-on with Demos",
+                "desc": "Each topic includes real demos you can run and understand how things work."
+              },
+              {
+                "title": "Build a Side Project",
+                "desc": "While learning theory, you'll build a real product applying what you've learned."
+              }
+            ]
+          },
+          "whoShouldAttend": {
+            "tag": "Who Should Attend",
+            "title": "This webinar is for you if",
+            "suitableFor": "Suitable for you if:",
+            "items": [
+              "You're a developer wanting to transition into AI/ML applications",
+              "You know web/app development and want to integrate AI into products",
+              "You want to understand how to build chatbots, RAG, AI agents from scratch",
+              "You're looking for job opportunities in the AI field"
+            ],
+            "notFor": "Note: This is beginner-friendly content. You need at least basic programming knowledge."
+          },
+          "agenda": {
+            "tag": "Agenda",
+            "title": "6-Phase Roadmap",
+            "desc": "Learn sequentially from basics to advanced, each phase includes slides, docs and source code.",
+            "items": [
+              {
+                "phase": "01",
+                "title": "LLM Fundamentals",
+                "desc": "Prompt Engineering, JSON Mode, Streaming, Model Selection"
+              },
+              {
+                "phase": "02",
+                "title": "RAG",
+                "desc": "Embeddings, Vector Database, Chunking Strategies"
+              },
+              {
+                "phase": "03",
+                "title": "Orchestration",
+                "desc": "Memory Management, Chains, Routing Logic"
+              },
+              {
+                "phase": "04",
+                "title": "Agents",
+                "desc": "Tool Calling, ReAct Pattern, Agent Workflows"
+              },
+              {
+                "phase": "05",
+                "title": "Production",
+                "desc": "Evaluation, Observability, Cost Optimization, Security"
+              },
+              {
+                "phase": "06",
+                "title": "Advanced",
+                "desc": "Multi-modal, Fine-tuning, Local Deployment"
+              }
+            ]
+          },
+          "resources": {
+            "tag": "What You'll Get",
+            "title": "Resources included",
+            "items": [
+              {
+                "title": "Lecture Slides",
+                "desc": "Detailed slides for each topic, easy to follow and review."
+              },
+              {
+                "title": "Markdown Docs",
+                "desc": "Detailed docs explaining theory and best practices."
+              },
+              {
+                "title": "FE/BE Source Code",
+                "desc": "Ready-to-run Next.js + NestJS sample code."
+              },
+              {
+                "title": "Project Ideas",
+                "desc": "4 project ideas with step-by-step guidelines to practice."
+              }
+            ]
+          },
+          "cta": {
+            "title": "Ready to start your journey?",
+            "desc": "Join now to get all materials and start learning AI Application Engineer.",
+            "button": "View materials on GitHub"
+          }
+        }
+      }
+    }
   },
   "landing": {
     "hero": {
@@ -147,8 +278,8 @@
     },
     "caseStudies": {
       "tag": "Case studies",
-      "title": "Selected work (samples)",
-      "desc": "Replace with real cases, or keep anonymous when needed.",
+      "title": "Selected work",
+      "desc": "Projects we've delivered, from AI workshops to production systems.",
       "labels": {
         "problem": "Problem",
         "solution": "Solution",
@@ -156,19 +287,22 @@
       },
       "cta": "View details",
       "items": {
-        "vibeCoding": {
-          "title": "Vibe coding workshop (for everyone)",
-          "tags": ["Workshop", "LLM", "Hands-on"],
-          "desc": "A hands-on workshop to help people get into the vibe coding flow and build faster with confidence."
-        },
         "agenticIntro": {
           "title": "Intro workshop: building agentic systems",
-          "tags": ["Agents", "Tools", "Prompting"],
+          "tags": [
+            "Agents",
+            "Tools",
+            "Prompting"
+          ],
           "desc": "A practical intro to agents: tool-use, workflows, guardrails, and how to iterate effectively."
         },
         "ecommerceChatbot": {
           "title": "Ecommerce agentic chatbot",
-          "tags": ["RAG", "Ecommerce", "Automation"],
+          "tags": [
+            "RAG",
+            "Ecommerce",
+            "Automation"
+          ],
           "desc": "An agent-style chatbot for product advice, policy Q&A, and ops support with a clear workflow."
         }
       }
@@ -183,19 +317,31 @@
         "rag": {
           "title": "From POC to production RAG: common pitfalls",
           "desc": "A practical RAG playbook: ingestion, chunking, evaluation, monitoring, and reducing hallucinations in enterprise contexts.",
-          "tags": ["AI", "RAG", "MLOps"],
+          "tags": [
+            "AI",
+            "RAG",
+            "MLOps"
+          ],
           "meta": "8 min read • High quality"
         },
         "multitenant": {
           "title": "Multi-tenant architecture: scale with cost control",
           "desc": "Tenant models, data isolation, RBAC/audit logs, and trade-offs that directly impact cost and operability.",
-          "tags": ["Architecture", "SaaS", "Cloud"],
+          "tags": [
+            "Architecture",
+            "SaaS",
+            "Cloud"
+          ],
           "meta": "10 min read • Deep dive"
         },
         "dxImpact": {
           "title": "Digital transformation: how to measure real impact",
           "desc": "Set the right KPIs, prioritize workflows, and deliver in phases to avoid turning projects into a black hole.",
-          "tags": ["Digital transformation", "Process", "KPI"],
+          "tags": [
+            "Digital transformation",
+            "Process",
+            "KPI"
+          ],
           "meta": "7 min read • Practical"
         }
       }
@@ -283,11 +429,23 @@
         },
         "company": {
           "title": "Company",
-          "links": ["About", "Blog", "Careers", "Contact", "Press"]
+          "links": [
+            "About",
+            "Blog",
+            "Careers",
+            "Contact",
+            "Press"
+          ]
         },
         "legal": {
           "title": "Legal",
-          "links": ["Terms", "Privacy", "Cookies", "NDA", ""]
+          "links": [
+            "Terms",
+            "Privacy",
+            "Cookies",
+            "NDA",
+            ""
+          ]
         }
       }
     }
