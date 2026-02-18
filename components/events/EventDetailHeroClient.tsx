@@ -54,7 +54,7 @@ function CountdownBadge({ startAt }: { startAt?: string }) {
   if (!cd || cd.isExpired) return null;
 
   return (
-    <Tag color="warning" bordered={false} className="rounded-xl! font-mono text-sm! tracking-wider px-4! py-1!">
+    <Tag color="warning" bordered={false} className="rounded-xl! font-mono text-sm! tracking-wider px-4! py-1! mr-0!">
       Còn {cd.label}
     </Tag>
   );
@@ -167,7 +167,7 @@ export function EventDetailHeroClient({
           >
             {/* Price tag — top */}
             <motion.div variants={fadeUp}>
-              <Tag color="success" bordered={false} className="rounded-xl! text-sm! px-4! py-1!">
+              <Tag color="success" bordered={false} className="rounded-xl! text-sm! px-4! py-1! mr-0!">
                 {priceLabel}
               </Tag>
             </motion.div>
@@ -205,7 +205,7 @@ export function EventDetailHeroClient({
                 <Tag
                   color={statusConfig[status as keyof typeof statusConfig].color}
                   bordered={false}
-                  className="rounded-xl! text-sm! px-4! py-1!"
+                  className="rounded-xl! text-sm! px-4! py-1! mr-0!"
                 >
                   {statusConfig[status as keyof typeof statusConfig].label}
                 </Tag>
@@ -222,7 +222,7 @@ export function EventDetailHeroClient({
                   target="_blank"
                   rel="noopener noreferrer"
                   icon={<ExternalLink className="size-4" />}
-                  className="rounded-xl! font-semibold! shadow-lg shadow-primary/25"
+                  className="rounded-xl! font-semibold! shadow-lg shadow-primary/25 mt-4"
                 >
                   {registerLabel}
                 </Button>

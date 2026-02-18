@@ -33,6 +33,7 @@
   },
   "nav": {
     "home": "Home",
+    "capabilities": "Capabilities",
     "engagement": "Partnership",
     "events": "Events",
     "contact": "Contact"
@@ -168,6 +169,149 @@
             "button": "View materials on GitHub"
           }
         }
+      },
+      "vibeCodingWorkshop": {
+        "landing": {
+          "overview": {
+            "tag": "For Everyone — No Coding Required",
+            "title": "Vibe Coding",
+            "subtitle": "Build real web apps using natural language only. No coding skills, no tool installation, no deployment needed — just a Gmail account.",
+            "cards": {
+              "noCode": {
+                "title": "No coding required",
+                "desc": "Describe what you want in plain language, and AI writes the code. No syntax, no frameworks, no programming knowledge needed."
+              },
+              "noSetup": {
+                "title": "No setup needed",
+                "desc": "Everything runs in the browser with Google AI Studio — 100% free. All you need is a Gmail account."
+              },
+              "noDeploy": {
+                "title": "No deployment",
+                "desc": "Your app runs instantly in the browser. No hosting, no server. Share a link with anyone to use it."
+              }
+            }
+          },
+          "whatYouLearn": {
+            "tag": "What You'll Learn",
+            "title": "From idea to real application",
+            "desc": "After this workshop, you'll be able to build web apps — even if you've never written a single line of code.",
+            "items": [
+              {
+                "title": "Understanding Vibe Coding",
+                "desc": "Programming with natural language — the transformative power that AI brings to everyone in this era."
+              },
+              {
+                "title": "Mastering Google AI Studio",
+                "desc": "Learn the most powerful free tool: interface, annotation mode, system instructions, and AI chips."
+              },
+              {
+                "title": "Effective Prompt Writing",
+                "desc": "Standard prompt structures for each app type: CRUD, games, landing pages, portfolios — with ready-made prompt templates."
+              },
+              {
+                "title": "Google Sheets Integration",
+                "desc": "Turn static apps into dynamic ones: read data from Google Sheets, auto-update without touching code."
+              }
+            ]
+          },
+          "whoShouldAttend": {
+            "tag": "Who Should Attend",
+            "title": "This workshop is for you if",
+            "suitableFor": "For everyone:",
+            "items": [
+              "You want to build apps but don't know how to code and don't want to learn",
+              "You're an office worker, marketer, or content creator wanting to build your own tools",
+              "You're a small business owner wanting a landing page or management app without hiring a dev",
+              "You're a student, freelancer, or anyone who wants to turn ideas into real products",
+              "You've tried ChatGPT/Gemini but don't know how to create complete applications"
+            ],
+            "onlyNeed": "Only requirement: A Gmail account and a web browser. No programming knowledge needed whatsoever."
+          },
+          "agenda": {
+            "tag": "Agenda",
+            "title": "10 Parts — From basics to real-world practice",
+            "desc": "Learn by doing — each part includes live demos for you to follow along.",
+            "items": [
+              {
+                "phase": "01",
+                "title": "Understanding Vibe Coding",
+                "desc": "What is natural language programming? The power of AI and use cases across every industry."
+              },
+              {
+                "phase": "02",
+                "title": "Popular Tools",
+                "desc": "Comparing Lovable, Bolt.new, v0, Replit, and Google AI Studio. Why choose Google AI Studio?"
+              },
+              {
+                "phase": "03",
+                "title": "Power Demo",
+                "desc": "Quickly build a Mini Game, Data Dashboard, Landing Page — with just a few Vietnamese commands."
+              },
+              {
+                "phase": "04",
+                "title": "Google AI Studio Basics",
+                "desc": "Input area, Preview panel, split-screen mode, and essential features."
+              },
+              {
+                "phase": "05",
+                "title": "Deep Dive Google AI Studio",
+                "desc": "Annotation Mode, System Instructions, AI Chips (image gen, Google Maps, search, code execution)."
+              },
+              {
+                "phase": "06",
+                "title": "Effective Prompt Writing",
+                "desc": "Standard prompt structure and template prompts for each app type: CRUD, Games, Content pages."
+              },
+              {
+                "phase": "07",
+                "title": "Style & UI Design",
+                "desc": "20+ ready-made styles, reverse engineering from existing designs, building your own visual style."
+              },
+              {
+                "phase": "08",
+                "title": "Preparing Assets",
+                "desc": "Images, icons, illustrations, fonts, colors — all free, high-quality resource collections."
+              },
+              {
+                "phase": "09",
+                "title": "Google Sheets Integration",
+                "desc": "Turn static apps into dynamic ones: real-time data, advanced API, practical use cases."
+              },
+              {
+                "phase": "10",
+                "title": "Real-World Tips",
+                "desc": "Costs, security, limitations of vibe coding, and how to make the most of it."
+              }
+            ]
+          },
+          "resources": {
+            "tag": "What You'll Get",
+            "title": "Resources included",
+            "items": [
+              {
+                "title": "Prompt Templates",
+                "desc": "20+ ready-made prompts for each app type: landing pages, dashboards, games, portfolios..."
+              },
+              {
+                "title": "UI Style Collection",
+                "desc": "20+ design styles for every use case, plus templates to build your own visual identity."
+              },
+              {
+                "title": "Design Resources",
+                "desc": "Curated list of free, high-quality images, icons, fonts, and color tools ready to use."
+              },
+              {
+                "title": "Google Sheets API Guide",
+                "desc": "Step-by-step tutorial to integrate dynamic data from Google Sheets into your app."
+              }
+            ]
+          },
+          "cta": {
+            "title": "Ready to build your first app?",
+            "desc": "Join the workshop to build a real app in just a few hours — even if you've never written code before.",
+            "register": "Register Now"
+          }
+        }
       }
     }
   },
@@ -276,36 +420,15 @@
         }
       }
     },
-    "caseStudies": {
-      "tag": "Case studies",
-      "title": "Selected work",
-      "desc": "Projects we've delivered, from AI workshops to production systems.",
-      "labels": {
-        "problem": "Problem",
-        "solution": "Solution",
-        "outcome": "Outcome"
-      },
-      "cta": "View details",
-      "items": {
-        "agenticIntro": {
-          "title": "Intro workshop: building agentic systems",
-          "tags": [
-            "Agents",
-            "Tools",
-            "Prompting"
-          ],
-          "desc": "A practical intro to agents: tool-use, workflows, guardrails, and how to iterate effectively."
-        },
-        "ecommerceChatbot": {
-          "title": "Ecommerce agentic chatbot",
-          "tags": [
-            "RAG",
-            "Ecommerce",
-            "Automation"
-          ],
-          "desc": "An agent-style chatbot for product advice, policy Q&A, and ops support with a clear workflow."
-        }
-      }
+    "eventsHighlight": {
+      "tag": "Events",
+      "title": "Upcoming events",
+      "desc": "Workshops, webinars, and events by TensorLab. Join us to learn and build together.",
+      "ctaAll": "View all events",
+      "statusOpen": "Open",
+      "statusUpcoming": "Upcoming",
+      "statusLive": "Live",
+      "statusEnded": "Ended"
     },
     "insights": {
       "tag": "Insights",

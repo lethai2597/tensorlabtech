@@ -3,12 +3,7 @@
 import { Button, Tag } from "antd";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import {
-  ArrowRight,
-  ChevronRight,
-  LayoutDashboard,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight, ChevronRight, Sparkles } from "lucide-react";
 
 import ShinyText from "@/components/ShinyText";
 
@@ -23,9 +18,9 @@ export function HeroSection() {
       transition: shouldReduceMotion
         ? undefined
         : {
-            staggerChildren: 0.18,
-            delayChildren: 0.05,
-          },
+          staggerChildren: 0.18,
+          delayChildren: 0.05,
+        },
     },
   } as const;
 
@@ -35,8 +30,8 @@ export function HeroSection() {
       transition: shouldReduceMotion
         ? undefined
         : {
-            staggerChildren: 0.08,
-          },
+          staggerChildren: 0.08,
+        },
     },
   } as const;
 
@@ -45,31 +40,16 @@ export function HeroSection() {
     show: shouldReduceMotion
       ? { opacity: 1, y: 0 }
       : {
-          opacity: 1,
-          y: 0,
-          transition: {
-            duration: 0.6,
-            ease: easeOutQuart,
-          },
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: easeOutQuart,
         },
+      },
   } as const;
 
-  const previewVariants = {
-    hidden: shouldReduceMotion
-      ? { opacity: 1, y: 0, scale: 1 }
-      : { opacity: 0, y: 18, scale: 0.98 },
-    show: shouldReduceMotion
-      ? { opacity: 1, y: 0, scale: 1 }
-      : {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          transition: {
-            duration: 0.7,
-            ease: easeOutQuart,
-          },
-        },
-  } as const;
+
 
   return (
     <motion.section
@@ -184,36 +164,7 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          variants={previewVariants}
-          className="mt-16 max-w-5xl mx-auto"
-        >
-          <div className="bg-background border border-border rounded-3xl overflow-hidden">
-            <div className="flex items-center gap-2 px-6 py-4 border-b border-border">
-              <div className="flex gap-2">
-                <div className="size-3 rounded-full bg-error/60" />
-                <div className="size-3 rounded-full bg-warning/60" />
-                <div className="size-3 rounded-full bg-success/60" />
-              </div>
-              <div className="flex-1 flex justify-center">
-                <div className="bg-surface border border-border rounded-xl px-4 py-1.5 text-xs text-zinc-400 w-72 text-center">
-                  {t("previewUrl")}
-                </div>
-              </div>
-            </div>
 
-            <div className="aspect-video bg-linear-to-br from-surface via-background to-surface flex items-center justify-center">
-              <div className="text-center space-y-4">
-                <div className="size-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto">
-                  <LayoutDashboard className="size-8 text-primary" />
-                </div>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                  {t("previewCaption")}
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </motion.section>
   );

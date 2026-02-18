@@ -6,7 +6,7 @@ import { ScrollRevealHeadlineSection } from "./sections/ScrollRevealHeadlineSect
 import { CapabilitiesSection } from "./sections/CapabilitiesSection";
 import { EngagementModelsSection } from "./sections/EngagementModelsSection";
 import { DeliveryProcessSection } from "./sections/DeliveryProcessSection";
-import { CaseStudiesSection } from "./sections/CaseStudiesSection";
+import { EventsHighlightSection } from "./sections/CaseStudiesSection";
 import { TestimonialsSection } from "./sections/TestimonialsSection";
 import { FAQSection } from "./sections/FAQSection";
 import { FinalCTASection } from "./sections/FinalCTASection";
@@ -20,7 +20,7 @@ export function TensorLabLandingPage() {
       <CapabilitiesSection />
       <EngagementModelsSection />
       <DeliveryProcessSection />
-      <CaseStudiesSection />
+      <EventsHighlightSection />
       <TestimonialsSection />
       <FAQSection />
       <FinalCTASection />

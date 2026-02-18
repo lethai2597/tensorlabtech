@@ -33,6 +33,7 @@
   },
   "nav": {
     "home": "Trang chủ",
+    "capabilities": "Năng lực",
     "engagement": "Hợp tác",
     "events": "Sự kiện",
     "contact": "Liên hệ"
@@ -171,7 +172,151 @@
           "cta": {
             "title": "Sẵn sàng bắt đầu hành trình?",
             "desc": "Tham gia ngay để nhận toàn bộ tài liệu và bắt đầu học AI Application Engineer.",
+            "register": "Đăng ký tham gia",
             "button": "Xem tài liệu trên GitHub"
+          }
+        }
+      },
+      "vibeCodingWorkshop": {
+        "landing": {
+          "overview": {
+            "tag": "Dành cho tất cả mọi người — Không cần biết code",
+            "title": "Vibe Coding",
+            "subtitle": "Tạo ứng dụng web thực tế chỉ bằng ngôn ngữ tự nhiên. Không cần biết lập trình, không cần cài đặt gì, không cần triển khai — chỉ cần một tài khoản Gmail.",
+            "cards": {
+              "noCode": {
+                "title": "Không cần biết code",
+                "desc": "Bạn mô tả bằng tiếng Việt, AI sẽ viết code cho bạn. Không cần học lập trình, không cần hiểu syntax hay framework."
+              },
+              "noSetup": {
+                "title": "Không cần cài đặt",
+                "desc": "Mọi thứ chạy trên trình duyệt với Google AI Studio — hoàn toàn miễn phí. Chỉ cần một tài khoản Gmail là đủ."
+              },
+              "noDeploy": {
+                "title": "Không cần triển khai",
+                "desc": "Ứng dụng chạy ngay trong trình duyệt, không cần hosting, không cần server. Chia sẻ link cho bất kỳ ai để dùng."
+              }
+            }
+          },
+          "whatYouLearn": {
+            "tag": "Bạn sẽ học được gì",
+            "title": "Từ ý tưởng đến ứng dụng thực tế",
+            "desc": "Sau workshop, bạn sẽ tự tay tạo được ứng dụng web — dù chưa từng viết một dòng code nào.",
+            "items": [
+              {
+                "title": "Hiểu về Vibe Coding",
+                "desc": "Lập trình bằng ngôn ngữ tự nhiên — sức mạnh to lớn mà thời đại AI mang lại cho tất cả mọi người."
+              },
+              {
+                "title": "Thành thạo Google AI Studio",
+                "desc": "Nắm vững công cụ miễn phí, mạnh mẽ nhất: giao diện, annotation mode, system instructions, AI chips."
+              },
+              {
+                "title": "Viết Prompt hiệu quả",
+                "desc": "Cấu trúc prompt chuẩn cho từng loại ứng dụng: CRUD, game, landing page, portfolio — kèm bộ mẫu prompt sẵn."
+              },
+              {
+                "title": "Tích hợp Google Sheets",
+                "desc": "Biến ứng dụng tĩnh thành động: đọc dữ liệu từ Google Sheets, cập nhật tự động mà không cần sửa code."
+              }
+            ]
+          },
+          "whoShouldAttend": {
+            "tag": "Dành cho ai",
+            "title": "Workshop này phù hợp với bạn nếu",
+            "suitableFor": "Dành cho tất cả mọi người:",
+            "items": [
+              "Bạn muốn tạo ứng dụng nhưng không biết code và không muốn học code",
+              "Bạn là nhân viên văn phòng, marketer, content creator muốn tự làm công cụ cho mình",
+              "Bạn là chủ doanh nghiệp nhỏ muốn có landing page, app quản lý mà không cần thuê dev",
+              "Bạn là sinh viên, freelancer, hoặc bất kỳ ai muốn biến ý tưởng thành sản phẩm thực tế",
+              "Bạn đã thử chatGPT/Gemini nhưng chưa biết cách tạo ra ứng dụng hoàn chỉnh"
+            ],
+            "onlyNeed": "Yêu cầu duy nhất: Có tài khoản Gmail và trình duyệt web. Không cần bất kỳ kiến thức lập trình nào."
+          },
+          "agenda": {
+            "tag": "Nội dung chương trình",
+            "title": "10 phần — từ cơ bản đến thực chiến",
+            "desc": "Học qua thực hành, mỗi phần đều có demo trực tiếp để bạn làm theo.",
+            "items": [
+              {
+                "phase": "01",
+                "title": "Hiểu về Vibe Coding",
+                "desc": "Lập trình bằng ngôn ngữ tự nhiên là gì? Sức mạnh của thời đại AI và các use case cho mọi ngành nghề."
+              },
+              {
+                "phase": "02",
+                "title": "Các công cụ phổ biến",
+                "desc": "So sánh Lovable, Bolt.new, v0, Replit và Google AI Studio. Tại sao chọn Google AI Studio?"
+              },
+              {
+                "phase": "03",
+                "title": "Demo sức mạnh",
+                "desc": "Tạo nhanh Mini Game, Data Dashboard, Landing Page — chỉ bằng vài câu lệnh tiếng Việt."
+              },
+              {
+                "phase": "04",
+                "title": "Nhập môn Google AI Studio",
+                "desc": "Khu vực nhập lệnh, Preview panel, chế độ chia đôi màn hình và các tính năng cơ bản."
+              },
+              {
+                "phase": "05",
+                "title": "Đi sâu Google AI Studio",
+                "desc": "Annotation Mode, System Instructions, AI Chips (image gen, Google Maps, search, code execution)."
+              },
+              {
+                "phase": "06",
+                "title": "Viết Prompt hiệu quả",
+                "desc": "Cấu trúc prompt chuẩn và bộ mẫu prompt cho từng loại ứng dụng: CRUD, Game, Trang nội dung."
+              },
+              {
+                "phase": "07",
+                "title": "Style & Thiết kế giao diện",
+                "desc": "Bộ 20+ style sẵn, reverse engineering từ giao diện có sẵn, xây phong cách riêng."
+              },
+              {
+                "phase": "08",
+                "title": "Chuẩn bị nguyên liệu",
+                "desc": "Hình ảnh, icons, illustrations, font chữ, màu sắc — tất cả nguồn tài nguyên miễn phí chất lượng cao."
+              },
+              {
+                "phase": "09",
+                "title": "Tích hợp Google Sheets",
+                "desc": "Biến web/app tĩnh thành động: đọc dữ liệu thời gian thực, API nâng cao, các use case thực tế."
+              },
+              {
+                "phase": "10",
+                "title": "Lưu ý thực chiến",
+                "desc": "Chi phí, bảo mật, giới hạn của vibe coding và cách vận dụng hiệu quả nhất."
+              }
+            ]
+          },
+          "resources": {
+            "tag": "Tài nguyên đi kèm",
+            "title": "Bạn sẽ nhận được gì",
+            "items": [
+              {
+                "title": "Bộ Prompt mẫu",
+                "desc": "Hơn 20 prompt sẵn cho từng loại ứng dụng: landing page, dashboard, game, portfolio..."
+              },
+              {
+                "title": "Bộ Style giao diện",
+                "desc": "20+ style thiết kế cho mọi use case, kèm template xây phong cách riêng."
+              },
+              {
+                "title": "Nguồn tài nguyên thiết kế",
+                "desc": "Danh sách hình ảnh, icons, font chữ, màu sắc miễn phí chất lượng cao có thể dùng ngay."
+              },
+              {
+                "title": "Hướng dẫn Google Sheets API",
+                "desc": "Step-by-step tích hợp dữ liệu động từ Google Sheets vào ứng dụng của bạn."
+              }
+            ]
+          },
+          "cta": {
+            "title": "Sẵn sàng tạo ứng dụng đầu tiên?",
+            "desc": "Tham gia workshop để tự tay build ứng dụng trong vài giờ — dù bạn chưa bao giờ viết code.",
+            "register": "Đăng ký tham gia"
           }
         }
       }
@@ -282,36 +427,15 @@
         }
       }
     },
-    "caseStudies": {
-      "tag": "Case studies",
-      "title": "Một vài dự án tiêu biểu",
-      "desc": "Các dự án đã triển khai, từ workshop AI đến sản phẩm thực tế.",
-      "labels": {
-        "problem": "Bài toán",
-        "solution": "Giải pháp",
-        "outcome": "Kết quả"
-      },
-      "cta": "Xem chi tiết",
-      "items": {
-        "agenticIntro": {
-          "title": "Workshop nhập môn build Agentic",
-          "tags": [
-            "Agents",
-            "Tools",
-            "Prompting"
-          ],
-          "desc": "Giới thiệu nền tảng tư duy + thực hành build agent: tool-use, workflow, guardrails và cách iterate hiệu quả."
-        },
-        "ecommerceChatbot": {
-          "title": "Ecommerce Agentic Chatbot",
-          "tags": [
-            "RAG",
-            "Ecommerce",
-            "Automation"
-          ],
-          "desc": "Chatbot dạng agent hỗ trợ tư vấn sản phẩm, hỏi đáp chính sách và hỗ trợ vận hành với luồng xử lý rõ ràng."
-        }
-      }
+    "eventsHighlight": {
+      "tag": "Sự kiện",
+      "title": "Sự kiện sắp tới",
+      "desc": "Workshop, webinar và các sự kiện do TensorLab tổ chức. Cùng học và cùng build.",
+      "ctaAll": "Xem tất cả sự kiện",
+      "statusOpen": "Đang mở",
+      "statusUpcoming": "Sắp diễn ra",
+      "statusLive": "Đang diễn ra",
+      "statusEnded": "Đã kết thúc"
     },
     "insights": {
       "tag": "Insights",

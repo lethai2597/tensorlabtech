@@ -24,6 +24,7 @@ import {
 import ShinyText from "@/components/ShinyText";
 import SpotlightCard from "@/components/SpotlightCard";
 import { SectionBackdrop } from "@/components/landing/TensorLabLandingPage/SectionBackdrop";
+import { EVENT_META } from "@/app/[locale]/events/ai-application-engineer-intro/eventMeta";
 import { landingViewport, useSectionVariants } from "@/lib/landingMotion";
 
 type LearnItem = { title: string; desc: string };
@@ -500,9 +501,19 @@ export function AIEngineerLanding() {
                   {t("cta.desc")}
                 </motion.p>
 
-                <motion.div variants={fadeUp}>
+                <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-center gap-4">
+                  {EVENT_META.registrationUrl && (
+                    <Button
+                      type="primary"
+                      size="large"
+                      href={EVENT_META.registrationUrl}
+                      target="_blank"
+                      className="px-8! text-base! font-semibold! rounded-xl! inline-flex items-center gap-2"
+                    >
+                      {t("cta.register")} <ArrowRight className="size-4" />
+                    </Button>
+                  )}
                   <Button
-                    type="primary"
                     size="large"
                     href="https://github.com/lethai2597/learn-ai-engineer"
                     target="_blank"

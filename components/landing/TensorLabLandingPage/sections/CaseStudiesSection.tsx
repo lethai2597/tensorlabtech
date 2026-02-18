@@ -1,34 +1,94 @@
 "use client";
 
+import Image from "next/image";
 import { Button, Tag } from "antd";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import {
-  ChevronRight,
-  MessageSquareCode,
-  ShoppingBag,
+  ArrowRight,
+  ArrowUpRight,
+  Calendar,
+  ImageIcon,
+  Video,
 } from "lucide-react";
 
 import ShinyText from "@/components/ShinyText";
 import SpotlightCard from "@/components/SpotlightCard";
 import { SectionBackdrop } from "@/components/landing/TensorLabLandingPage/SectionBackdrop";
+import { ALL_EVENTS } from "@/lib/eventRegistry";
+import { EVENT_DURATION_MS } from "@/lib/eventTypes";
 import { landingViewport, useSectionVariants } from "@/lib/landingMotion";
+import { useCountdown } from "@/hooks/useCountdown";
 
-const caseIcons = {
-  agenticIntro: MessageSquareCode,
-  ecommerceChatbot: ShoppingBag,
+/* ---------- helpers ---------- */
+
+function getStatus(startAt?: string): "upcoming" | "live" | "ended" | "open" {
+  if (!startAt) return "open";
+  const start = new Date(startAt).getTime();
+  const now = Date.now();
+  if (now < start) return "upcoming";
+  if (now < start + EVENT_DURATION_MS) return "live";
+  return "ended";
+}
+
+function formatDate(iso: string, locale: string): string {
+  return new Intl.DateTimeFormat(locale, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }).format(new Date(iso));
+}
+
+/* ---------- countdown overlay ---------- */
+
+function CountdownOverlay({ startAt }: { startAt?: string }) {
+  const cd = useCountdown(startAt);
+  if (!cd || cd.isExpired) return null;
+
+  return (
+    <div className="absolute bottom-3 right-3 z-10">
+      <Tag
+        color="warning"
+        bordered={false}
+        className="rounded-xl! font-mono text-xs! tracking-wider m-0!"
+      >
+        {cd.label}
+      </Tag>
+    </div>
+  );
+}
+
+/* ---------- status tag ---------- */
+
+const statusConfig = {
+  open: { color: "blue" as const },
+  upcoming: { color: "gold" as const },
+  live: { color: "red" as const },
+  ended: { color: "default" as const },
+};
+
+const statusKeys = {
+  open: "statusOpen",
+  upcoming: "statusUpcoming",
+  live: "statusLive",
+  ended: "statusEnded",
 } as const;
 
-const caseKeys = ["agenticIntro", "ecommerceChatbot"] as const;
+/* ---------- main component ---------- */
 
-export function CaseStudiesSection() {
-  const t = useTranslations("landing.caseStudies");
+const DISPLAY_COUNT = 2;
+
+export function EventsHighlightSection() {
+  const t = useTranslations("landing.eventsHighlight");
   const shouldReduceMotion = useReducedMotion();
   const { fadeUp, stagger } = useSectionVariants(Boolean(shouldReduceMotion));
 
+  const events = ALL_EVENTS.slice(0, DISPLAY_COUNT);
+
   return (
     <motion.section
-      id="case-studies"
+      id="events-highlight"
       initial="hidden"
       whileInView="visible"
       viewport={landingViewport}
@@ -38,6 +98,7 @@ export function CaseStudiesSection() {
       <SectionBackdrop variant="neutral" />
 
       <div className="container mx-auto px-8 relative z-10">
+        {/* Header */}
         <motion.div
           variants={fadeUp}
           className="max-w-2xl mx-auto text-center flex flex-col items-center gap-4 mb-16"
@@ -61,80 +122,107 @@ export function CaseStudiesSection() {
           <p className="text-zinc-500 dark:text-zinc-400">{t("desc")}</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {caseKeys.map((key) => {
-            const Icon = caseIcons[key];
-            const tags = [0, 1, 2].map((idx) => t(`items.${key}.tags.${idx}`));
+        {/* Event cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {events.map((event) => {
+            const status = getStatus(event.startAt);
+            const dateText = event.startAt
+              ? formatDate(event.startAt, "vi")
+              : t(statusKeys.open);
 
             return (
-              <motion.div key={key} variants={fadeUp}>
-                <SpotlightCard className="h-full flex flex-col justify-between">
-                  <div className="space-y-5">
-                    {/* Thumbnail — pure visual area */}
-                    <div className="rounded-2xl border border-border bg-background dark:bg-surface overflow-hidden">
-                      <div className="relative aspect-[16/9]">
-                        <div
-                          aria-hidden="true"
-                          className="absolute inset-0 bg-linear-to-br from-primary/14 via-transparent to-primary/6 dark:from-primary/10 dark:to-primary/4"
-                        />
-                        <div
-                          aria-hidden="true"
-                          className="absolute -top-16 -right-20 size-64 rounded-full bg-primary/10 blur-3xl dark:bg-primary/7"
-                        />
-                        <div
-                          aria-hidden="true"
-                          className="absolute -bottom-24 -left-24 size-72 rounded-full bg-primary/7 blur-3xl dark:bg-primary/5"
-                        />
+              <motion.div key={event.slug} variants={fadeUp}>
+                <Link href={`/events/${event.slug}`} className="block h-full">
+                  <SpotlightCard className="h-full flex flex-col overflow-hidden">
+                    {/* Thumbnail */}
+                    <div className="rounded-2xl border border-border bg-background dark:bg-surface overflow-hidden mb-8 relative">
+                      <div className="relative aspect-video">
+                        {event.thumbnailUrl ? (
+                          <Image
+                            src={event.thumbnailUrl}
+                            alt=""
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                          />
+                        ) : (
+                          <>
+                            <div
+                              aria-hidden="true"
+                              className="absolute inset-0 bg-linear-to-br from-primary/14 via-transparent to-primary/6 dark:from-primary/10 dark:to-primary/4"
+                            />
+                            <div className="relative h-full w-full flex items-center justify-center">
+                              <div className="size-12 rounded-2xl bg-border flex items-center justify-center text-primary">
+                                <ImageIcon
+                                  size={22}
+                                  aria-hidden="true"
+                                />
+                              </div>
+                            </div>
+                          </>
+                        )}
 
-                        {/* Centered icon as visual anchor */}
-                        <div className="relative h-full w-full flex items-center justify-center">
-                          <div className="size-14 rounded-2xl bg-surface/80 border border-border flex items-center justify-center text-primary backdrop-blur-sm">
-                            <Icon size={26} aria-hidden="true" />
-                          </div>
+                        {/* Countdown overlay */}
+                        {status === "upcoming" && (
+                          <CountdownOverlay startAt={event.startAt} />
+                        )}
+
+                        {/* Arrow icon */}
+                        <div
+                          className="absolute top-3 right-3 size-9 rounded-xl bg-surface/90 border border-border flex items-center justify-center text-primary"
+                          aria-hidden="true"
+                        >
+                          <ArrowUpRight size={18} strokeWidth={2.5} />
                         </div>
                       </div>
                     </div>
 
-                    {/* Title below thumbnail */}
-                    <h3 className="text-xl font-bold text-foreground leading-snug">
-                      {t(`items.${key}.title`)}
-                    </h3>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap">
-                      {tags.map((tag) => (
+                    {/* Card content */}
+                    <div className="flex flex-col gap-4 flex-1">
+                      <h3 className="text-xl font-bold text-foreground">
+                        {event.title}
+                      </h3>
+                      <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed line-clamp-2">
+                        {event.desc}
+                      </p>
+                      <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-500 dark:text-zinc-400 mt-auto">
+                        <span className="inline-flex items-center gap-1.5">
+                          <Calendar
+                            className="size-4"
+                            aria-hidden="true"
+                          />
+                          {dateText}
+                        </span>
+                        <span className="inline-flex items-center gap-1.5">
+                          <Video className="size-4" aria-hidden="true" />
+                          {event.format}
+                        </span>
                         <Tag
-                          key={`${key}-${tag}`}
+                          color={statusConfig[status].color}
                           bordered={false}
-                          color="blue"
-                          className="rounded-full! px-3!"
                         >
-                          {tag}
+                          {t(statusKeys[status])}
                         </Tag>
-                      ))}
+                      </div>
                     </div>
-
-                    {/* Description */}
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                      {t(`items.${key}.desc`)}
-                    </p>
-                  </div>
-
-                  <div className="pt-6">
-                    <Button
-                      size="large"
-                      href="#contact"
-                      className="rounded-xl! h-11! font-semibold!"
-                      block
-                    >
-                      {t("cta")} <ChevronRight className="size-4" />
-                    </Button>
-                  </div>
-                </SpotlightCard>
+                  </SpotlightCard>
+                </Link>
               </motion.div>
             );
           })}
         </div>
+
+        {/* CTA - View all events */}
+        <motion.div variants={fadeUp} className="text-center mt-12">
+          <Link href="/events">
+            <Button
+              size="large"
+              className="rounded-xl! h-11! font-semibold!"
+            >
+              {t("ctaAll")} <ArrowRight className="size-4" />
+            </Button>
+          </Link>
+        </motion.div>
       </div>
     </motion.section>
   );

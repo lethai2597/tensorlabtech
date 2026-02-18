@@ -75,7 +75,7 @@ export function EventsPageClient() {
       >
         <motion.h1
           variants={fadeUp}
-          className="text-3xl font-semibold text-foreground"
+          className="text-4xl md:text-5xl font-semibold text-foreground"
         >
           {t("title")}
         </motion.h1>
