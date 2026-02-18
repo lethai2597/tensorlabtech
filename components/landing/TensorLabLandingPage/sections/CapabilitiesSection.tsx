@@ -70,7 +70,7 @@ export function CapabilitiesSection() {
       whileInView="visible"
       viewport={landingViewport}
       variants={stagger}
-      className="relative overflow-hidden bg-background py-20 md:py-28"
+      className="relative overflow-hidden bg-background pt-28 pb-20 md:pt-40 md:pb-28"
     >
       <SectionBackdrop variant="primary" />
 
