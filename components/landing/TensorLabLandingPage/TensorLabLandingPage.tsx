@@ -1,7 +1,6 @@
 "use client";
 
 import { HeroSection } from "./sections/HeroSection";
-import { LogoCloudSection } from "./sections/LogoCloudSection";
 import { ScrollRevealHeadlineSection } from "./sections/ScrollRevealHeadlineSection";
 import { CapabilitiesSection } from "./sections/CapabilitiesSection";
 import { EngagementModelsSection } from "./sections/EngagementModelsSection";
@@ -15,10 +14,9 @@ export function TensorLabLandingPage() {
   return (
     <div className="-mt-16">
       <HeroSection />
-      <LogoCloudSection />
-      <ScrollRevealHeadlineSection />
       <CapabilitiesSection />
       <EngagementModelsSection />
+      <ScrollRevealHeadlineSection />
       <DeliveryProcessSection />
       <EventsHighlightSection />
       <TestimonialsSection />

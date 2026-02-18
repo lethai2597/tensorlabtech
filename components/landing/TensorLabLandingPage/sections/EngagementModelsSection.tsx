@@ -11,6 +11,7 @@ import {
   Users,
 } from "lucide-react";
 
+import { Link } from "@/i18n/navigation";
 import SpotlightCard from "@/components/SpotlightCard";
 import { SectionHeader } from "@/components/landing/SectionHeader";
 import { CheckList } from "@/components/landing/CheckList";
@@ -186,14 +187,15 @@ export function EngagementModelsSection() {
                     </div>
                   </div>
                   <div className="shrink-0 sm:flex sm:items-center">
-                    <Button
-                      type={activeModel.ctaType}
-                      size="large"
-                      href="#contact"
-                      className="w-full rounded-xl! h-11! px-6! font-semibold! sm:w-auto"
-                    >
-                      {activeModel.cta} <ArrowRight className="size-4" />
-                    </Button>
+                    <Link href={`/contact?type=${activeModel.key}`}>
+                      <Button
+                        type={activeModel.ctaType}
+                        size="large"
+                        className="w-full rounded-xl! h-11! px-6! font-semibold! sm:w-auto"
+                      >
+                        {activeModel.cta} <ArrowRight className="size-4" />
+                      </Button>
+                    </Link>
                   </div>
                 </div>
 

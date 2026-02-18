@@ -324,13 +324,14 @@
       "subtitle": "TensorLab supports you from architecture consulting and product development to production operations. Partner with us via:",
       "ctaProduct": "Product partnership",
       "ctaOutsource": "Hire outsource team",
-      "proofStrong": "Execution quality",
-      "proofRest": "and business impact come first.",
+      "valueBadge1": "Production-ready",
+      "valueBadge2": "Clean Architecture",
+      "valueBadge3": "AI-powered",
       "previewUrl": "tensorlab.vn/#overview",
       "previewCaption": "Product delivery • Tech consulting • AI enablement"
     },
     "logos": {
-      "title": "Some teams we’ve talked to / worked with"
+      "title": "Technologies we use"
     },
     "capabilities": {
       "tag": "Capabilities",
@@ -469,26 +470,22 @@
         }
       }
     },
-    "testimonials": {
-      "tag": "Testimonials",
-      "title": "What partners say",
-      "desc": "Sample quotes — replace with real feedback or keep anonymous.",
-      "starsAria": "{count} stars",
+    "commitments": {
+      "tag": "Commitments",
+      "title": "Why TensorLab?",
+      "desc": "Core values we bring to every project.",
       "items": {
-        "t1": {
-          "name": "An Nguyen",
-          "role": "CTO, TechViet",
-          "quote": "TensorLab helped us unblock architecture bottlenecks and deliver with a clear roadmap. Transparent, proactive, and strong code quality."
+        "ownership": {
+          "title": "True ownership",
+          "desc": "Not just coding to task — we join discovery, advise on trade-offs, and take responsibility for the final outcome."
         },
-        "t2": {
-          "name": "Mai Tran",
-          "role": "Lead Engineer, DataFlow",
-          "quote": "Ownership stands out: not only delivering requirements, but also advising on trade-offs, risks, and long-term operability."
+        "transparency": {
+          "title": "Full transparency",
+          "desc": "Weekly updates, regular demos, open code reviews, and clear handover docs. You always know the progress."
         },
-        "t3": {
-          "name": "Phuc Le",
-          "role": "Founder, ScaleUp",
-          "quote": "MVP to production was smooth. Fast collaboration, clear comms, consistent demos — it boosted confidence when meeting customers."
+        "production": {
+          "title": "Production-first",
+          "desc": "Designed for real operations from day one: monitoring, CI/CD, security, logging, and scalability."
         }
       }
     },
@@ -522,8 +519,31 @@
     "finalCta": {
       "title": "Ready to start with TensorLab?",
       "desc": "Send a brief or book a 30-minute call — we’ll review the problem and propose an optimal delivery approach.",
-      "ctaBrief": "Send brief",
-      "ctaCall": "Book a call"
+      "ctaContact": "Contact us"
+    },
+    "contactForm": {
+      "title": "Or leave your contact info",
+      "type": "Partnership type",
+      "typeRequired": "Please select a partnership type",
+      "types": {
+        "product": "Product Partnership",
+        "outsource": "Outsourcing",
+        "other": "General inquiry"
+      },
+      "name": "Full name",
+      "namePlaceholder": "Enter your full name",
+      "nameRequired": "Please enter your name",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "emailRequired": "Please enter your email",
+      "emailInvalid": "Invalid email address",
+      "message": "Message",
+      "messagePlaceholder": "Briefly describe your problem or partnership needs",
+      "messageRequired": "Please enter a message",
+      "submit": "Send message",
+      "sending": "Sending...",
+      "successTitle": "Sent successfully! TensorLab will respond shortly.",
+      "errorTitle": "Failed to send, please try again."
     },
     "footer": {
       "brand": "TensorLab",
@@ -571,6 +591,18 @@
           ]
         }
       }
+    }
+  },
+  "contactPage": {
+    "badge": "Contact",
+    "title": "Contact TensorLab",
+    "desc": "Send us your info and we'll get back to you as soon as possible.",
+    "formTitle": "Send us a message",
+    "formDesc": "Fill out the form below and we'll respond within 24 hours.",
+    "channels": {
+      "email": "Email",
+      "phone": "Phone",
+      "facebook": "Facebook"
     }
   }
 }

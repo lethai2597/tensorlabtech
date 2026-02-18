@@ -3,8 +3,9 @@
 import { Button, Tag } from "antd";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { ArrowRight, ChevronRight, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronRight, Sparkles, Rocket, Layers, BrainCircuit } from "lucide-react";
 
+import { Link } from "@/i18n/navigation";
 import ShinyText from "@/components/ShinyText";
 
 export function HeroSection() {
@@ -56,7 +57,7 @@ export function HeroSection() {
       initial="hidden"
       animate="show"
       variants={outerContainerVariants}
-      className="relative overflow-hidden bg-linear-to-b from-surface via-surface to-background pt-32 pb-20 md:pt-40 md:pb-28"
+      className="relative overflow-hidden bg-linear-to-b from-surface via-surface to-background pt-48 pb-36 md:pt-68 md:pb-48"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-70"
@@ -122,45 +123,46 @@ export function HeroSection() {
             variants={itemVariants}
             className="flex flex-col md:flex-row items-center justify-center gap-4"
           >
-            <Button
-              type="primary"
-              size="large"
-              href="#product-partnership"
-              className="h-12! px-8! text-base! font-semibold! rounded-xl! border-0! text-white! bg-transparent! hover:opacity-90! transition-opacity!"
-              style={{
-                backgroundImage:
-                  "linear-gradient(90deg, var(--color-primary) 0%, var(--color-info) 100%)",
-              }}
-            >
-              {t("ctaProduct")} <ArrowRight className="size-4" />
-            </Button>
-            <Button
-              size="large"
-              href="#outsourcing"
-              className="h-12! px-8! text-base! font-medium! rounded-xl!"
-            >
-              {t("ctaOutsource")} <ChevronRight className="size-4" />
-            </Button>
+            <Link href="/contact?type=product">
+              <Button
+                type="primary"
+                size="large"
+                className="h-12! px-8! text-base! font-semibold! rounded-xl! border-0! text-white! bg-transparent! hover:opacity-90! transition-opacity!"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(90deg, var(--color-primary) 0%, var(--color-info) 100%)",
+                }}
+              >
+                {t("ctaProduct")} <ArrowRight className="size-4" />
+              </Button>
+            </Link>
+            <Link href="/contact?type=outsource">
+              <Button
+                size="large"
+                className="h-12! px-8! text-base! font-medium! rounded-xl!"
+              >
+                {t("ctaOutsource")} <ChevronRight className="size-4" />
+              </Button>
+            </Link>
           </motion.div>
 
           <motion.div
             variants={itemVariants}
-            className="flex items-center justify-center gap-4 pt-4"
+            className="flex flex-wrap items-center justify-center gap-3 pt-4"
           >
-            <div className="flex -space-x-2" aria-hidden="true">
-              {[...Array(5)].map((_, i) => (
-                <div
-                  key={i}
-                  className="size-8 rounded-full bg-border border-2 border-surface"
-                />
-              ))}
-            </div>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">
-              <span className="font-semibold text-foreground">
-                {t("proofStrong")}
-              </span>{" "}
-              {t("proofRest")}
-            </p>
+            {[
+              { icon: Rocket, key: "valueBadge1" as const },
+              { icon: Layers, key: "valueBadge2" as const },
+              { icon: BrainCircuit, key: "valueBadge3" as const },
+            ].map(({ icon: Icon, key }) => (
+              <span
+                key={key}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-sm text-zinc-500 dark:text-zinc-400"
+              >
+                <Icon className="size-3.5" aria-hidden="true" />
+                {t(key)}
+              </span>
+            ))}
           </motion.div>
         </motion.div>
 

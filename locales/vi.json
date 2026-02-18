@@ -331,13 +331,14 @@
       "subtitle": "TensorLab đồng hành từ tư vấn kiến trúc, phát triển sản phẩm đến vận hành production. Bạn có thể hợp tác theo 2 hướng:",
       "ctaProduct": "Hợp tác Product",
       "ctaOutsource": "Thuê Outsource",
-      "proofStrong": "Chất lượng triển khai",
-      "proofRest": "và hiệu quả kinh doanh là ưu tiên số 1.",
+      "valueBadge1": "Production-ready",
+      "valueBadge2": "Clean Architecture",
+      "valueBadge3": "AI-powered",
       "previewUrl": "tensorlab.vn/#overview",
       "previewCaption": "Product delivery • Tech consulting • AI enablement"
     },
     "logos": {
-      "title": "Một vài đơn vị đã từng trao đổi / hợp tác cùng TensorLab"
+      "title": "Công nghệ chúng tôi sử dụng"
     },
     "capabilities": {
       "tag": "Năng lực",
@@ -476,26 +477,22 @@
         }
       }
     },
-    "testimonials": {
-      "tag": "Đánh giá",
-      "title": "Khách hàng & đối tác nói gì",
-      "desc": "Một vài nhận xét mẫu (bạn thay bằng feedback thật hoặc để ẩn danh).",
-      "starsAria": "{count} sao",
+    "commitments": {
+      "tag": "Cam kết",
+      "title": "Vì sao chọn TensorLab?",
+      "desc": "Những giá trị cốt lõi mà TensorLab cam kết mang lại trong mọi dự án.",
       "items": {
-        "t1": {
-          "name": "Nguyễn Văn An",
-          "role": "CTO, TechViet",
-          "quote": "TensorLab giúp team chúng tôi gỡ nút thắt kiến trúc và triển khai theo roadmap rõ ràng. Minh bạch, chủ động và chất lượng code rất tốt."
+        "ownership": {
+          "title": "Ownership thực sự",
+          "desc": "Không chỉ code theo task, mà cùng tham gia discovery, tư vấn trade-off và chịu trách nhiệm outcome cuối cùng."
         },
-        "t2": {
-          "name": "Trần Thị Mai",
-          "role": "Lead Engineer, DataFlow",
-          "quote": "Điểm mình đánh giá cao là ownership: không chỉ làm đúng yêu cầu mà còn tư vấn trade-off, rủi ro và phương án tối ưu cho vận hành dài hạn."
+        "transparency": {
+          "title": "Minh bạch tuyệt đối",
+          "desc": "Weekly update, demo định kỳ, code review mở, tài liệu bàn giao rõ ràng. Bạn luôn nắm được tiến độ."
         },
-        "t3": {
-          "name": "Lê Hoàng Phúc",
-          "role": "Founder, ScaleUp",
-          "quote": "Từ MVP đến production diễn ra mượt. TensorLab phối hợp nhanh, giao tiếp rõ, demo đều và giúp mình tự tin hơn khi gặp khách hàng."
+        "production": {
+          "title": "Production-first",
+          "desc": "Thiết kế cho vận hành thật từ ngày đầu: monitoring, CI/CD, security, logging và khả năng mở rộng."
         }
       }
     },
@@ -529,8 +526,31 @@
     "finalCta": {
       "title": "Sẵn sàng bắt đầu với TensorLab?",
       "desc": "Gửi brief hoặc đặt lịch 30 phút để chúng ta cùng nhìn bài toán và đề xuất hướng triển khai tối ưu.",
-      "ctaBrief": "Gửi brief",
-      "ctaCall": "Đặt lịch trao đổi"
+      "ctaContact": "Liên hệ ngay"
+    },
+    "contactForm": {
+      "title": "Hoặc để lại thông tin liên hệ",
+      "type": "Loại hợp tác",
+      "typeRequired": "Vui lòng chọn loại hợp tác",
+      "types": {
+        "product": "Hợp tác Product",
+        "outsource": "Thuê Outsource",
+        "other": "Tư vấn chung"
+      },
+      "name": "Họ tên",
+      "namePlaceholder": "Nhập họ tên của bạn",
+      "nameRequired": "Vui lòng nhập họ tên",
+      "email": "Email",
+      "emailPlaceholder": "Nhập email của bạn",
+      "emailRequired": "Vui lòng nhập email",
+      "emailInvalid": "Email không hợp lệ",
+      "message": "Nội dung",
+      "messagePlaceholder": "Mô tả ngắn về bài toán hoặc nhu cầu hợp tác",
+      "messageRequired": "Vui lòng nhập nội dung",
+      "submit": "Gửi thông tin",
+      "sending": "Đang gửi...",
+      "successTitle": "Đã gửi thành công! TensorLab sẽ phản hồi sớm nhất.",
+      "errorTitle": "Gửi thất bại, vui lòng thử lại."
     },
     "footer": {
       "brand": "TensorLab",
@@ -578,6 +598,18 @@
           ]
         }
       }
+    }
+  },
+  "contactPage": {
+    "badge": "Liên hệ",
+    "title": "Liên hệ với TensorLab",
+    "desc": "Gửi thông tin để chúng tôi hiểu nhu cầu và phản hồi bạn sớm nhất.",
+    "formTitle": "Gửi thông tin liên hệ",
+    "formDesc": "Điền form dưới đây, chúng tôi sẽ liên hệ lại trong 24h.",
+    "channels": {
+      "email": "Email",
+      "phone": "Điện thoại",
+      "facebook": "Facebook"
     }
   }
 }

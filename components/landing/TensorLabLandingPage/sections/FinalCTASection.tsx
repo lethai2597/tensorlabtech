@@ -3,8 +3,9 @@
 import { Button } from "antd";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { ArrowRight, MessageSquare, Rocket } from "lucide-react";
+import { ArrowRight, Rocket } from "lucide-react";
 
+import { Link } from "@/i18n/navigation";
 import { CTABox } from "@/components/landing/CTABox";
 import { SectionBackdrop } from "@/components/landing/TensorLabLandingPage/SectionBackdrop";
 import { landingViewport, useSectionVariants } from "@/lib/landingMotion";
@@ -33,21 +34,15 @@ export function FinalCTASection() {
           fadeUp={fadeUp}
           actions={
             <>
-              <Button
-                type="primary"
-                size="large"
-                href="#"
-                className="px-8! text-base! font-semibold! rounded-xl! inline-flex items-center gap-2"
-              >
-                {t("ctaBrief")} <ArrowRight className="size-4" />
-              </Button>
-              <Button
-                size="large"
-                href="#"
-                className="px-8! text-base! font-medium! rounded-xl! inline-flex items-center gap-2"
-              >
-                <MessageSquare className="size-4" /> {t("ctaCall")}
-              </Button>
+              <Link href="/contact">
+                <Button
+                  type="primary"
+                  size="large"
+                  className="px-8! text-base! font-semibold! rounded-xl! inline-flex items-center gap-2"
+                >
+                  {t("ctaContact")} <ArrowRight className="size-4" />
+                </Button>
+              </Link>
             </>
           }
         />

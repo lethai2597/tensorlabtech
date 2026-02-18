@@ -11,12 +11,12 @@ export function LogoCloudSection() {
   const { fadeUp, stagger } = useSectionVariants(Boolean(reduceMotion));
 
   const logos = [
-    "InfiniLab",
-    "Unikom",
-    "GenieTech",
-    "Viettel",
-    "24karat",
-    "Hectagon",
+    "Next.js",
+    "NestJS",
+    "React Native",
+    "PostgreSQL",
+    "AWS",
+    "OpenAI",
   ];
 
   return (
