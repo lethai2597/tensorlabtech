@@ -55,7 +55,7 @@ function CountdownBadge({ startAt }: { startAt?: string }) {
 
   return (
     <Tag color="warning" bordered={false} className="rounded-xl! text-sm! tracking-wider px-4! py-1! mr-0!">
-      <span className="inline-flex items-center font-mono">
+      <span className="inline-flex items-center">
         Còn{" "}
         {cd.segments.map((seg, i) => (
           <span key={seg.unit} className="inline-flex items-center">
