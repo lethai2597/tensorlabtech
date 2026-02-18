@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Tag } from "antd";
+import { Button } from "antd";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
@@ -11,8 +11,9 @@ import {
   Users,
 } from "lucide-react";
 
-import ShinyText from "@/components/ShinyText";
 import SpotlightCard from "@/components/SpotlightCard";
+import { SectionHeader } from "@/components/landing/SectionHeader";
+import { CheckList } from "@/components/landing/CheckList";
 import { SectionBackdrop } from "@/components/landing/TensorLabLandingPage/SectionBackdrop";
 import { landingViewport, useSectionVariants } from "@/lib/landingMotion";
 
@@ -57,7 +58,8 @@ export function EngagementModelsSection() {
 
   const activeModel = models.find((m) => m.key === activeKey) ?? models[0]!;
   const ActiveIcon = activeModel.icon;
-  const { fadeUp, stagger } = useSectionVariants(Boolean(shouldReduceMotion));
+  const reduced = Boolean(shouldReduceMotion);
+  const { fadeUp, stagger } = useSectionVariants(reduced);
 
   return (
     <motion.section
@@ -71,28 +73,13 @@ export function EngagementModelsSection() {
       <SectionBackdrop variant="cool" />
 
       <div className="container mx-auto px-8 relative z-10">
-        <motion.div
-          variants={fadeUp}
-          className="max-w-2xl mx-auto text-center flex flex-col items-center gap-4 mb-16"
-        >
-          <Tag
-            bordered={false}
-            color="geekblue"
-            className="rounded-full! px-3! py-0.5!"
-          >
-            <ShinyText
-              text={t("tag")}
-              disabled={Boolean(shouldReduceMotion)}
-              speed={2}
-              color="var(--color-primary)"
-              shineColor="rgba(255, 255, 255, 0.7)"
-            />
-          </Tag>
-          <h2 className="text-3xl font-semibold text-foreground">
-            {t("title")}
-          </h2>
-          <p className="text-zinc-500 dark:text-zinc-400">{t("desc")}</p>
-        </motion.div>
+        <SectionHeader
+          tag={t("tag")}
+          title={t("title")}
+          description={t("desc")}
+          reducedMotion={reduced}
+          fadeUp={fadeUp}
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           <div className="lg:col-span-5 space-y-4">
@@ -165,12 +152,7 @@ export function EngagementModelsSection() {
                         </div>
 
                         <div className="grid grid-cols-1 gap-2">
-                          <div className="flex items-start gap-3">
-                            <CheckCircle2 className="size-4 shrink-0 text-success mt-0.5" />
-                            <span className="min-w-0 text-sm text-foreground wrap-break-word">
-                              {model.items[0]}
-                            </span>
-                          </div>
+                          <CheckList items={[model.items[0]]} size="sm" />
                         </div>
                       </div>
                     </div>
@@ -216,20 +198,7 @@ export function EngagementModelsSection() {
                 </div>
 
                 <div className="space-y-4">
-                  {activeModel.items.map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-start gap-3 sm:gap-4"
-                    >
-                      <CheckCircle2
-                        className="size-5 shrink-0 text-success mt-0.5"
-                        aria-hidden
-                      />
-                      <span className="min-w-0 flex-1 text-foreground wrap-break-word">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
+                  <CheckList items={activeModel.items} />
                 </div>
               </div>
             </SpotlightCard>

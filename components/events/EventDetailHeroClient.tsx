@@ -6,30 +6,9 @@ import Image from "next/image";
 import { ArrowLeft, Calendar, ExternalLink, ImageIcon, Video } from "lucide-react";
 
 import { Link } from "@/i18n/navigation";
-import { EVENT_DURATION_MS } from "@/lib/eventTypes";
+import { getEventStatus, formatEventDateLong, EVENT_STATUS_CONFIG } from "@/lib/eventHelpers";
 import { useSectionVariants } from "@/lib/landingMotion";
-import { useCountdown } from "@/hooks/useCountdown";
-
-/* ---------- helpers ---------- */
-
-function getStatus(startAt?: string): "upcoming" | "live" | "ended" | "open" {
-  if (!startAt) return "open";
-  const start = new Date(startAt).getTime();
-  const now = Date.now();
-  if (now < start) return "upcoming";
-  if (now < start + EVENT_DURATION_MS) return "live";
-  return "ended";
-}
-
-function formatDate(iso: string): string {
-  return new Intl.DateTimeFormat("vi", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(new Date(iso));
-}
+import { CountdownBadge } from "@/components/events/CountdownBadge";
 
 /* ---------- types ---------- */
 
@@ -45,36 +24,7 @@ type Props = {
   dateLabel: string;
   formatLabel: string;
   formatValue: string;
-};
-
-/* ---------- countdown ---------- */
-
-function CountdownBadge({ startAt }: { startAt?: string }) {
-  const cd = useCountdown(startAt);
-  if (!cd || cd.isExpired) return null;
-
-  return (
-    <Tag color="warning" bordered={false} className="rounded-xl! text-sm! tracking-wider px-4! py-1! mr-0!">
-      <span className="inline-flex items-center">
-        Còn{" "}
-        {cd.segments.map((seg, i) => (
-          <span key={seg.unit} className="inline-flex items-center">
-            {i > 0 && <span className="mx-0.5 opacity-60">:</span>}
-            <span style={{ display: "inline-block", width: "1.6em", textAlign: "right" }}>{seg.value}</span>
-            <span className="opacity-70">{seg.unit}</span>
-          </span>
-        ))}
-      </span>
-    </Tag>
-  );
-}
-
-/* ---------- status config ---------- */
-
-const statusConfig = {
-  open: { label: "Đang mở", color: "blue" as const },
-  live: { label: "Đang diễn ra", color: "red" as const },
-  ended: { label: "Đã kết thúc", color: "default" as const },
+  statusLabel?: string;
 };
 
 /* ---------- component ---------- */
@@ -91,12 +41,13 @@ export function EventDetailHeroClient({
   dateLabel,
   formatLabel,
   formatValue,
+  statusLabel,
 }: Props) {
   const shouldReduceMotion = useReducedMotion();
   const { fadeUp } = useSectionVariants(Boolean(shouldReduceMotion));
 
-  const status = getStatus(startAt);
-  const dateValue = startAt ? formatDate(startAt) : "Đang mở";
+  const status = getEventStatus(startAt);
+  const dateValue = startAt ? formatEventDateLong(startAt) : "Đang mở";
 
   const containerVariants = {
     hidden: {},
@@ -210,13 +161,13 @@ export function EventDetailHeroClient({
             <motion.div variants={fadeUp}>
               {status === "upcoming" ? (
                 <CountdownBadge startAt={startAt} />
-              ) : status in statusConfig ? (
+              ) : statusLabel ? (
                 <Tag
-                  color={statusConfig[status as keyof typeof statusConfig].color}
+                  color={EVENT_STATUS_CONFIG[status].color}
                   bordered={false}
                   className="rounded-xl! text-sm! px-4! py-1! mr-0!"
                 >
-                  {statusConfig[status as keyof typeof statusConfig].label}
+                  {statusLabel}
                 </Tag>
               ) : null}
             </motion.div>
