@@ -1,0 +1,316 @@
+---
+title: "Thông não về Deploy dự án website từ A-Z"
+date: "2026-02-19"
+description: "Hiểu bản chất deploy website: từ chuẩn bị server, đưa code lên, chạy ứng dụng, DNS, Nginx đến SSL. Không deploy mù, không làm theo tutorial với cái đầu trống rỗng."
+---
+
+Xin chào anh em, để làm được 1 dự án Website từ A đến Z thì khó mà trốn được cái bước deploy này. Anh em dev mới thường sợ deploy, hoặc làm theo tutorial kiểu copy-paste mà không hiểu tại sao, dẫn đến lỗi là không biết sửa ở đâu. Tất nhiên là ở dự án công ty sẽ có đội ngũ devops hoặc anh lead sẽ setup cho, nhưng anh em làm dự án cá nhân hay freelancer thì vẫn phải tự làm.
+
+Bài viết này sẽ thông não cho anh em mới về Deploy dự án thuần tuý để có cái nhìn bao quát hơn về việc deploy 1 dự án website là như thế nào (không bàn đến những bên thứ 3 hỗ trợ deploy như kiểu: Vercel, Netlify, ...) và bài viết này nói về bản chất nên có thể áp dụng cho hầu hết framework, ngôn ngữ phổ biến nhất hiện nay nhé ạ, như: NodeJs/Javascript, Php, Python/Django/Flask, Java/Spring Boot, Ruby/Rails, Go, .NET Core, ...
+
+<Callout type="tip" title="Bài viết này dành cho ai">
+- **Dành cho ai:** Anh em dev mới muốn hình dung deploy là gì, bức tranh toàn cảnh, đã làm theo tutorial nhưng không hiểu lắm
+- **Tại sao lại dễ hiểu:** Nói về bản chất, cách làm và output của mỗi giai đoạn
+- **Deploy thuần tuý:** Không bàn về những bên dịch vụ có hỗ trợ deploy kiểu: NextJs, Supabase, Mongo Atlas, ...
+</Callout>
+
+Về tổng quan, để deploy được 1 dự án web lên server thì anh em cần phải làm **6 bước** sau:
+
+1. **Chuẩn bị Môi trường Server** — mua được server, chui vào, thực hành vui vẻ
+2. **Đưa Code lên Server** — làm cho code dự án xuất hiện trên server
+3. **Làm cho dự án chạy được trên server** — local chạy sao, server chạy vậy
+4. **Setup cho tên miền trỏ vào server** — mua tên miền, DNS
+5. **Làm cho server chấp nhận tên miền** — Nginx các kiểu
+6. **Mấy cái ngoài lề** — kinh nghiệm debug, làm cho xịn hơn
+
+Tóm tắt ngắn gọn là: Làm cho dự án chạy được trên server (như kiểu chạy trên máy local ấy), trỏ được tên miền và mấy cái ngoài lề. Hết. Oke bắt đầu luôn.
+
+---
+
+## I. Chuẩn bị Môi trường Server
+
+Ngắn gọn thì Server bản chất nó cũng giống như một cái máy tính của bạn và nó sẽ chạy 24/7.
+
+### I.1: Phải thuê được 1 cái server
+
+Thường chạy hệ điều hành **Linux** (thường là Ubuntu) thay vì Windows/MacOS như máy mình, sẽ không có GUI (kiểu màn hình desktop, các icon, chuột, ...) mà sẽ phải dùng cửa sổ dòng lệnh (như terminal) nên sẽ phải làm quen 1 chút với hệ điều hành của server.
+
+Chi phí server từ rẻ đến đắt, từ vài $/tháng đến vô hạn, ví dụ một số bên như:
+
+- **Vultr**
+- **Hostinger**
+- **DigitalOcean**
+- **Linode**
+- **AWS**
+- **Contabo** — Gần đây mình hay dùng thằng này cho dự án production luôn, cấu hình ổn, giá rẻ (mà trang quản trị như năm 2000)
+
+Trước mình hay mua con AWS Lightsail để cài các project bên lề, mà bị khoá acc nên chuyển sang bọn khác :vv
+
+<Callout type="info" title="Output bước này">
+Thuê được 1 cái server (mất tiền hoặc free tuỳ các bạn) và có thông tin về server đó (ví dụ IP, username, password, ...)
+</Callout>
+
+---
+
+### I.2: Chui được vào cái server đó
+
+Bản chất là chui vào cái server đó để điều khiển cái server đó từ xa (kiểu Team Viewer, Ultra View ấy). Ở đây nên biết tới thuật ngữ **SSH**, SSH giúp bạn điều khiển 1 cái máy tính (server) Linux khác từ cửa sổ dòng lệnh, thường thuê server xong các bạn sẽ được cung cấp thông tin về SSH (cứ search kiểu "ssh vào server" là ra nhiều).
+
+```bash
+ssh root@IP_Public_Của_Server
+```
+
+<Callout type="info" title="Output bước này">
+Chui được vào server, thấy cửa sổ dòng lệnh của SSH, kiểu như:
+
+*"Welcome! This server is hosted by Contabo. If you have any questions or need help, please don't hesitate to contact us at ..."*
+</Callout>
+
+---
+
+### I.3: Nghịch thử tí nếu chưa quen
+
+Như trên mình đã nói, đa số server là Linux, sẽ thao tác bằng cửa sổ dòng lệnh thay vì GUI nên nhiều lúc các bạn làm theo tutorial sẽ thấy khó vì không hiểu lệnh này làm gì, lệnh kia làm gì. Cần xây dựng 2 thói quen ở đây:
+
+- Khi gặp lệnh không biết => đi search để hiểu/ghi nhớ
+- Search để convert hành động quen thuộc sang lệnh của server (ví dụ: tạo thư mục trên Ubuntu, kiểm tra xem 1 package tồn tại chưa, cài git, cài nodejs, ...)
+
+<Callout type="info" title="Output bước này">
+Thử di chuyển vào thư mục `/var/www`, tạo thư mục, xoá thư mục, tạo file md/txt, sửa nội dung, lưu file, xem danh sách các thành phần của thư mục vừa nghịch, ...
+</Callout>
+
+---
+
+## II. Đưa code lên server
+
+Có rất nhiều cách để làm việc này, nhưng thông dụng nhất vẫn nên dùng **Git**. Clone dự án ở máy local như nào thì ở Server y hệt vậy (nhưng nhớ là có thể khác hệ điều hành).
+
+Ví dụ ở local cần cài đặt git, setup authentication với git hoặc add SSH key hoặc dễ nhất là dùng **personal access token** => thì ở server các bước y hệt chỉ khác là thao tác của hệ điều hành khác => search 1 cái là ra.
+
+<Callout type="info" title="Output bước này">
+Có thư mục chứa code (ví dụ ở `/var/www/ten-du-an`), di chuyển vào thư mục chứa code, xem được danh sách file.
+</Callout>
+
+---
+
+## III. Làm cho dự án chạy được trên server
+
+Ok đến bước này thì thường sẽ có **2 kiểu chính** nhé:
+
+1. **Frontend tĩnh** — code frontend tĩnh hoặc build được ra tĩnh (HTML/CSS/JS hoặc ReactJs, VueJs, ...)
+2. **Backend / Frontend động** — code backend hoặc frontend động (có chạy process, có port thay vì build static, kiểu NextJs, NuxtJs, ...)
+
+### Frontend tĩnh
+
+Nếu dự án là HTML/CSS/JS thuần thì không cần làm gì bước này nữa => nhảy sang bước tiếp.
+
+Nếu là các thư viện/framework frontend (kiểu ReactJs, VueJs) thì bọn này đều sẽ cung cấp chức năng **build** và khi build ra sẽ có thư mục kiểu `build`, `dist`, `output`, vân vân ... => đọc docs các mục liên quan đến build hoặc run production để biết.
+
+Nguyên lý là các công nghệ, chạy process, truy cập port, ... là để chúng ta dev dễ hơn nhưng khi chạy production sẽ build ra HTML/CSS/JS thuần.
+
+<Callout type="info" title="Output bước này">
+Có 1 cái thư mục chứa code HTML/CSS/JS thuần.
+</Callout>
+
+---
+
+### Backend / Frontend động
+
+Thằng này sẽ khó hơn frontend 1 chút, nhưng về bản chất nó sẽ **giống hệt cách** mà các bạn làm cho code ở local có thể chạy được.
+
+Hãy tua về lúc đầu khi bắt đầu học code, cài môi trường các bạn đã cần làm những gì để dự án có thể chạy (ví dụ cần cài Git, NodeJs, MongoDB, Postgres, ..., lưu ý là để dự án **chạy** nhé, còn để dev thì không cần, kiểu không cần cài IDE đâu :vv) thì sẽ phải làm y hệt trên server (nhưng có thể khác hệ điều hành).
+
+Chỗ này sẽ cần làm 2 việc chính: **Chạy được** và **check được là nó chạy được**.
+
+### III.1: Cài đặt môi trường
+
+Ví dụ dự án cần NodeJs => kiểm tra xem có NodeJs chưa, chưa có thì cài. Dự án cần MongoDB => kiểm tra xem có MongoDB chưa, chưa có thì cài. Sau khi cài thì check lại, hầu như thư viện nào cũng có cách check xem đã cài chưa (phiên bản), trạng thái (status).
+
+<Callout type="info" title="Output bước này">
+Kiểm tra được phiên bản, status của những thứ cần cài để chạy ứng dụng. Ví dụ ứng dụng của mình cần: NodeJs, MongoDB.
+</Callout>
+
+---
+
+### III.2: Setup database nếu cần
+
+Nếu dự án cần database thì dĩ nhiên rồi hãy tìm hiểu cách cài database, setup và test xem làm sao để biết database đang hoạt động, search 1 cái là ra rất nhiều. Ví dụ: "Setup MongoDB Ubuntu".
+
+<Callout type="info" title="Output bước này">
+Kiểm tra được đã cài Database, truy cập được vào trong Database tạo thử 1 bảng.
+</Callout>
+
+---
+
+### III.3: Setup Env nếu cần
+
+Sẽ có những thông tin được đặt trong env, nếu dự án có file này thì giờ cần tạo file env và config nó. Cần biết những câu lệnh, công cụ để chỉnh sửa file (kiểu `vi`, `vim`, `nano`, ... chọn 1, dễ nhất là `vi`).
+
+<Callout type="info" title="Output bước này">
+Tồn tại file `.env` trong thư mục source code và có data bên trong.
+</Callout>
+
+---
+
+### III.4: Cài đặt phụ thuộc nếu cần
+
+Thường thì source code sẽ sử dụng những cái công cụ quản lý **Dependency** kiểu ở NodeJs là `npm` hay `yarn`, PHP là `composer`, Python là `pip`, ... ở ngôn ngữ khác sẽ có cái khác. Lúc này chúng ta sẽ chạy lệnh cài đặt dependency (kiểu `npm install`).
+
+<Callout type="info" title="Output bước này">
+Tồn tại thư mục chứa dependency (`node_modules`, `vendor`, ...)
+</Callout>
+
+---
+
+### III.5: Chạy thử dev mode
+
+Đây là chạy thử dev xem có được không, một việc rất quen thuộc, mục đích để kiểm tra xem nãy giờ setup đúng không. Giống hệt ở local chạy sao ở đây chạy vậy => ví dụ `npm run dev`, `yarn dev`, ... vân vân. Chạy thử xong thì tắt đi nhé ạ.
+
+```
+▲ Next.js 16.0.7 (Turbopack)
+- Local:    http://localhost:3000
+- Network:  http://192.168.2.7:3000
+- Environments: .env
+
+✓ Starting...
+✓ Ready in 981ms
+```
+
+---
+
+### III.6: Chạy prod mode
+
+Đây sẽ là chế độ giúp web của chúng ta chạy **24/7**, thay vì chạy thêm các công cụ giúp dev hiệu quả thì chế độ Prod sẽ tối ưu và chỉ chạy các phần cần thiết thôi. Các framework đều có hướng dẫn để Build và chạy kiểu này => ví dụ `npm run build`. Có thể sẽ có các công cụ để giúp dự án chạy code mà không cần duy trì terminal, ví dụ bên NodeJs sẽ có **PM2** — cái này tìm hiểu tuỳ thư viện/framework.
+
+<Callout type="info" title="Output bước này">
+Có thể check logs của ứng dụng để biết đang chạy, có thể `curl` vào `localhost:port` để biết có phản hồi, ...
+</Callout>
+
+<Callout type="tip" title="Mẹo hay">
+Đến bước này mà mở public port đang chạy dự án lên (ví dụ mở firewall port 3000) => là sẽ thấy ứng dụng chạy ở `IP:3000` rồi đấy. Mỗi tội nhìn IP đần quá, khó nhớ, không thể nhận diện thương hiệu thì xin mời đến giai đoạn tiếp theo.
+</Callout>
+
+---
+
+## IV. Mua và DNS tên miền
+
+Tên miền như thể **địa chỉ nhà** còn server như **cái nhà** vậy, đã có nhà rồi nhưng muốn người khác dễ tìm thì cần 1 cái địa chỉ nhà dễ đọc, dễ nhớ => Mua 1 cái tên miền.
+
+Có rất nhiều đơn vị cung cấp tên miền kiểu tenten, matbao, hostinger, ... (mình hay mua ở hostinger). Thật ra tên miền mua đâu cũng thế cả, thích mua ở đâu thì mua ạ. Giá cả cũng giao động từ vài chục nghìn đến vài triệu, vài chục triệu (mình không có). Free cũng có tuỳ các bạn.
+
+Sau khi mua tên miền rồi thì các bạn hãy tìm 1 mục gọi là **DNS**. Mục đích của chức năng này là cài đặt xem tên miền này sẽ trỏ đến đâu. Cứ tưởng tượng DNS như kiểu **danh bạ** vậy, nó sẽ có nghĩa vụ lưu trữ và điều hướng xem 1 tên miền sẽ dẫn đến đâu. Lúc này bạn sẽ cần trỏ được tên miền vào server IP của bạn.
+
+Ví dụ: **Record A** => `123.456.789.xxx`
+
+<Callout type="info" title="Output bước này">
+Kiểm tra được tên miền đang trỏ vào server, có nhiều cách để check xem 1 tên miền đang trỏ đi đâu kiểu `ping domain`, `traceroute`, `whois`, ...
+</Callout>
+
+<Callout type="warning" title="Lưu ý về DNS">
+Chỗ này nhiều lúc cache rất oái oăm, nên cần bình tĩnh và không nóng nảy bước này. Có thể trỏ DNS xong đi làm cái gì đó check sau.
+</Callout>
+
+---
+
+## V. Làm cho server chấp nhận tên miền
+
+Tương tự phần III, chỗ này lại chia **2 nhánh**: Frontend tĩnh và Backend / Frontend động. Nhưng về cơ bản anh em sẽ cần biết tới 1 thứ gọi là **Reverse Proxy** và 1 cái sơ đồ request cơ bản như sau:
+
+**User/Browser** => **Domain** => **DNS** => **Server** => **Reverse Proxy** => **App của bạn**
+
+Bước trước chúng ta đã trỏ được domain vào server rồi, thì khi truy cập tên miền sẽ được trỏ tới server, nhưng làm sao để server chấp nhận và tiếp nhận request đó sau đó trỏ được vào code của chúng ta thì cần 1 thằng là **Reverse Proxy**. Nếu các bạn đã nghe qua mấy thằng như **Nginx**, **Apache**, ... thì mấy thằng này có chức năng như vậy.
+
+### V.1: Cài đặt Reverse Proxy
+
+Tuỳ các bạn lựa chọn nhưng thường nó cũng đi theo hệ sinh thái, NodeJs thì dùng Nginx nhiều, PHP dùng Apache nhiều, ... vân vân (mình hay dùng Nginx).
+
+Tương tự việc cài các thư viện — cài xong kiểm tra xem đã cài được chưa, kiểm tra trạng thái.
+
+---
+
+### V.2: Config Reverse Proxy
+
+Chúng ta đã làm cho tên miền trỏ được vào server ở bước bên trên, giờ cần định nghĩa ở file config reverse proxy bao gồm: **Chấp nhận tên miền nào**, khi tên miền này tới thì **trỏ đi đâu**. Sẽ có 2 kiểu lớn:
+
+- **Frontend tĩnh:** trỏ vào thư mục HTML/CSS/JS
+- **Backend / Frontend động:** trỏ vào port (ví dụ `localhost:3000`)
+
+Ví dụ config Nginx cho Backend / Frontend động:
+
+```nginx
+server {
+    listen 80;
+    server_name your_domain;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+
+Đây là file Nginx để trỏ vào port, còn trỏ vào thư mục cũng tương tự thôi, anh em search thử nhé.
+
+<Callout type="info" title="Output bước này">
+Có 1 file config Reverse Proxy config đủ 2 phần trên, truy cập tên miền xem đã thấy dự án chưa.
+</Callout>
+
+Theo lý thuyết thì đến bước này truy cập tên miền sẽ thấy ứng dụng, và việc deploy tới đây cơ bản là xong, nhưng nếu bạn là người mới thì tỉ lệ này sẽ rất thấp :vv nên mình có thêm 1 mục lớn là "Mấy cái ngoài lề" xin mời bạn đọc tiếp.
+
+---
+
+## VI. Mấy cái ngoài lề
+
+Đời không như mơ, và code trên server thường... toang ngay lần đầu bấm chạy. Mục này sẽ trang bị cho anh em **tư duy** để xử lý khi mọi thứ không chạy, và làm cho cái web nó "uy tín" hơn.
+
+### VI.1: Debug cơ bản
+
+Khi gõ tên miền mà web không lên, đừng hoảng loạn gõ code lung tung. Hãy bình tĩnh hình dung đường đi của Request:
+
+**Browser** => **Tên miền** => **Server** => **Nginx (Ông bảo vệ)** => **App của bạn (Code)**
+
+Lỗi nằm ở đâu thì sửa ở đó:
+
+- **"Site can't be reached":** Ông bảo vệ (Nginx) đang ngủ hoặc chết rồi. Kiểm tra xem Nginx có đang chạy không.
+- **Lỗi 502 Bad Gateway:** Đây là lỗi phổ biến nhất. Nghĩa là ông bảo vệ (Nginx) vẫn sống, nhưng cái App bên trong của bạn bị chết, hoặc App chạy sai Port so với ông bảo vệ biết.
+- **Lỗi 500 hoặc App crash:** Nếu vào được web nhưng trắng trang hoặc báo lỗi logic, thì là do code của bạn. Lúc này phải **Đọc Logs**. Server nào cũng có file lưu lại lịch sử lỗi (Error Log), mở ra đọc là biết code sai dòng nào ngay.
+
+<Callout type="tip" title="Nguyên tắc debug trên server">
+Luôn hình dung request đi từ đâu tới đâu, lỗi xảy ra ở bước nào thì fix ở bước đó. Đừng đoán mò.
+</Callout>
+
+---
+
+### VI.2: SSL/HTTPS — Cái ổ khóa xanh
+
+Thời đại này mà web hiện chữ "Not Secure" màu đỏ thì ai dám vào. Anh em cần cài **SSL** để web có cái ổ khóa xanh (giao thức HTTPS).
+
+- **Bản chất:** Nó là một chứng chỉ để xác thực web bạn an toàn.
+- **Cách làm:** Không cần mua bán gì phức tạp, dùng một công cụ miễn phí tên là **Certbot** (Let's Encrypt). Chỉ cần chạy nó, nó sẽ tự động xin chứng chỉ và tự động cấu hình vào Nginx cho bạn luôn. Rất nhàn.
+
+---
+
+### VI.3: Firewall — Kẻ chặn cửa
+
+Nhiều khi setup chuẩn chỉ từ A-Z mà web vẫn không vào được. Lý do là Server (hoặc nhà cung cấp Server như AWS, Vultr...) đang đóng cửa thả chó, không cho ai vào.
+
+- **Bản chất:** Mặc định các cổng (port) của server đều đóng để bảo mật.
+- **Cách làm:** Muốn người ta vào xem web thì bạn phải **Mở Port**: port **80** (cho HTTP) và port **443** (cho HTTPS).
+
+<Callout type="danger" title="Cẩn thận">
+Đừng lỡ tay đóng port **22** (SSH) nếu không muốn bị nhốt ở ngoài server vĩnh viễn — phải liên hệ hỗ trợ nhà cung cấp.
+</Callout>
+
+---
+
+## Tổng kết
+
+Bài viết hơi siêu dài nhỉ @@ dù còn tỉ thứ nữa muốn nói nhưng có lẽ bài này chỉ nên dừng ở mức tổng quát, để có thể hiểu được bức tranh tổng thể thôi. Còn những trường hợp rất cụ thể có lẽ phải bài khác ạ.
+
+Nếu cảm thấy bài viết này có ích, để lại cho mình một react, một comment để mình biết nhé ạ. Chào anh em!

@@ -15,6 +15,7 @@ export function Header() {
     { key: "home", label: t("home"), href: "/" },
     { key: "capabilities", label: t("capabilities"), hash: "capabilities" },
     { key: "engagement", label: t("engagement"), hash: "engagement" },
+    { key: "blog", label: "Blog", href: "/blog" },
     { key: "events", label: t("events"), href: "/events" },
     { key: "contact", label: t("contact"), href: "/contact" },
   ] as const;
