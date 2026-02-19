@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPostSlugs } from "@/lib/blog";
-import { evaluate } from "@mdx-js/mdx";
-import * as runtime from "react/jsx-runtime";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { Calendar, Clock, ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -134,15 +133,6 @@ export default async function BlogPostPage({ params }: PageProps) {
 
     const backHref = locale === "en" ? "/blog" : `/${locale}/blog`;
 
-    // Use @mdx-js/mdx evaluate() to properly evaluate JS expressions in MDX
-    // This is necessary because next-mdx-remote/rsc does NOT evaluate inline
-    // JS object/array expressions in props like nodes={[...]} or columns={[...]}
-    const { default: MDXContent } = await evaluate(post.content, {
-        ...runtime,
-        remarkPlugins: [remarkGfm],
-        useMDXComponents: () => mdxComponents,
-    });
-
     return (
         <div className="container mx-auto px-8 py-8">
             {/* Back link */}
@@ -181,7 +171,15 @@ export default async function BlogPostPage({ params }: PageProps) {
 
                     {/* MDX Content */}
                     <div data-blog-content className="prose-custom max-w-none">
-                        <MDXContent />
+                        <MDXRemote
+                            source={post.content}
+                            components={mdxComponents}
+                            options={{
+                                mdxOptions: {
+                                    remarkPlugins: [remarkGfm],
+                                },
+                            }}
+                        />
                     </div>
                 </article>
 
