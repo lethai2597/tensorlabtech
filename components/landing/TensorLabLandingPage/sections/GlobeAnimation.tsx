@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import createGlobe from "cobe";
 import { useReducedMotion } from "framer-motion";
+import { useTheme } from "@/app/providers/ThemeProvider";
 
 interface GlobeAnimationProps {
     className?: string;
@@ -14,6 +15,7 @@ export function GlobeAnimation({ className }: GlobeAnimationProps) {
     const pointerInteractionMovement = useRef(0);
     const phiRef = useRef(0);
     const shouldReduceMotion = useReducedMotion();
+    const { isDark } = useTheme();
 
     const onResize = useCallback(() => {
         if (canvasRef.current) {
@@ -30,19 +32,36 @@ export function GlobeAnimation({ className }: GlobeAnimationProps) {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
+        // Theme-aware colors
+        const config = isDark
+            ? {
+                dark: 1,
+                baseColor: [0.08, 0.15, 0.4] as [number, number, number],
+                markerColor: [0.3, 0.5, 1] as [number, number, number],
+                glowColor: [0.15, 0.3, 0.8] as [number, number, number],
+                mapBrightness: 2,
+            }
+            : {
+                dark: 0,
+                baseColor: [0.94, 0.95, 0.98] as [number, number, number],
+                markerColor: [0.6, 0.7, 0.95] as [number, number, number],
+                glowColor: [0.96, 0.97, 1] as [number, number, number],
+                mapBrightness: 2,
+            };
+
         const globe = createGlobe(canvas, {
             devicePixelRatio: 2,
             width: canvas.width,
             height: canvas.height,
-            phi: 0,
+            phi: phiRef.current,
             theta: 0.25,
-            dark: 1,
+            dark: config.dark,
             diffuse: 2,
             mapSamples: 16000,
-            mapBrightness: 2,
-            baseColor: [0.08, 0.15, 0.4],
-            markerColor: [0.3, 0.5, 1],
-            glowColor: [0.15, 0.3, 0.8],
+            mapBrightness: config.mapBrightness,
+            baseColor: config.baseColor,
+            markerColor: config.markerColor,
+            glowColor: config.glowColor,
             scale: 1,
             offset: [0, 0],
             markers: [],
@@ -70,7 +89,7 @@ export function GlobeAnimation({ className }: GlobeAnimationProps) {
             globe.destroy();
             window.removeEventListener("resize", onResize);
         };
-    }, [onResize, shouldReduceMotion]);
+    }, [onResize, shouldReduceMotion, isDark]);
 
     return (
         <div className={className}>
