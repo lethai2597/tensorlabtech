@@ -7,6 +7,7 @@ import { ArrowRight, ChevronRight, Sparkles, Rocket, Layers, BrainCircuit } from
 
 import { Link } from "@/i18n/navigation";
 import ShinyText from "@/components/ShinyText";
+import { GlobeAnimation } from "./GlobeAnimation";
 
 export function HeroSection() {
   const t = useTranslations("landing.hero");
@@ -165,12 +166,30 @@ export function HeroSection() {
             ))}
           </motion.div>
         </motion.div>
-
-
       </div>
+
+      {/* Globe — absolute positioned at bottom center, behind text */}
+      <motion.div
+        initial={{ y: 120, scale: 1.15, opacity: 0 }}
+        animate={{ y: 0, scale: 1, opacity: 1 }}
+        transition={{
+          duration: 2.5,
+          delay: 0.5,
+          ease: [0.16, 1, 0.3, 1],
+          scale: {
+            duration: 2.2,
+            delay: 0.5,
+            ease: [0.34, 1.56, 0.64, 1],
+          },
+        }}
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[60%] w-[900px] md:w-[1200px] lg:w-[1600px] pointer-events-auto z-0"
+      >
+        <GlobeAnimation className="w-full opacity-25" />
+      </motion.div>
+
       {/* Bottom accent line */}
       <div
-        className="absolute bottom-0 left-0 h-px w-full"
+        className="absolute bottom-0 left-0 h-px w-full z-10"
         style={{
           background:
             "linear-gradient(90deg, transparent, var(--color-primary), var(--color-info), transparent)",
