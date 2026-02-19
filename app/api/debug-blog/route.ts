@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import React from "react";
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
@@ -12,54 +13,57 @@ export async function GET(request: Request) {
         slug,
     };
 
-    // Step 1: Check if content/blog directory exists
     const blogDir = path.join(process.cwd(), "content/blog");
-    results.blogDirExists = fs.existsSync(blogDir);
-
-    if (results.blogDirExists) {
-        results.blogFiles = fs.readdirSync(blogDir);
-    }
-
-    // Step 2: Try reading the specific MDX file
     const filePath = path.join(blogDir, `${slug}.mdx`);
-    results.fileExists = fs.existsSync(filePath);
 
-    if (results.fileExists) {
-        try {
-            const content = fs.readFileSync(filePath, "utf-8");
-            results.fileSize = content.length;
-            results.filePreview = content.slice(0, 200);
-        } catch (e) {
-            results.fileReadError = e instanceof Error ? e.message : String(e);
-        }
-    }
-
-    // Step 3: Try MDX compilation
     try {
+        // Step 1: Read file
+        const rawContent = fs.readFileSync(filePath, "utf-8");
+        const matter = (await import("gray-matter")).default;
+        const { content: mdxContent } = matter(rawContent);
+        results.step1_fileRead = "OK";
+        results.contentLength = mdxContent.length;
+
+        // Step 2: Import components (same as page.tsx)
+        const { Callout } = await import("@/components/blog/mdx/Callout");
+        const { ImageWithCaption } = await import("@/components/blog/mdx/ImageWithCaption");
+        const { Heading } = await import("@/components/blog/mdx/Heading");
+        const { CodeBlock } = await import("@/components/blog/mdx/CodeBlock");
+        results.step2_imports = "OK";
+
+        // Step 3: Build components map (same as page.tsx)
+        const mdxComponents: Record<string, React.ComponentType<any>> = {
+            h1: (props: any) => React.createElement(Heading, { level: 1, ...props }),
+            h2: (props: any) => React.createElement(Heading, { level: 2, ...props }),
+            h3: (props: any) => React.createElement(Heading, { level: 3, ...props }),
+            h4: (props: any) => React.createElement(Heading, { level: 4, ...props }),
+            pre: (props: any) => React.createElement(CodeBlock, props),
+            Callout,
+            ImageWithCaption,
+        };
+        results.step3_components = "OK";
+
+        // Step 4: Compile MDX with components (same as page.tsx)
         const { compileMDX } = await import("next-mdx-remote/rsc");
         const remarkGfm = (await import("remark-gfm")).default;
 
-        if (results.fileExists) {
-            const content = fs.readFileSync(filePath, "utf-8");
-            // Extract content after frontmatter
-            const matter = (await import("gray-matter")).default;
-            const { content: mdxContent } = matter(content);
-
-            const { content: compiled } = await compileMDX({
-                source: mdxContent,
-                options: {
-                    mdxOptions: {
-                        remarkPlugins: [remarkGfm],
-                    },
+        const { content: compiled } = await compileMDX({
+            source: mdxContent,
+            components: mdxComponents,
+            options: {
+                mdxOptions: {
+                    remarkPlugins: [remarkGfm],
                 },
-            });
-            results.mdxCompiled = true;
-            results.mdxType = typeof compiled;
-        }
+            },
+        });
+        results.step4_compile = "OK";
+        results.compiledType = typeof compiled;
+        results.success = true;
+
     } catch (e) {
-        results.mdxCompiled = false;
-        results.mdxError = e instanceof Error ? e.message : String(e);
-        results.mdxStack = e instanceof Error ? e.stack : "";
+        results.success = false;
+        results.error = e instanceof Error ? e.message : String(e);
+        results.errorStack = e instanceof Error ? e.stack?.split("\n").slice(0, 10) : "";
     }
 
     return NextResponse.json(results, { status: 200 });
