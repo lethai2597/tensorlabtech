@@ -124,70 +124,83 @@ export async function generateMetadata({
 export default async function BlogPostPage({ params }: PageProps) {
     const { locale, slug } = await params;
 
-    let post;
     try {
-        post = getPostBySlug(slug);
-    } catch {
-        notFound();
-    }
+        const post = getPostBySlug(slug);
+        const backHref = locale === "en" ? "/blog" : `/${locale}/blog`;
 
-    const backHref = locale === "en" ? "/blog" : `/${locale}/blog`;
+        return (
+            <div className="container mx-auto px-8 py-8">
+                {/* Back link */}
+                <Link
+                    href={backHref}
+                    className="inline-flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 hover:text-primary transition-colors mb-8 no-underline"
+                >
+                    <ArrowLeft size={16} />
+                    Quay lại Blog
+                </Link>
 
-    return (
-        <div className="container mx-auto px-8 py-8">
-            {/* Back link */}
-            <Link
-                href={backHref}
-                className="inline-flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 hover:text-primary transition-colors mb-8 no-underline"
-            >
-                <ArrowLeft size={16} />
-                Quay lại Blog
-            </Link>
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8">
+                    {/* Main content */}
+                    <article className="min-w-0">
+                        {/* Article header */}
+                        <header className="mb-8">
+                            <h1 className="text-3xl font-semibold text-foreground mb-4">
+                                {post.title}
+                            </h1>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8">
-                {/* Main content */}
-                <article className="min-w-0">
-                    {/* Article header */}
-                    <header className="mb-8">
-                        <h1 className="text-3xl font-semibold text-foreground mb-4">
-                            {post.title}
-                        </h1>
+                            <div className="flex items-center gap-4 text-sm text-zinc-500 dark:text-zinc-400">
+                                <span className="flex items-center gap-1.5">
+                                    <Calendar size={14} />
+                                    {new Date(post.date).toLocaleDateString("vi-VN", {
+                                        year: "numeric",
+                                        month: "long",
+                                        day: "numeric",
+                                    })}
+                                </span>
+                                <span className="flex items-center gap-1.5">
+                                    <Clock size={14} />
+                                    {post.readingTime}
+                                </span>
+                            </div>
+                        </header>
 
-                        <div className="flex items-center gap-4 text-sm text-zinc-500 dark:text-zinc-400">
-                            <span className="flex items-center gap-1.5">
-                                <Calendar size={14} />
-                                {new Date(post.date).toLocaleDateString("vi-VN", {
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "numeric",
-                                })}
-                            </span>
-                            <span className="flex items-center gap-1.5">
-                                <Clock size={14} />
-                                {post.readingTime}
-                            </span>
+                        {/* MDX Content */}
+                        <div data-blog-content className="prose-custom max-w-none">
+                            <MDXRemote
+                                source={post.content}
+                                components={mdxComponents}
+                                options={{
+                                    mdxOptions: {
+                                        remarkPlugins: [remarkGfm],
+                                    },
+                                }}
+                            />
                         </div>
-                    </header>
+                    </article>
 
-                    {/* MDX Content */}
-                    <div data-blog-content className="prose-custom max-w-none">
-                        <MDXRemote
-                            source={post.content}
-                            components={mdxComponents}
-                            options={{
-                                mdxOptions: {
-                                    remarkPlugins: [remarkGfm],
-                                },
-                            }}
-                        />
-                    </div>
-                </article>
-
-                {/* Sidebar TOC (desktop only) */}
-                <aside className="hidden lg:block">
-                    <TableOfContents />
-                </aside>
+                    {/* Sidebar TOC (desktop only) */}
+                    <aside className="hidden lg:block">
+                        <TableOfContents />
+                    </aside>
+                </div>
             </div>
-        </div>
-    );
+        );
+    } catch (error) {
+        // Temporary debug: surface error on Vercel instead of generic 500
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        const errorStack = error instanceof Error ? error.stack : "";
+        console.error("[BlogPostPage] Error rendering:", slug, errorMessage, errorStack);
+
+        return (
+            <div className="container mx-auto px-8 py-8">
+                <h1 className="text-2xl font-bold text-red-500 mb-4">Debug: Blog Render Error</h1>
+                <p className="mb-2"><strong>Slug:</strong> {slug}</p>
+                <pre className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded text-sm overflow-x-auto whitespace-pre-wrap">
+                    {errorMessage}
+                    {"\n\n"}
+                    {errorStack}
+                </pre>
+            </div>
+        );
+    }
 }
