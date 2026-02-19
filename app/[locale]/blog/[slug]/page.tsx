@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPostSlugs } from "@/lib/blog";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { Calendar, Clock, ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -128,6 +128,17 @@ export default async function BlogPostPage({ params }: PageProps) {
         const post = getPostBySlug(slug);
         const backHref = locale === "en" ? "/blog" : `/${locale}/blog`;
 
+        // Compile MDX before returning JSX so errors are caught by try-catch
+        const { content: mdxContent } = await compileMDX({
+            source: post.content,
+            components: mdxComponents,
+            options: {
+                mdxOptions: {
+                    remarkPlugins: [remarkGfm],
+                },
+            },
+        });
+
         return (
             <div className="container mx-auto px-8 py-8">
                 {/* Back link */}
@@ -166,15 +177,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
                         {/* MDX Content */}
                         <div data-blog-content className="prose-custom max-w-none">
-                            <MDXRemote
-                                source={post.content}
-                                components={mdxComponents}
-                                options={{
-                                    mdxOptions: {
-                                        remarkPlugins: [remarkGfm],
-                                    },
-                                }}
-                            />
+                            {mdxContent}
                         </div>
                     </article>
 
