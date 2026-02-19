@@ -89,35 +89,35 @@ const mdxComponents = {
     ),
 };
 
-/* ─── Static params for SSG ──────────────────────────────────────── */
+/* ─── Static params for SSG (TEMPORARILY DISABLED FOR DEBUG) ──── */
 
-export async function generateStaticParams() {
-    const slugs = getPostSlugs();
-    return slugs.map((slug) => ({ slug }));
-}
+// export async function generateStaticParams() {
+//     const slugs = getPostSlugs();
+//     return slugs.map((slug) => ({ slug }));
+// }
 
-/* ─── Metadata ───────────────────────────────────────────────────── */
+/* ─── Metadata (TEMPORARILY DISABLED FOR DEBUG) ──────────────── */
 
-export async function generateMetadata({
-    params,
-}: PageProps): Promise<Metadata> {
-    const { slug } = await params;
-    try {
-        const post = getPostBySlug(slug);
-        return {
-            title: post.title,
-            description: post.description,
-            openGraph: {
-                title: post.title,
-                description: post.description,
-                type: "article",
-                publishedTime: post.date,
-            },
-        };
-    } catch {
-        return { title: "Bài viết không tìm thấy" };
-    }
-}
+// export async function generateMetadata({
+//     params,
+// }: PageProps): Promise<Metadata> {
+//     const { slug } = await params;
+//     try {
+//         const post = getPostBySlug(slug);
+//         return {
+//             title: post.title,
+//             description: post.description,
+//             openGraph: {
+//                 title: post.title,
+//                 description: post.description,
+//                 type: "article",
+//                 publishedTime: post.date,
+//             },
+//         };
+//     } catch {
+//         return { title: "Bài viết không tìm thấy" };
+//     }
+// }
 
 /* ─── Page ────────────────────────────────────────────────────────── */
 
