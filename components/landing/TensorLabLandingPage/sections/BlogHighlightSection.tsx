@@ -51,7 +51,7 @@ export function BlogHighlightSection({ posts }: BlogHighlightSectionProps) {
                 />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {posts.map((post) => (
+                    {posts.slice(0, 4).map((post) => (
                         <motion.div key={post.slug} variants={fadeUp}>
                             <Link
                                 href={`/blog/${post.slug}`}
