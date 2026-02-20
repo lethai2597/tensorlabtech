@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { HeroSection } from "./sections/HeroSection";
 import { ScrollRevealHeadlineSection } from "./sections/ScrollRevealHeadlineSection";
 import { CapabilitiesSection } from "./sections/CapabilitiesSection";
@@ -7,9 +8,17 @@ import { EngagementModelsSection } from "./sections/EngagementModelsSection";
 import { DeliveryProcessSection } from "./sections/DeliveryProcessSection";
 import { EventsHighlightSection } from "./sections/CaseStudiesSection";
 import { BlogHighlightSection } from "./sections/BlogHighlightSection";
-import { TestimonialsSection } from "./sections/TestimonialsSection";
-import { FAQSection } from "./sections/FAQSection";
-import { FinalCTASection } from "./sections/FinalCTASection";
+
+/* Below-fold sections: lazy-loaded to reduce initial bundle size */
+const TestimonialsSection = dynamic(
+  () => import("./sections/TestimonialsSection").then(m => m.TestimonialsSection),
+);
+const FAQSection = dynamic(
+  () => import("./sections/FAQSection").then(m => m.FAQSection),
+);
+const FinalCTASection = dynamic(
+  () => import("./sections/FinalCTASection").then(m => m.FinalCTASection),
+);
 
 interface BlogPost {
   slug: string;

@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import type { PostMeta } from "@/lib/blog";

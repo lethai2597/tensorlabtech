@@ -15,8 +15,10 @@ export default async function LocaleLayout({
   if (!routing.locales.includes(locale as "en" | "vi")) {
     notFound();
   }
-  const messages = await getMessages();
-  const currentLocale = await getLocale();
+  const [messages, currentLocale] = await Promise.all([
+    getMessages(),
+    getLocale(),
+  ]);
 
   return (
     <NextIntlClientProvider locale={currentLocale} messages={messages}>

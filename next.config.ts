@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
     "/[locale]/blog": ["./content/blog/**/*"],
   },
   experimental: {
-    optimizePackageImports: ["antd", "lucide-react"],
+    optimizePackageImports: ["antd", "lucide-react", "framer-motion"],
   },
   images: {
     remotePatterns: [

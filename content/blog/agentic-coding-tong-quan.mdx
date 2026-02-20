@@ -1,0 +1,177 @@
+---
+title: "Bức Tranh Toàn Cảnh Về Agentic Coding Cho Người Mới Bắt Đầu"
+date: "2026-02-20"
+description: "Tổng hợp từ A-Z các kiến thức, khái niệm nền tảng về Agentic Coding và review chi tiết các công cụ AI lập trình hot nhất hiện nay."
+---
+
+<Callout type="info" title="Tóm tắt">
+Bài viết này tổng hợp kiến thức, khái niệm về Agentic Coding, những cách áp dụng vào thực tế, và giải đáp một số vấn đề "không quá dễ hiểu". Đặc biệt phù hợp với 90% các bạn dev từ mới tiếp xúc cho tới những ai đã dùng cơ bản.
+</Callout>
+
+Xin chào các bạn, mình không phải người FOMO, nhưng thông tin, kiến thức và công cụ sinh ra hằng ngày. Để không tốn quá nhiều thời gian tìm hiểu và không bị "sợ bỏ lỡ", chiến thuật của mình rất đơn giản: Lâu lâu anh em mở workshop nhỏ để chia sẻ với nhau về tình hình, kiến thức và cách sử dụng (chủ yếu là mình được nghe chia sẻ).
+
+Bài viết này ra đời sau một buổi chém gió online cùng Đức (Phạm Đức), Dũng (Khổng Dũng) - các bạn/đồng nghiệp rất giỏi của mình, và sau khi xem video chia sẻ về Agentic Coding của anh Đức (Duc Nguyen - siêu giỏi). Cảm ơn anh, bạn và các em ạ!
+
+**Nội dung chính:**
+- Cơ sở về khái niệm (những thứ cần biết để dễ hiểu và thực hành với mảng này).
+- Mớ hỗn độn các Agentic AI Tools hiện nay.
+- Kits/Skills: Tại sao lại nhiều bộ quá vậy?
+- Sự thật về việc x5, x10 performance khi code.
+
+---
+
+## I. Cơ sở về khái niệm
+
+Mình sẽ chia việc sử dụng các khái niệm này theo level từ nhập môn trở lên để dễ tiếp cận. Những khái niệm này xuất hiện trong hầu hết các công cụ Agentic Coding hiện nay. Cộng đồng chia sẻ rất nhiều tài liệu hướng dẫn liên quan, search là ra, nhưng trước tiên chúng ta cần biết bản chất của chúng là gì.
+
+### I.1. Commands - Bảo AI làm gì
+
+Nếu bạn tải một AI Agent IDE như Cursor, Antigravity, Claude, v.v. về, gõ vào chat bảo tạo một file thì đó gọi là commands. Đây là khái niệm cơ bản nhất để bạn có thể sử dụng AI Agent. 
+Có 1 task cơ bản → tóm lại là gõ yêu cầu vào khung chat.
+
+### I.2. Plans - Lên kế hoạch trước khi làm
+
+Nhược điểm của việc chat rồi AI làm theo yêu cầu là *chỉ khi nó làm xong mình mới biết nó làm gì*.
+
+Có một chế độ là **Plan mode**, ở đó AI sẽ trình bày với bạn trước là nó sẽ làm gì, làm như thế nào. Nếu không ổn với kế hoạch đó, bạn có thể trao đổi để sửa. Khi chốt được một plan ưng ý thì mới bắt tay vào triển khai.
+
+<Callout type="tip" title="Ví dụ">
+Để lưu cài đặt giao diện sáng/tối thì có nhiều cách như lưu vào `localStorage`, `sessionStorage`, cookie, DB... Nếu không có plan, có khả năng AI sẽ tự ý chọn cách mà nó nghĩ là hợp lý (chưa chắc đã đúng ý bạn).
+</Callout>
+
+### I.3. Rules - Luôn luôn/Không bao giờ
+
+Khi code với AI, có thể bạn sẽ phải bảo nó những quy tắc lặp đi lặp lại.
+Ví dụ team thống nhất tên biến là CamelCase, nhưng quy chuẩn ngôn ngữ đó lại chuộng `snake_case`. Lần nào bạn cũng phải bảo nó là "dùng CamelCase cho tao".
+
+→ Đưa vào **Rules**, AI sẽ tự động áp dụng mà không cần bạn nhắc đi nhắc lại nhiều lần.
+
+*Ví dụ:* "Luôn sử dụng Tailwind CSS để style", "Không được cài thêm thư viện mới nếu không hỏi ý kiến".
+
+### I.4. Skills - Kỹ năng chuyên môn của AI
+
+Khi bạn thấy mình phải nhắc đi nhắc lại một hướng dẫn cho nhiều task giống nhau, bạn sẽ muốn đóng gói nó thành một cái "khuôn" chung để áp dụng mãi về sau. Nghe có vẻ giống Rules, nhưng thực ra Rules dùng để định nghĩa *được hoặc không được làm gì*, chứ không định nghĩa *làm như thế nào*. 
+
+**Skill** là một bộ hướng dẫn (bí kíp) chi tiết dạy AI cách giải quyết một loại vấn đề cụ thể theo đúng "gu" của bạn.
+
+*Ví dụ:* Thay vì nhắc đi nhắc lại "Hãy viết API chuẩn REST, có try/catch, có log lỗi, retry nếu cần, bắn log nếu gặp lỗi", bạn đóng gói toàn bộ yêu cầu đó thành một Skill gọi là `API_Standard`. Lần sau, bạn chỉ cần gọi tên skill đó ra là xong.
+
+### I.5. MCP (Model Context Protocol) - Mắt thần
+
+Nếu bạn từng phải đi copy và mô tả từng chút một về file design cho AI, thì MCP cho phép AI kết nối thẳng tới Figma để "nhìn" và đọc design. 
+
+Nếu bạn đang dùng một model chưa được update dữ liệu mới nhất (dẫn đến không biết API đó đổi hàm), bạn phải cất công chép tài liệu gửi cho AI đọc. MCP khắc phục điều này bằng cách cho phép AI chủ động kết nối vào hệ thống của bạn và tự động lấy những document mới nhất mang về xử lý.
+
+<Callout type="info" title="Lưu ý">
+MCP là công cụ kết nối AI với thế giới bên ngoài, từ bỏ việc để AI đóng cửa tự đoán mò trong một lượng tri thức đã cũ.
+</Callout>
+
+### I.6. Sub-agents (Agent phụ) - Chia để trị
+
+AI Agent sẽ có lượng context giới hạn (ví dụ: 200k tokens). Nếu phải xử lý một task quá cồng kềnh (bao gồm nhiều task con) khiến hai bên chat qua lại quá nhiều lần, thì hiệu năng và độ chính xác sẽ đi xuống.
+
+Sử dụng Sub-agents giống như việc bạn, thay vì tự làm hoặc giao cho 1 đứa làm từ A-Z, bạn chia dự án lớn cho nhiều "trợ lý ảo" chuyên biệt tự xử lý phần việc của mình.
+
+### I.7. Hooks - Chốt chặn cuối cùng
+
+Giả sử quy trình của bạn cứ mỗi khi AI làm xong một task thì bạn lại phải check lỗi hay chạy format code. Những việc cố định đó không cần AI phải vặn óc ra nghĩ, nên bạn hoàn toàn có thể tạo 1 hook.
+
+*Ví dụ:* Cài đặt tự động chạy Prettier để format code hoặc tự động quét bảo mật sau khi AI vừa edit xong một file.
+
+### I.8. Workflow - Quy trình làm việc
+
+Rất nhiều người đã áp dụng Agentic Coding theo chuẩn mực của thế giới lập trình chuyên nghiệp.
+*Ví dụ:* Hiểu yêu cầu → Thiết kế → Lập kế hoạch → Code → Đánh giá → Kiểm thử → Triển khai → Giám sát... Một trình tự cực kỳ bài bản thay vì nhào vô code ngay lập tức.
+
+**Workflow** là một sợi dây kịch bản xuyên suốt liên kết các khái niệm (Rules, Skills, MCP...) lại với logic chặt chẽ, quy định rõ ràng khi nào vào luồng nào thì dùng cái nào. Hơn cả prompt suông, kết hợp kiến trúc workflow chuẩn sẽ giúp chất lượng đầu ra được tối ưu lên nhiều bậc.
+
+### I.9. Kit (Bộ công cụ/Bộ khung) - Đừng tốn công chế lại bánh xe
+
+Nếu bạn đã hiểu khái niệm Rules, Skills, Plans, Workflow... nhưng lại chật vật trong việc ráp chúng lại để sử dụng thế nào cho mượt thì có thể bạn sẽ cần một bộ khung (Kit) làm sẵn.
+
+Thay vì ngồi cặm cụi viết tay từng cái Rules cho React hay lúi húi cấu hình từng đường link MCP tới PostgreSQL, người ta đã ưu ái gom tất cả những tinh hoa đó bỏ sẵn vào một "cái hộp". Và hiện tại trên thị trường có nhan nhản các bộ Kit hay Workflow chất lượng.
+
+<Callout type="info" title="TỔNG KẾT PHẦN I">
+- **Concepts (Rules, MCP, Skills...)**: Là các *Công cụ*.
+- **Workflow**: Là *Cách dùng* công cụ đó theo một trình tự hiệu quả.
+- **Kit**: Là *Gói combo* có sẵn cả Công cụ và Workflow đã được chuẩn hóa.
+</Callout>
+
+---
+
+## II. Mớ hỗn độn các Agentic AI Tools hiện nay
+
+Thị trường hiện nay có hàng tá các công cụ Agentic AI (Cursor, Antigravity, Claude Code, OpenCode, Augment...). Trăm hoa đua nở khiến người mới thấy cực kỳ rối não. Nhưng sau khi dạo qua thị trường và đi hỏi ý kiến nhiều cao thủ, mình rút ra một nhận định:
+
+**Các công cụ này không khác nhau quá nhiều ở 90%+ các tác vụ thường ngày.** Đại loại là, nếu bạn là một dev bình thường làm việc công ty, không phải kiểu Solo Builder "gánh cả ngân hà" hay Expert nghiên cứu lõi, thì cơ bản thằng nào cũng đủ xịn.
+
+### II.1. CLI Agentic Tools vs GUI Agentic Tools
+
+Người ta hay chia làm 2 trường phái:
+- **CLI** (Claude Code, OpenCode...): Cuồng gõ lệnh.
+- **GUI** (Cursor, Antigravity...): Giao diện thao tác bằng chuột đàng hoàng.
+
+Cái này tuỳ sở thích thôi:
+- **GUI:** Trải nghiệm thân thiện, dễ làm quen, dễ tương tác. Điểm cộng cực lớn là làm UI tốt vì tích hợp cả trình duyệt ảo hiện đại bên trong IDE.
+- **CLI:** Thân thiện với các tín đồ cuồng Terminal, tinh chỉnh tối thượng và cực kỳ gọn gàng.
+
+### II.2. Tại sao chúng ta cứ hay FOMO vào Claude Code?
+
+Mình nghĩ lý do xoay quanh một vài cái sau:
+1. **Tạo trend đỉnh:** Claude Code nhả ra vài khái niệm trend hoành tráng (skill, workflow, kit...). Nhưng hiện tại thì phần lớn vũ khí này đám IDE khác cũng trang bị rồi.
+2. **"Thông minh" hơn:** Cải này là truyền tai nhau chứ thực chất mình chưa test task nào đủ kinh dị để vượt qua giới hạn của mấy model khác.
+3. **Sức bền, độ trâu bò:** Đối với những task khủng yêu cầu sinh code vài chục phút, Claude cày ải rất khỏe và ít lú.
+4. **Chi phí/Khối lượng code sinh ra:** Đây được cho là combo rẻ mạnh cho một lượng tác vụ siêu khổng lồ.
+
+→ **Tựu trung:** Nếu dev bình thường giải quyết task bình thường, thì không chênh nhau nhiều.
+
+### II.3. Trick "Con nhà nghèo": Sinh code khủng, chi phí nhỏ
+
+Cho các bạn một mẹo mình mới dùng lỏ được với Claude Code: Chơi hệ proxy qua model bên thứ 3.
+
+Sử dụng nhiều gói Antigravity giá phải chăng (như bản gia đình, bản shared, hoặc kiếm quanh), kết hợp với tiện ích Antigravity Tools để switch tài khoản liên tục khi cái cũ hết Quota. Rồi chọc cấu hình cho Claude Code nhận API xài.
+Giải pháp này buff tốc độ đẻ code lên mức cực đại, tiêu thụ lượng token thoải mái mà túi tiền rất dễ chịu. Rất hợp cho anh em Solo Builder, Freelancer làm chục job 1 lúc.
+
+### II.4. Chọn sao cho đúng? (Nếu vẫn cố chọn)
+
+Tuy đã khá bão hòa, nhưng mỗi hệ tư tưởng vẫn giữ cái vibe riêng:
+
+- **Cursor:** Dành cho người thích sự mượt mà không tỳ vết, muốn AI hòa làm 1 khối với trình soạn thảo.
+- **Claude Code:** Tốc độ thần sầu, cắm chốt sâu trong terminal, đẻ code không mệt mỏi với sự tự trị đỉnh cao.
+- **Antigravity:** Chuyên sâu vào luồng lập luận, kiểm soát thông số, context siêu rộng với tư duy kỹ sư già dặn.
+- **OpenCode:** Team mã nguồn mở, không giấu diếm, không sợ lộ bí mật mảng lõi.
+- **Augment:** Tối ưu mượt mà cho các đại dự án cực to.
+
+<Callout type="tip" title="TÓM TẮT PHẦN II">
+Không cần quá FOMO với tool => Hợp, quen, hoặc thích thì quất. Các dự án cần tính chuyên biệt cao hẵng nghiên cứu kỹ lưỡng.
+</Callout>
+
+---
+
+## III. Kits/Skills sao nhiều bộ quá vậy?
+
+Hôm trước dạo mạng thấy *AI-Devkit* của bác Hoàng, ngủ dậy lại thấy *Claude Kit* của anh Duy. Đi workshop lại nhòm thấy Bmad anh Đức, xong đủ thứ Skills từ *React Best Practice Skills* của Vercel (chính chủ), tới đồ tự chế như *Antigravity Awesome Skills*, *UI UX Pro Max*...
+
+Phải khẳng định luôn: Mấy bộ Kit/Skill này **rất chi là bá đạo**. Ngâm cứu mấy của này đỡ mất thời gian rườm rà. Nó đã được đóng gói, cấu hình, test gãy cổ từ chính tác giả rồi, mình chỉ việc xách về dùng chứ không tội gì phải nhắm mắt phát minh lại cái bánh xe tự hành.
+
+Nhưng dạo này hằng ngày đều đẻ ra bộ kít mới, làm mọi người "ngợp" ngang, thì phải nhớ: Sinh ra là để **giúp mình** chứ không phải để **hành mình**. Tâm lý cứ bình thường.
+
+→ Chọn ra 1-2 bộ thật sự hợp cạ với quy trình làm việc/phong cách coding của team rồi trung thành với nó. Vậy là đủ, thỉnh thoảng lên dạo xem các update nhỏ nhỏ bổ sung vào thôi.
+
+---
+
+## IV. X5, X10 performance khi code là có thật?
+
+Cụm từ "X5, X10" thường thấy ở cái title câu view. Thực chất, X5 X10 hiệu năng này chủ yếu có ý nghĩa khi **so sánh một dev có dùng AI (bét nhất là Commands) với một dev hoàn toàn gõ chay manual**.
+
+Còn nếu bạn đã dùng thành thạo các tool, áp dụng cả mớ khái niệm trên kia rồi, giờ bảo đi tìm cái bí kíp gì để tiếp tục "x10 tốc độ nữa", thì e là... bất khả thi.
+
+Sản phẩm code không phải là mì xào, nó là công sức não bộ rà soát logic. Chúng ta với tư cách của dev vẫn phải **kiểm soát chặt chẽ đầu ra** thay vì phó mặc "AI dâng gì dùng đó". Vấn đề cốt lõi không phải nằm ở tốc độ tuyệt đối, mà nằm ở độ chính xác, ít sửa lỗi, quy trình trơn tru.
+
+**Giải pháp chốt chặn là:** 
+Lấy đúng đồ (Kits, Skills, Workflow) + Chọn đúng não (Model xịn) + Áp dụng triệt để những chức năng nền tảng tại Phần I và **cá nhân hóa nó** cho riêng bạn. Khi luồng công việc trở nên logic và phù hợp, hiệu suất tự cắn thuốc và tăng một cách rất trơn tru.
+
+*(P/s: Có trò thả nhiều Agent vào cùng 1 repo cho nó tự cấu xé vào các file để rút ngắn thời gian xử lý đa luồng. Mình nói thật, trò đấy rủi ro conflict là có và mình chưa test ngon 100%. Anh em nào cao thủ ghé ngang đọc được xin bỏ lại comment hướng dẫn hoặc tổ chức training hú mình với :v)*
+
+---
+*Cảm ơn đã theo dõi bộ sơ lược căn bản nhưng mang tính cốt lõi này, chúc anh em thành Agent "ngon" hơn ở kiếp sau (hoặc không).*

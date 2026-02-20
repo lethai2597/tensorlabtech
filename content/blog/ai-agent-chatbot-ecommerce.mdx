@@ -1,0 +1,192 @@
+---
+title: "Tư duy và quy trình xây dựng AI Agent Chatbot thực chiến với LangGraph"
+date: "2026-02-20"
+description: "Hướng dẫn chi tiết cách xây dựng một AI Agent Chatbot Ecommerce ứng dụng LangChain, LangGraph và RAG từ tư duy hệ thống đến triển khai thực tế."
+---
+
+<Callout type="info" title="Tóm tắt nội dung">
+Chia sẻ tư duy, quy trình xây dựng AI Agent Chatbot thực chiến với LangChain, LangGraph, RAG, tools,... cho các bài toán thực tiễn (Ecommerce, tri thức cá nhân, trợ lý hệ thống,...). Một kỹ năng mà mình tin rằng sẽ rất phổ biến trong giai đoạn này.
+</Callout>
+
+<ImageWithCaption
+  src="/blog/ai-agent-chatbot-ecommerce/cover.png"
+  alt="AI Agent Chatbot Ecommerce System"
+  caption="Kiến trúc tổng quan của một hệ thống AI Agent Chatbot định hướng Ecommerce"
+/>
+
+Đầu tiên mình muốn nói rằng tại sao kiến thức, kỹ năng xây dựng AI Agent Chatbot cho Developer lại quan trọng trong giai đoạn này. Ví dụ có một website ecommerce, muốn tạo Chatbot tư vấn sản phẩm, quản lý đặt hàng, tra cứu vận chuyển. Hoặc có một kho tri thức, nhiều công cụ trong doanh nghiệp, muốn tạo chatbot truy vấn, trả lời thông tin, đặt lịch. Hay có một phần mềm nền tảng nhiều chức năng, muốn có một chatbot mà user chỉ cần chat bằng ngôn ngữ tự nhiên để thao tác tự động.
+
+Tất cả các trường hợp trên bạn đều cần xây dựng AI Agent Chatbot. Cùng một khối kiến thức, tư duy chúng ta có thể đưa ra giải pháp giải quyết được rất nhiều bài toán hiện hữu quanh ta. 
+
+Nếu như bạn thắc mắc tại sao phải tự làm AI Agent chatbot mà không dùng trực tiếp Gemini, ChatGPT, Grok,... thì có một vài lý do như sau:
+
+| Lý do | Giải thích chi tiết |
+| --- | --- |
+| **Dữ liệu kín** | Các AI phổ thông kia không có đầy đủ kiến thức về data/sản phẩm/doanh nghiệp của chúng ta (nếu data không public). |
+| **Khả năng hành động** | Các AI không có khả năng gọi trực tiếp vào API/service ví dụ API đặt hàng, thì làm sao mà đặt hàng, tìm sản phẩm, đặt lịch... được. |
+| **Bảo mật & Tùy biến** | Doanh nghiệp cần kiểm soát hoàn toàn dòng dữ liệu và logic xử lý, dễ dàng cải tiến dựa vào business, điều mà các chatbot public khó đáp ứng. |
+
+Bài viết này mình sẽ chia sẻ tư duy, quy trình thực tế rút ra trong quá trình học và xây dựng một Ecommerce AI Agent chatbot (sản phẩm thật, đang ở MVP để đi pitch với đối tác). Nếu bạn đang có nhu cầu xây dựng một chatbot AI để giải quyết bài toán khác thì cũng đừng lo, bởi vì tư duy và quy trình sẽ không khác nhau nhiều và có thể dễ dàng áp dụng sang hệ thống khác.
+
+<Callout type="warning" title="Lưu ý">
+Bài viết này mình chỉ nói về phía Backend. Frontend thì tương tự như các app thông thường, sau khi xong Backend bảo AI nó gen cho 1 cái giao diện Frontend là gọi api được. Backend này sẽ nhận một endpoint chính là `POST /chat` (khi user gửi message lên).
+</Callout>
+
+---
+
+## 1. Về dự án thực tế của mình
+
+Tại sao có phần này? Mình muốn chia sẻ những việc chatbot làm được cùng với thiết kế hệ thống. Có thể bạn sẽ không hiểu ngay cách thiết kế chi tiết, nhưng phần này đưa ra để các bạn tham khảo cái hệ thống của mình, từ đó dễ dàng ánh xạ giải pháp cho các bàn toán tương tự của riêng bạn. Cuối bài sẽ là cách thi triển.
+
+### Chatbot này làm được gì?
+
+Chatbot có thể giúp user tìm kiếm, tư vấn, so sánh sản phẩm, đặt hàng, thu thập thông tin giao hàng, tương tác với giỏ hàng. Đại loại là **user chỉ cần chat với bot là có thể mua được hàng.**
+
+### Cấu trúc chính của chatbot (Multi-Agent)
+
+Hãy tưởng tượng Agent là một "nhân viên" có thể hiểu yêu cầu, trả lời hoặc sử dụng công cụ (ví dụ gọi API đặt hàng). Ở các hệ thống AI Agent phức tạp sẽ có nhiều Agent làm việc cùng nhau (gọi là Sub Agent). 
+
+Hệ thống của mình chia làm 3 bộ phận lớn:
+
+- **Supervisor Agent (Bộ não trung tâm)**: Nó không bán hàng hay tạo đơn. Nhiệm vụ duy nhất của nó là **Điều hướng (Routing)** tới những Agent khác. Khách hỏi về sản phẩm? → Đá sang Sales Agent. Khách muốn đặt? → Đá sang Order Agent. Khách chat linh tinh? → Đá sang General Agent.
+- **Sales Subgraph**: Đảm nhiệm tìm kiếm, tư vấn, so sánh sản phẩm, giúp user tìm được sản phầm mà họ ưng ý nhất.
+- **Order Subgraph**: Giúp khách đặt hàng, thu thập thông tin giao hàng, check giỏ hàng, gọi API tạo đơn hàng,...
+
+<Callout type="tip" title="Cơ chế 'Return to Supervisor'">
+Một điểm thú vị trong mã nguồn của mình là khả năng Loop (Vòng lặp). Sau khi Sales Agent tư vấn xong, nó không kết thúc hội thoại luôn. Nó có thể trả quyền điều khiển lại cho Supervisor. 
+Ví dụ: 
+- Khách: "Giày này có màu đỏ không?" 
+- Sales Agent: "Dạ giày A có màu đỏ và đen ạ." 
+- Khách: "Ok lấy cho mình đôi đỏ." 
+→ Supervisor nhận lại context và tự động chuyển tiếp sang Order Agent để lên đơn.
+</Callout>
+
+---
+
+## 2. Phân biệt: Chatbot "gọi API" vs AI Agent
+
+Nếu bạn nghĩ xây dựng Hệ thống AI Agent chỉ là nhận request gửi lên OpenAI rồi trả text về, thì đây là suy nghĩ sai bản chất. Có một sự khác biệt lớn về mindset:
+
+- **Chatbot đơn giản (Wrapper)**: Là kiểu gửi câu hỏi "Sản phẩm A giá bao nhiêu?" → Code gọi thẳng API AI → Trả về text. Hết. Giống như một cái máy hỏi gì đáp nấy từ tập data huấn luyện có sẵn.
+- **AI Agent**: Là một thực thể có khả năng **SUY LUẬN (Reasoning)** và **HÀNH ĐỘNG (Action)**. 
+
+Ví dụ khi user hỏi: *"Kiểm tra giúp tôi đơn hàng #123 đi đâu rồi?"*
+⇒ Agent sẽ tự tư duy:
+1. "User đang hỏi về vận chuyển" 
+2. "Mình cần dùng công cụ tra cứu đơn hàng" 
+3. "Gọi API tra cứu với ID 123" 
+4. "Có kết quả rồi, giờ mình tổng hợp lại trả lời user".
+
+---
+
+## 3. LangChain & LangGraph: Vũ khí tối thượng
+
+Tuy bạn có thể tự code mọi module, nhưng khi làm dự án thực chiến chúng ta cần sử dụng các Framework/bộ công cụ đã được đóng gói chuẩn, giúp tăng tốc phát triển, code gọn gàng, và hạn chế lỗi.
+
+### LangChain: Phương tiện kết nối vạn vật
+
+Hãy tưởng tượng LLM (GPT-4 hay Gemini) là bộ não cực thông minh nhưng rỗng tuếch và nhốt trong phòng kín. Nó không biết dữ liệu hệ thống của bạn, không biết duyệt web. 
+
+LangChain làm "cầu nối". Nó cung cấp:
+- **Prompt Templates**: Xây dựng cấu trúc lời điều này và ngữ cảnh chuyên nghiệp.
+- **Retrieval (RAG)**: Giúp AI đọc database/file của bạn để trả lời.
+- **Tools/Plugins**: Cho phép AI tự dùng Search, tính toán, gọi API.
+- **Chains (Xâu chuỗi)**: Nhận câu hỏi → Tìm tài liệu → Gửi cho AI cùng bộ công cụ → Tổng hợp trình bày kết quả.
+
+### LangGraph: Bộ não điều hướng tác vụ phức tạp
+
+LangChain thông thường khá khó xử lý các vòng lặp thao tác (loops). Đôi khi AI thất bại ở bước đầu:
+1. Thử làm gì đó.
+2. Kiểm tra lại kết quả.
+3. Nếu sai, quay lại vòng 1 xử lý sửa đổi.
+
+LangGraph biến quy trình thành một Đồ thị (Graph) với các Node và Edge để giải bài toán này:
+- **Stateful (Lưu trữ trạng thái)**: Nhớ toàn bộ thông tin quá trình xử lý.
+- **Multi-agent**: Hỗ trợ nhiều LLM và nhiều bước agent liên hoàn làm việc trơn tru với nhau.
+
+---
+
+## 4. Tư duy thiết kế Graph
+
+Đây là bước quan trọng nhất. Đừng mở IDE ra và code vội. Mở Excalidraw hoặc giấy bút để thiết kế sơ đồ trước.
+
+- **Single Agent**: Phù hợp tác vụ cực kì đơn giản như hỏi đáp về chính sách dựa trên tài liệu.
+- **Multi-Agent / Sub-graph**: Phù hợp cho app doanh nghiệp. Có tổ trưởng (Supervisor), nhân viên chốt sale (Sales Agent), nhân viên đơn từ (Order Agent). 
+
+**State (Bộ nhớ chung) là gì?**
+Giữa các Node trên Đồ thị LangGraph, hệ thống cần một "State" để lưu lại lịch sử thay đổi thông tin. LangGraph tự động luân chuyển khối State này để mọi Node đều nắm context. 
+
+Vài State quan trọng mình dùng cho app:
+- `sessionId`: Phân biệt đoạn giao tiếp của user hiện tại.
+- `messages`: Lịch sử trò chuyện.
+- `products`: Cập nhật danh sách các sản phẩm đang được truy vấn ở hiện tại.
+- `allProductsInContext`: Ghi nhớ tất cả sản phẩm đã nhắc đến trong phiên. Giúp AI hiểu nếu khách đổi ý hay cần tham chiếu.
+- `orderData`: Lấy trạng thái "Giỏ hàng" (Sản phẩm? Số lượng? Address? Điện thoại?).
+- `nextAction`: Quyết định điều phối rẽ nhánh nhánh (đi vào Sales hay Order sub-graph).
+
+---
+
+## 5. RAG: Cách AI Agent liên kết database
+
+Làm sao Agent tìm đúng sản phẩm khi khách gõ *"Bên shop có ngô ngọt không?"* - Thay vì bóc tách text sang query SQL khó trúng, ta dùng **RAG (Retrieval-Augmented Generation)** để search/query theo **ngữ nghĩa** của văn bản.
+
+Quy trình RAG thực tế của mình:
+1. **Chuyển ngữ nghĩa database sang ngôn ngữ tự nhiên**: 
+   Thay vì nhét `JSON: { sku: "123", name: "Ngô ngọt", price: 10k }`, chuyển sang: *"Sản phẩm sku 123, tên là Ngô ngọt, có giá 10 ngàn đồng"*.
+2. **Chunking (Chia nhỏ khối văn bản)**:
+   Document dài cần được chia nhỏ. Ví dụ: *"tôi muốn mua ngô"* sẽ rất match với đoạn *"ngô ngọt 10k"* hơn là một text dài loằng ngoằng cả nghìn chữ. Để 1 chunk chứa text đầy đủ thì bao gồm tên, mô tả cơ bản và giá.
+3. **Embeddings (Vector hóa)**: Đưa các đoạn chunk vào Model Embedding để biến thành array số thập phân (vector) và ghim vào Vector DB (Ví dụ pgvector).
+4. Khi khách cần tìm kiếm, nhập câu → Vector hóa câu của khách → **Query các sản phẩm có vector gần nhất** → Dịch data lấy được lên context cho Agent đưa ra phản hồi.
+
+---
+
+## 6. Tools: "Chân tay" cho nhân viên AI
+
+Để AI không chỉ dừng lại tại ngôn ngữ, ta cung cấp **Tools**. Tools thực chất là 1 hàm Javascript/Typescript do bạn viết sẵn kèm tài liệu mô tả để Agent đưa ra quyết định khi nào nên chạy hàm này. 
+
+Ví dụ: Bạn viết hàm `queryProductInfo(name)` kèm mô tả *"Dùng để tìm sản phẩm bằng tên"*, hay `createOrder(items, address)` - "*Dùng khi user xác nhận chốt đơn"*. Test riêng hàm trước cho chạy chuẩn sau đó mới đưa vào cho AI dùng.
+
+---
+
+## 7. Prompt Engineering & Tracing
+
+### Prompt Engineering
+Mỗi tương tác từ Agent là một mảnh Prompt để hướng dẫn model: *"Hãy đóng vai nhân viên kiểm kho..."*. Bước này tốn cực kỳ nhiều thời gian. Không có 1 prompt nào hoạt động hoàn hảo 100% trong lần đầu nên phải lặp lại vòng lặp *sửa đổi → test → sửa đổi*.
+
+### Tracing & Debugging ("Điểm mù" cần triệt tiêu)
+Khi nó có vẻ đã hoạt động, bạn sẽ thấy nó cực kì ngẫu hứng và dễ lạc lối. Bạn không biết nó đang tốn bao token, đang loanh quanh ở state nào, rẻ vào nhánh nào.
+Lúc này bạn cần tới **LangSmith** hoặc **Langfuse** (mình đang tự host Langfuse cho giảm chi phí). Chạy vào Tool này để xem trace trực tiếp timeline và luồng suy nghĩ của Agent.
+
+---
+
+## 8. Quy trình xây dựng theo thời gian (Timeline)
+
+Đây là 4 giai đoạn cốt lõi theo kinh nghiệm cá nhân:
+
+1. **Định hình**
+   - Xác định Agent làm gì (Sales, Order,...).
+   - Liệt kê tools cần thiết (`search_product`, `create_order`,...).
+   - Vẽ luồng thao tác.
+2. **Xây nền móng**
+   - Setup project (NestJS, Postgres, LangChain, LangGraph,...).
+   - Viết test hàm tools. Xây dựng RAG và Vector DB. 
+3. **Lắp ráp Agent**
+   - Viết code luồng theo Graph thiết kế nãy, móc nối LangGraph Node.
+   - Thêm prompts.
+   - Run cơ bản.
+4. **Tinh chỉnh (Lâu nhất)**
+   - Test thủ công kết hợp Trace bằng Langfuse/Langsmith.
+   - Viết lại Prompt, fix State rò rỉ hoặc thiếu Context.
+   - Optimize quy trình.
+
+<Callout type="info" title="Hành động tuần tự">
+Cứ triển khai từng step. Lúc đầu mình không dùng LangGraph đâu, mãi khi nhận thấy LangChain đơn độc dính vấn đề hiệu năng thì mới chuyển. Làm từ từ và học dần!
+</Callout>
+
+---
+
+## Kết luận
+
+AI phát triển thay đổi sâu sắc diện mạo lập trình viên. Ngoài những ảnh hưởng khó khăn, AI sinh ra nhu cầu về người có khả năng xây dựng các hệ sinh thái LLM cho doanh nghiệp. 
+
+Trước đây, lập trình viên tạo ra **công cụ (Tools)**. Bây giờ chúng ta bước sang giai đoạn tạo ra **"nhân viên ảo" (Agents)** và dạy cho chúng biết cách sử dụng các công cụ đó. Tận dụng tư duy logic nền tảng, học thêm mindest Prompt/Graph, và bạn hoàn toàn có thể bắt lấy "cơn cuồng phong" mạnh mẽ này!
