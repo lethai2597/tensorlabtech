@@ -1,0 +1,93 @@
+---
+title: "Bảo Mật API Key: Tại Sao Không Bao Giờ Nên Đặt Ở Frontend?"
+date: "2026-02-20"
+description: "Tại sao việc đặt API Key ở Frontend lại vô cùng nguy hiểm? Khám phá những nguyên tắc sống còn và giải pháp để bảo vệ an toàn cho ứng dụng của bạn."
+---
+
+Xin chào anh em, dạo này phong trào "vibe coding" lên ngôi, nhà nhà dùng Cursor, người người dùng Windsurf, v0, Claude Code, Lovable, vân vân và mây mây để "cook" app. 
+
+Tuy nhiên, trong số này có rất nhiều người là người mới hoặc tay ngang, chưa chuyên hoặc chưa rõ nhiều thứ nên tồn tại rất nhiều vấn đề bảo mật liên quan đến API key và đã có nhiều trường hợp người thật việc thật rồi. Hay là có những câu chuyện không phải do vibe coding nhưng vì thiếu hiểu biết, intern tham gia dự án làm lộ API key, bị thất thoát, khai thác hay hack cả trăm nghìn đến cả triệu đô (anh em cứ google là ra một mớ).
+
+<Callout type="warning" title="Tóm tắt">
+Tuyệt đối **không bao giờ** đặt API key chứa thông tin nhạy cảm ở Frontend (client-side). Hãy luôn sử dụng Backend làm trung gian để bảo vệ key của bạn!
+</Callout>
+
+## API key là gì và tại sao cần phải bảo mật nó?
+
+Về cơ bản thì API key thường đến từ các dịch vụ bên thứ 3. Họ cần định danh xem tài khoản nào đang sử dụng dịch vụ, nên người dùng có thể tạo những API key để sử dụng dịch vụ, và bên thứ 3 sẽ biết để tính tiền (ví dụ dựa trên số lượng request).
+
+<Callout type="danger" title="Nguy cơ lộ API Key">
+Việc lộ key là cực kỳ nguy hiểm! Người khác có thể "dùng chùa" tài nguyên của anh em, có thể dẫn tới spam hệ thống, và khi nhìn hóa đơn cuối tháng thì chỉ có "khóc thét".
+</Callout>
+
+Hiện nay có quá nhiều app, mini app được *vibe coding* ra có sử dụng API của bên thứ 3, đặc biệt là các API của các model AI. Các app này thường khá đơn giản, nhiều app chỉ có Frontend nên trong nhiều trường hợp API key bị đặt vô tội vạ, rất dễ bị lộ.
+
+## Tại sao Frontend lại không bảo mật được API key?
+
+Frontend ở đây mình sẽ nói đến các website **client-side**. Nhắc tới từ *client-side* có lẽ rất dễ để hiểu rằng: Cái web mà bạn nhìn thấy sẽ được load toàn bộ về phía client để hiển thị.
+
+1. **Source code hiển thị công khai**: Mã nguồn này chạy ở phía client. Nó bao gồm cả sources hiển thị trong DevTools, file `.env`. Nếu không gửi về client thì app sẽ không chạy được, còn nếu đã gửi về chắc chắn người ta sẽ tìm được (có thể app đã được build/minify nhưng về cơ bản key vẫn tồn tại). Nếu không tin, anh em cứ mở tab Source code ở F12 lên, search cái key trong env, nếu có sẽ thấy ngay.
+2. **Dễ dàng theo dõi qua Network**: Người ta chẳng cần tốn thời gian đọc source code ở Frontend của các bạn làm gì. Họ chỉ cần sử dụng chức năng và chú ý tab Network. Nếu có API gọi tới bên thứ 3 kèm theo key, chắc chắn họ có thể dễ dàng thấy được. (Cứ vào tab Network ở DevTools -> Dùng thử chức năng gọi API -> Check headers và payload của request).
+
+Có phải rất nhiều anh em nghĩ rằng đặt key ở file `.env` trong ReactJS hay VueJS là bảo mật đúng không ạ? **Sự thật là không hề!**
+
+## Những nguyên tắc "sống còn" khi làm việc với API Key
+
+Để không bị mất tiền oan, anh em nhớ kỹ mấy gạch đầu dòng này nhé:
+
+### 1. Không bao giờ đặt key ở Frontend 
+
+Như trên đã đề cập, đặt key ở Frontend (client-side) chắc chắn sẽ bị tìm ra. **Luôn luôn phải đặt key ở Backend (server-side)**.
+
+### 2. Ứng dụng miễn phí cần Auth và Rate Limit
+
+Với những ứng dụng chúng ta bỏ tiền túi ra để user được dùng miễn phí, hãy luôn thêm Authentication (Xác thực) và Rate Limit (Giới hạn request) vào các API. 
+*Ví dụ:* API call chat => Tối đa 10 messages/phút đối với một user.
+
+### 3. Không bao giờ commit file chứa Key lên Git
+
+Luôn phải có cấu hình file `.gitignore` và đảm bảo đã đưa các file như `.env`, `config.js` (chứa key) vào đó. Lỡ tay push file chứa key lên GitHub một phát là có bot của hacker nó scan thấy ngay (nhanh lắm, có khi chỉ mất vài giây thôi).
+
+### 4. Đặt giới hạn ngân sách (Budget Quota)
+
+Đa số các bên thứ 3 cung cấp dịch vụ sẽ có phần cài đặt ngưỡng chi tiêu. Nếu vượt ngưỡng thì API cần cài đặt tiếp để chạy, hệ thống sẽ tự động ngưng. Hãy luôn thiết lập cài đặt này từ đầu để lỡ có bị lộ key thì cùng lắm chỉ mất số tiền ở mức giới hạn, tránh bị "bào" đến vô hạn.
+
+### 5. Xoay tua Key (Key Rotation)
+
+Nếu nghi ngờ key đã bị lộ (hoặc theo chu kỳ bảo mật định kỳ), hãy chủ động tạo key mới trong phần cài đặt của nhà cung cấp và xóa bỏ key cũ đi.
+
+## Vậy giải pháp là gì?
+
+Thế giờ không để ở Frontend thì để ở đâu? Tư duy cốt lõi là **chúng ta cần một "Người Trung Gian" (Backend) đứng ra giữ chìa khóa**.
+
+> **Quy trình chuẩn:** 
+> Frontend ➔ Gọi về Backend của mình ➔ Backend gọi sang API Bên thứ 3
+
+Vậy giải pháp cơ bản là áp dụng một trong số các cách sau (chọn 1 trong các cách phù hợp):
+
+### 1. Làm một Backend dạng Proxy
+
+Đại loại là tạo ra một Backend cung cấp các API endpoint riêng để nhận request từ Frontend, sau đó Backend này mới đính kèm API Key và proxy gửi request sang bên thứ 3.
+
+- **Ưu điểm**: Kiểm soát hoàn toàn. Dễ dàng áp dụng Rate Limit, Authentication và Logging.
+- **Nhược điểm/Cảnh báo**: Khá cực kỳ mất công setup ban đầu, bản thân nó sinh ra không làm gì nhiều. Phải tự quản lý server, có thể tốn kém nếu chỉ dùng để làm proxy đơn giản.
+
+### 2. Sử dụng API Routes / Server Actions (Next.js, Nuxt.js)
+
+Nếu anh em dùng các framework Frontend có hỗ trợ server như Next.js hay Nuxt.js thì những tính năng như API Routes cực kỳ tiện và dễ làm. Chỉ cần viết các route API cho thư mục Frontend gọi.
+
+<Callout type="info" title="Lưu ý về biến môi trường (.env)">
+Ở những app này, biến môi trường (env) sẽ có 2 loại: **PUBLIC** và **không PUBLIC**.
+- Biến có tiền tố PUBLIC sẽ có thể đọc được từ phía client.
+- Biến **KHÔNG** có PUBLIC thì ở client không thể đọc được.
+
+👉 Do đó: **API KEY CẦN BẢO MẬT** phải được đặt trong biến **KHÔNG** bắt đầu bằng `NEXT_PUBLIC_` (hoặc các tiền tố public tương đương của framework).
+</Callout>
+
+### 3. Tận dụng Edge Functions / Workers
+
+Nếu anh em cần tốc độ xử lý cực nhanh hoặc chỉ làm các tác vụ nhẹ nhàng, hãy dùng Edge Functions (ví dụ như Cloudflare Workers). Chúng chạy ở edge, tốc độ hồi đáp thấp và chi phí rất rẻ.
+
+### 4. Sử dụng các dịch vụ Backend-as-a-Service (BaaS)
+
+Nếu đang dùng các giải pháp SaaS như **Supabase**, anh em có thể hoàn toàn sử dụng luôn hệ thống Serverless Functions (Cloud Functions) của nền tảng đó để xử lý các logic với API bên thứ 3 thay vì phải tự setup.

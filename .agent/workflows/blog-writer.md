@@ -77,13 +77,7 @@ description: "[Mô tả 1-2 câu cho SEO và listing page]"
 - Quy trình/flow → dùng numbered list hoặc nested bullet list
 - Số liệu → dùng inline text hoặc markdown table
 
-### 5. Generate ảnh (nếu cần)
-
-Dùng tool `generate_image` để tạo ảnh minh họa:
-- Lưu ảnh vào `/public/blog/[slug]/`
-- Reference trong MDX: `<ImageWithCaption src="/blog/[slug]/ten-anh.png" ... />`
-
-### 6. Lưu file MDX
+### 5. Lưu file MDX
 
 Đặt file tại: `content/blog/[slug].mdx`
 
@@ -92,7 +86,7 @@ Dùng tool `generate_image` để tạo ảnh minh họa:
 - Không dùng dấu tiếng Việt
 - Tóm tắt nội dung: `outsource-product-startup-bigcorp`
 
-### 7. Verify
+### 6. Verify
 
 Kiểm tra:
 - [ ] Frontmatter hợp lệ
