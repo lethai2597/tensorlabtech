@@ -130,7 +130,7 @@ function ContactPageContent() {
                     {/* Description */}
                     <motion.p
                         variants={fadeUp}
-                        className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto leading-relaxed"
+                        className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 max-w-3xl mx-auto leading-relaxed"
                     >
                         {t("desc")}
                     </motion.p>
@@ -165,7 +165,7 @@ function ContactPageContent() {
                 {/* Form card */}
                 <motion.div
                     variants={fadeUp}
-                    className="max-w-xl mx-auto mt-12"
+                    className="max-w-3xl mx-auto mt-12"
                 >
                     <div className="bg-surface border border-border rounded-3xl p-6 sm:p-8">
                         <div className="space-y-1 mb-6">

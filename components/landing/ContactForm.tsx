@@ -48,10 +48,18 @@ export function ContactForm({ defaultType }: ContactFormProps) {
 
             if (!res.ok) throw new Error("Failed");
 
-            message.success(t("successTitle"));
             form.resetFields();
+            message.success({
+                content: t("successTitle"),
+                duration: 5,
+                key: "contact-form",
+            });
         } catch {
-            message.error(t("errorTitle"));
+            message.error({
+                content: t("errorTitle"),
+                duration: 5,
+                key: "contact-form",
+            });
         } finally {
             setLoading(false);
         }
