@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { Tag } from "antd";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
@@ -8,6 +9,8 @@ import { EventCard } from "@/components/events/EventCard";
 import { ALL_EVENTS } from "@/lib/eventRegistry";
 import { getEventStatus, formatEventDateShort } from "@/lib/eventHelpers";
 import { landingViewport, useSectionVariants } from "@/lib/landingMotion";
+
+import ShinyText from "@/components/ShinyText";
 
 /* ---------- status labels (hardcoded vi) ---------- */
 
@@ -27,14 +30,30 @@ export function EventsPageClient() {
 
   return (
     <div className="container mx-auto px-8 py-8">
+
       {/* Page header */}
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={landingViewport}
         variants={stagger}
-        className="space-y-4 mb-8 text-center"
+        className="py-12 mb-8 flex flex-col items-center gap-4 text-center"
       >
+        <motion.div variants={fadeUp}>
+          <Tag
+            bordered={false}
+            color="geekblue"
+            className="rounded-full! px-3! py-0.5!"
+          >
+            <ShinyText
+              text="Workshops & Events"
+              disabled={Boolean(shouldReduceMotion)}
+              speed={2}
+              color="var(--color-primary)"
+              shineColor="rgba(255, 255, 255, 0.7)"
+            />
+          </Tag>
+        </motion.div>
         <motion.h1
           variants={fadeUp}
           className="text-4xl md:text-5xl font-semibold text-foreground"

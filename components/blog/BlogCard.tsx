@@ -14,7 +14,7 @@ export function BlogCard({ post, locale }: BlogCardProps) {
     const href = locale === "en" ? `/blog/${post.slug}` : `/${locale}/blog/${post.slug}`;
 
     return (
-        <Link href={href} className="group block no-underline">
+        <Link href={href} className="group block h-full no-underline">
             <article className="bg-surface border border-border rounded-3xl p-8 h-full transition-all duration-300 hover:border-primary/30 hover:bg-primary/[0.02]">
                 {/* Title */}
                 <h2 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">

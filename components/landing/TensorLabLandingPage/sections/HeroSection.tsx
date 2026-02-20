@@ -58,7 +58,7 @@ export function HeroSection() {
       initial="hidden"
       animate="show"
       variants={outerContainerVariants}
-      className="relative overflow-hidden bg-linear-to-b from-surface via-surface to-background pt-48 pb-48 md:pt-68 md:pb-56"
+      className="relative overflow-hidden bg-linear-to-b from-surface via-surface to-background pt-36 pb-36 md:pt-56 md:pb-48"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-70"
