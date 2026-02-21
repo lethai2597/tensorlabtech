@@ -2,7 +2,7 @@ export function EventDetailSkeleton() {
     return (
         <div className="container mx-auto px-8 py-8 space-y-8">
             {/* Hero skeleton */}
-            <div className="relative rounded-3xl overflow-hidden bg-border/60 animate-pulse h-64 md:h-80" />
+            <div className="relative max-w-6xl mx-auto aspect-[3/4] sm:aspect-[4/3] md:aspect-[16/9] rounded-2xl md:rounded-3xl overflow-hidden bg-border/60 animate-pulse" />
 
             {/* Content skeleton */}
             <div className="max-w-3xl mx-auto space-y-6 pt-4">
@@ -16,7 +16,6 @@ export function EventDetailSkeleton() {
                 <div className="flex gap-2">
                     <div className="h-6 w-16 animate-pulse rounded-full bg-border/60" />
                     <div className="h-6 w-20 animate-pulse rounded-full bg-border/60" />
-                    <div className="h-6 w-14 animate-pulse rounded-full bg-border/60" />
                 </div>
 
                 {/* Meta row */}

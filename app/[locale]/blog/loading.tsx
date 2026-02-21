@@ -1,11 +1,15 @@
 export default function BlogLoading() {
     return (
-        <div className="container mx-auto px-8 py-8 space-y-8">
-            {/* Header Skeleton */}
-            <header className="space-y-4">
-                <div className="h-9 w-32 animate-pulse rounded-lg bg-border/60" />
-                <div className="h-5 w-80 animate-pulse rounded-lg bg-border/60" />
-            </header>
+        <div className="container mx-auto px-8 py-8">
+            {/* Header Skeleton — căn giữa giống BlogPageClient */}
+            <div className="py-12 mb-8 flex flex-col items-center gap-4 text-center">
+                {/* Tag badge "Insights & Articles" */}
+                <div className="h-6 w-36 animate-pulse rounded-full bg-border/60" />
+                {/* Title */}
+                <div className="h-11 w-24 animate-pulse rounded-lg bg-border/60" />
+                {/* Description */}
+                <div className="h-4 w-80 max-w-full animate-pulse rounded-lg bg-border/60" />
+            </div>
 
             {/* Grid Skeleton */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -24,7 +28,7 @@ export default function BlogLoading() {
                             <div className="h-4 w-2/3 animate-pulse rounded-lg bg-border/60" />
                         </div>
 
-                        {/* Meta */}
+                        {/* Meta (date + readingTime) */}
                         <div className="flex gap-4 pt-2">
                             <div className="h-4 w-24 animate-pulse rounded-lg bg-border/60" />
                             <div className="h-4 w-20 animate-pulse rounded-lg bg-border/60" />

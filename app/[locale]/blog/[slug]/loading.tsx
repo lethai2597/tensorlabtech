@@ -35,11 +35,11 @@ export default function BlogPostLoading() {
                 {/* TOC sidebar skeleton (desktop only) */}
                 <aside className="hidden lg:block space-y-3">
                     <div className="h-5 w-20 animate-pulse rounded-lg bg-border/60 mb-4" />
-                    {Array.from({ length: 8 }).map((_, i) => (
+                    {[75, 90, 65, 80, 70, 85, 60, 78].map((w, i) => (
                         <div
                             key={i}
                             className="h-4 animate-pulse rounded-lg bg-border/60"
-                            style={{ width: `${60 + Math.random() * 30}%` }}
+                            style={{ width: `${w}%` }}
                         />
                     ))}
                 </aside>
