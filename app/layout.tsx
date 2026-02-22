@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Be_Vietnam_Pro } from "next/font/google";
 import { cookies } from "next/headers";
 import { getLocale } from "next-intl/server";
@@ -92,6 +93,9 @@ export default async function RootLayout({
       >
         <Providers initialTheme={initialTheme}>{children}</Providers>
       </body>
+      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+      )}
     </html>
   );
 }
