@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { Button, Tag } from "antd";
+import { Button } from "antd";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -58,7 +57,7 @@ export function EventsHighlightSection() {
         {/* Event cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {events.map((event) => {
-            const status = getEventStatus(event.startAt);
+            const status = getEventStatus(event.startAt, event.durationMinutes);
             const dateText = event.startAt
               ? formatEventDateShort(event.startAt)
               : t(statusKeys.open);

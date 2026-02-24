@@ -76,7 +76,7 @@ export function EventsPageClient() {
         className="grid grid-cols-1 md:grid-cols-2 gap-8"
       >
         {ALL_EVENTS.map((event) => {
-          const status = getEventStatus(event.startAt);
+          const status = getEventStatus(event.startAt, event.durationMinutes);
           const dateText = event.startAt
             ? formatEventDateShort(event.startAt)
             : "Đang mở";
