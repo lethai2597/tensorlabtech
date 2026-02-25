@@ -4,7 +4,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { Cpu } from "lucide-react";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 
 export function Header() {
   const t = useTranslations("nav");
@@ -27,7 +27,7 @@ export function Header() {
           href="/"
           className="font-bold text-lg text-primary flex items-center gap-2"
         >
-          <Cpu className="size-7" strokeWidth={2.5} />
+          <BrandLogo size={28} />
           <span className="text-foreground">TensorLab</span>
         </Link>
 

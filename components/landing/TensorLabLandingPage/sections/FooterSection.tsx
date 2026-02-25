@@ -3,12 +3,12 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import {
-  Cpu,
   Mail,
   Phone,
   ArrowRight,
   Circle,
 } from "lucide-react";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { Button } from "antd";
 
 import { Link, usePathname } from "@/i18n/navigation";
@@ -112,7 +112,7 @@ export function FooterSection() {
             className="col-span-2 md:col-span-4 lg:col-span-5 space-y-5"
           >
             <div className="font-bold text-lg text-primary flex items-center gap-2">
-              <Cpu className="size-6" />
+              <BrandLogo size={24} />
               <span className="text-foreground">{t("brand")}</span>
             </div>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-sm">

@@ -1,8 +1,7 @@
 "use client";
 
-import { useLocale } from "next-intl";
 import { Result } from "antd";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 import { routing } from "@/i18n/routing";
 
 const messages: Record<string, { title: string; subTitle: string; backHome: string }> = {
@@ -19,7 +18,14 @@ const messages: Record<string, { title: string; subTitle: string; backHome: stri
 };
 
 export default function NotFound() {
-  const locale = useLocale();
+  // Root not-found nằm ngoài IntlProvider nên không dùng được useLocale()
+  // Detect locale từ pathname hoặc fallback về default
+  const locale =
+    typeof window !== "undefined"
+      ? routing.locales.find((l) => window.location.pathname.startsWith(`/${l}`)) ??
+        routing.defaultLocale
+      : routing.defaultLocale;
+
   const t = messages[locale] ?? messages[routing.defaultLocale];
 
   return (
@@ -40,3 +46,4 @@ export default function NotFound() {
     </div>
   );
 }
+

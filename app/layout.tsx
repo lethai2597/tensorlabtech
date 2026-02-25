@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     images: [
       {
-        url: "/og.png",
+        url: "/images/og.png",
         width: 1200,
         height: 630,
         alt: DEFAULT_METADATA.siteName,
@@ -51,7 +51,13 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: DEFAULT_METADATA.title,
     description: DEFAULT_METADATA.description,
-    images: ["/og.png"],
+    images: ["/images/og.png"],
+  },
+  icons: {
+    icon: [
+      { url: "/images/logo-single-color.png", type: "image/png" },
+    ],
+    apple: "/images/logo-single-color.png",
   },
   robots: {
     index: true,
