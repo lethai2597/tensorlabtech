@@ -11,9 +11,8 @@ export const THEME_COOKIE_MAX_AGE = 365 * 24 * 60 * 60;
 
 /** Base URL site (production). Dùng cho canonical, Open Graph, sitemap. */
 export const SITE_URL =
-  (typeof process !== "undefined" &&
-    process.env?.NEXT_PUBLIC_SITE_URL) ||
-  "https://tensorlab.vn";
+  (typeof process !== "undefined" && process.env?.NEXT_PUBLIC_SITE_URL) ||
+  "https://tensorlab.tech";
 
 export const DEFAULT_METADATA = {
   title: "TensorLab — Đối tác công nghệ để xây & scale sản phẩm số",
