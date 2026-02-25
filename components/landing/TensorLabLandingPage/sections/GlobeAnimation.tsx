@@ -49,15 +49,16 @@ export function GlobeAnimation({ className }: GlobeAnimationProps) {
                 mapBrightness: 2,
             };
 
+        const dpr = Math.min(window.devicePixelRatio, 1.5);
         const globe = createGlobe(canvas, {
-            devicePixelRatio: 2,
+            devicePixelRatio: dpr,
             width: canvas.width,
             height: canvas.height,
             phi: phiRef.current,
             theta: 0.25,
             dark: config.dark,
             diffuse: 2,
-            mapSamples: 16000,
+            mapSamples: 8000,
             mapBrightness: config.mapBrightness,
             baseColor: config.baseColor,
             markerColor: config.markerColor,
@@ -92,13 +93,14 @@ export function GlobeAnimation({ className }: GlobeAnimationProps) {
     }, [onResize, shouldReduceMotion, isDark]);
 
     return (
-        <div className={className}>
+        <div className={className} style={{ willChange: "transform" }}>
             <canvas
                 ref={canvasRef}
                 className="w-full aspect-square opacity-0 transition-opacity duration-1000"
                 style={{
                     contain: "layout paint size",
                     maxWidth: "100%",
+                    willChange: "transform",
                 }}
                 onPointerDown={(e) => {
                     pointerInteracting.current =

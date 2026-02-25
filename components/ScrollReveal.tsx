@@ -79,41 +79,32 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
 
       const wordElements = el.querySelectorAll<HTMLElement>(".word");
 
+      // Gộp opacity + blur vào 1 ScrollTrigger duy nhất để giảm scroll listeners
       gsap.fromTo(
         wordElements,
-        { opacity: baseOpacity, willChange: "opacity" },
+        {
+          opacity: baseOpacity,
+          ...(enableBlur ? { filter: `blur(${blurStrength}px)` } : {}),
+          willChange: "opacity",
+        },
         {
           ease: "none",
           opacity: 1,
+          ...(enableBlur ? { filter: "blur(0px)" } : {}),
           stagger: 0.05,
           scrollTrigger: {
             trigger: el,
             scroller,
             start: wordAnimationStart,
             end: wordAnimationEnd,
-            scrub: true,
+            scrub: 0.5, // số thay boolean: mượt hơn & nhẹ hơn "scrub: true"
+          },
+          onComplete: () => {
+            // Xóa willChange sau khi animation xong để giải phóng GPU memory
+            wordElements.forEach(w => { w.style.willChange = "auto"; });
           },
         },
       );
-
-      if (enableBlur) {
-        gsap.fromTo(
-          wordElements,
-          { filter: `blur(${blurStrength}px)` },
-          {
-            ease: "none",
-            filter: "blur(0px)",
-            stagger: 0.05,
-            scrollTrigger: {
-              trigger: el,
-              scroller,
-              start: wordAnimationStart,
-              end: wordAnimationEnd,
-              scrub: true,
-            },
-          },
-        );
-      }
     }, el);
 
     return () => ctx.revert();
