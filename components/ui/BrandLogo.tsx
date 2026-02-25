@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useTheme } from "@/app/providers/ThemeProvider";
 import { cn } from "@/lib/utils";
 
 interface BrandLogoProps {
@@ -7,21 +10,19 @@ interface BrandLogoProps {
 }
 
 export function BrandLogo({ size = 28, className }: BrandLogoProps) {
+  const { isDark } = useTheme();
+
   return (
     <Image
-      src="/images/logo-single-color.png"
+      src={isDark ? "/images/logo-white.png" : "/images/logo-single-color.png"}
       width={size}
       height={size}
       alt="TensorLab logo"
-      className={cn(
-        "shrink-0 transition-[filter] duration-200",
-        // Light: giữ nguyên màu gốc
-        // Dark: brighness(0) → toàn đen, invert(1) → toàn trắng
-        "dark:brightness-0 dark:invert",
-        className
-      )}
+      className={cn("shrink-0", className)}
     />
   );
 }
+
+
 
 
