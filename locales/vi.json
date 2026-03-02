@@ -35,6 +35,7 @@
     "home": "Trang chủ",
     "capabilities": "Năng lực",
     "engagement": "Hợp tác",
+    "projects": "Dự án",
     "events": "Sự kiện",
     "contact": "Liên hệ"
   },
@@ -428,6 +429,37 @@
         }
       }
     },
+    "projects": {
+      "tag": "Portfolio",
+      "title": "Dự Án Nổi Bật",
+      "desc": "Sản phẩm do TensorLab thiết kế & phát triển — từ DevTool, EdTech đến FinTech.",
+      "items": {
+        "ecommerce-assistant": {
+          "title": "AI Sales Advisor",
+          "desc": "Chatbot AI bán hàng tự động — tư vấn sản phẩm, quản lý giỏ hàng, đặt hàng và trả lời chính sách qua ngôn ngữ tự nhiên.",
+          "category": "AI · E-commerce",
+          "tech": ["LangGraph", "NestJS", "pgvector", "Redis", "SSE Streaming"]
+        },
+        "ccpoke": {
+          "title": "ccpoke",
+          "desc": "Cầu nối 2 chiều giữa terminal và điện thoại. Code mọi nơi với Claude Code, Cursor và nhiều AI agents khác qua Telegram, Discord, Zalo.",
+          "category": "DevTool",
+          "tech": ["Claude Code", "Telegram Bot", "TypeScript", "CLI"]
+        },
+        "vocabolt": {
+          "title": "VocaBolt",
+          "desc": "Ứng dụng học từ vựng thông minh với AI. Tự động nhắc ôn tập, tạo bài test, viết truyện từ từ đã học và chấm điểm.",
+          "category": "EdTech",
+          "tech": ["Next.js", "AI", "Spaced Repetition", "PWA"]
+        },
+        "moni": {
+          "title": "Moni",
+          "desc": "Ứng dụng học tập & quản lý tài chính cá nhân tích hợp gamification đầu tiên tại Việt Nam. Hỗ trợ cả Android và iOS.",
+          "category": "FinTech",
+          "tech": ["React Native", "Gamification", "AI", "Mobile"]
+        }
+      }
+    },
     "eventsHighlight": {
       "tag": "Sự kiện",
       "title": "Sự kiện sắp tới",
@@ -593,6 +625,100 @@
       "email": "Email",
       "phone": "Điện thoại",
       "facebook": "Facebook"
+    }
+  },
+  "projectDetail": {
+    "backToProjects": "Quay lại danh sách dự án",
+    "visitProject": "Xem dự án",
+    "contactForDemo": "Liên hệ tư vấn",
+    "contactUs": "Liên hệ TensorLab",
+    "featuresTitle": "Tính năng cốt lõi",
+    "featuresDesc": "Những tính năng chính của dự án này.",
+    "ctaTitle": "Quan tâm đến dự án này?",
+    "ctaDesc": "Trải nghiệm trực tiếp hoặc liên hệ TensorLab để trao đổi chi tiết.",
+    "ecommerce-assistant": {
+      "desc": "Chatbot AI bán hàng tự động cho e-commerce — biến mọi cuộc trò chuyện thành đơn hàng. Tư vấn sản phẩm thông minh, quản lý giỏ hàng bằng ngôn ngữ tự nhiên, đặt hàng tự động và trả lời chính sách shop.",
+      "features": [
+        {
+          "title": "Tư vấn sản phẩm thông minh",
+          "desc": "Semantic search + CRAG self-check + query expansion — tìm đúng sản phẩm, kiểm tra lại kết quả, mở rộng truy vấn tự động."
+        },
+        {
+          "title": "Quản lý giỏ hàng tự nhiên",
+          "desc": "Thêm, xoá, sửa số lượng sản phẩm trong giỏ hàng chỉ bằng ngôn ngữ tự nhiên. Không cần bấm nút."
+        },
+        {
+          "title": "Đặt hàng tự động",
+          "desc": "Thu thập SĐT, địa chỉ giao hàng trong cuộc chat. Tạo đơn hàng hoàn chỉnh mà khách không cần rời chatbox."
+        },
+        {
+          "title": "Multi-Intent & Cross-session",
+          "desc": "Xử lý nhiều yêu cầu trong 1 câu. Nhớ khách quen qua nhiều phiên hội thoại. CRAG tự sửa lỗi AI."
+        }
+      ]
+    },
+    "ccpoke": {
+      "desc": "Cầu nối 2 chiều giữa terminal và điện thoại. Tương tác với Claude Code, Codex CLI, Cursor và nhiều AI agents khác qua Telegram, Discord, Zalo — cầm điện thoại mà vẫn code.",
+      "features": [
+        {
+          "title": "Bridge 2 chiều",
+          "desc": "Gửi prompt từ điện thoại, nhận kết quả từ terminal — tất cả từ nền tảng chat bạn đang dùng."
+        },
+        {
+          "title": "Multi-platform",
+          "desc": "Hỗ trợ Telegram, Discord, Zalo — giao tiếp qua các nền tảng phổ biến nhất."
+        },
+        {
+          "title": "Đa AI Agent",
+          "desc": "Tương thích Claude Code, Codex CLI, Cursor CLI và bất kỳ công cụ AI nào chạy trên terminal."
+        },
+        {
+          "title": "CLI đơn giản",
+          "desc": "Chỉ cần npx -y ccpoke là xong. Không cần cài đặt phức tạp."
+        }
+      ]
+    },
+    "vocabolt": {
+      "desc": "Ứng dụng học từ vựng thông minh với AI. Tự động nhắc ôn tập theo phương pháp Spaced Repetition, tạo bài test, viết truyện từ từ đã học và chấm điểm — miễn phí 100%.",
+      "features": [
+        {
+          "title": "AI tạo nội dung",
+          "desc": "AI tự động tạo bài test, câu chuyện và ví dụ ngữ cảnh từ danh sách từ vựng bạn đã học."
+        },
+        {
+          "title": "Spaced Repetition",
+          "desc": "Hệ thống nhắc ôn tập thông minh — đúng thời điểm để ghi nhớ lâu dài."
+        },
+        {
+          "title": "PWA miễn phí",
+          "desc": "Cài đặt như app, hoạt động offline. Hoàn toàn miễn phí, không quảng cáo."
+        },
+        {
+          "title": "Chấm điểm tự động",
+          "desc": "AI chấm và phân tích lỗi sai, giúp bạn hiểu rõ điểm yếu cần cải thiện."
+        }
+      ]
+    },
+    "moni": {
+      "desc": "Ứng dụng học tập & quản lý tài chính cá nhân tích hợp gamification đầu tiên tại Việt Nam. 2.400+ người dùng, đánh giá 4.9/5 trên App Store.",
+      "features": [
+        {
+          "title": "Học tài chính qua Gamification",
+          "desc": "Các khoá học tài chính cá nhân được game hoá — học mà chơi, chơi mà nhớ."
+        },
+        {
+          "title": "Quản lý chi tiêu",
+          "desc": "Theo dõi thu chi, phân bổ ngân sách hàng tháng với giao diện trực quan."
+        },
+        {
+          "title": "Đa nền tảng",
+          "desc": "Có mặt trên cả Google Play và App Store. React Native cho trải nghiệm native."
+        },
+        {
+          "title": "Social Proof",
+          "desc": "2.400+ người dùng thực, đánh giá 4.9/5 — minh chứng cho giá trị sản phẩm."
+        }
+      ]
     }
   }
 }

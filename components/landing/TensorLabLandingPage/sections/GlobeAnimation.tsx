@@ -43,10 +43,10 @@ export function GlobeAnimation({ className }: GlobeAnimationProps) {
             }
             : {
                 dark: 0,
-                baseColor: [0.94, 0.95, 0.98] as [number, number, number],
-                markerColor: [0.6, 0.7, 0.95] as [number, number, number],
-                glowColor: [0.96, 0.97, 1] as [number, number, number],
-                mapBrightness: 2,
+                baseColor: [0.78, 0.83, 0.95] as [number, number, number],
+                markerColor: [0.3, 0.45, 0.9] as [number, number, number],
+                glowColor: [0.65, 0.72, 0.95] as [number, number, number],
+                mapBrightness: 6,
             };
 
         const dpr = Math.min(window.devicePixelRatio, 1.5);

@@ -184,7 +184,7 @@ export function HeroSection() {
         }}
         className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[60%] w-[900px] md:w-[1200px] lg:w-[1600px] pointer-events-auto z-0"
       >
-        <GlobeAnimation className="w-full opacity-25" />
+        <GlobeAnimation className="w-full opacity-15 dark:opacity-25" />
       </motion.div>
 
       {/* Bottom accent line */}

@@ -15,6 +15,7 @@ export function Header() {
     { key: "home", label: t("home"), href: "/" },
     { key: "capabilities", label: t("capabilities"), hash: "capabilities" },
     { key: "engagement", label: t("engagement"), hash: "engagement" },
+    { key: "projects", label: t("projects"), href: "/projects" },
     { key: "blog", label: "Blog", href: "/blog" },
     { key: "events", label: t("events"), href: "/events" },
     { key: "contact", label: t("contact"), href: "/contact" },
@@ -44,12 +45,17 @@ export function Header() {
                 href={href}
                 className="text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-foreground transition-colors"
                 onClick={(e) => {
-                  if (!isPageLink && isHome && "hash" in item) {
-                    const el = document.getElementById(item.hash);
-                    if (el) {
-                      e.preventDefault();
-                      el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  if (!isPageLink && "hash" in item) {
+                    if (isHome) {
+                      // On homepage — smooth scroll
+                      const el = document.getElementById(item.hash);
+                      if (el) {
+                        e.preventDefault();
+                        el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }
                     }
+                    // On other pages — let Link navigate to /#hash
+                    // Browser will handle scroll-to-hash after navigation
                   }
                 }}
               >

@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, Form, Input, Select, App } from "antd";
+import type { InputRef } from "antd";
 import { Send } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -18,13 +19,22 @@ type ContactFormValues = {
 type ContactFormProps = {
     /** Pre-select loại hợp tác từ query param */
     defaultType?: string;
+    /** Pre-fill message */
+    defaultMessage?: string;
 };
 
-export function ContactForm({ defaultType }: ContactFormProps) {
+export function ContactForm({ defaultType, defaultMessage }: ContactFormProps) {
     const t = useTranslations("landing.contactForm");
     const [form] = Form.useForm<ContactFormValues>();
     const [loading, setLoading] = useState(false);
     const { message } = App.useApp();
+    const nameInputRef = useRef<InputRef>(null);
+
+    useEffect(() => {
+        // Auto-focus name field after a small delay for animations
+        const timer = setTimeout(() => nameInputRef.current?.focus(), 400);
+        return () => clearTimeout(timer);
+    }, []);
 
     const initialType: ContactType = CONTACT_TYPES.includes(
         defaultType as ContactType,
@@ -71,7 +81,7 @@ export function ContactForm({ defaultType }: ContactFormProps) {
             layout="vertical"
             onFinish={onFinish}
             requiredMark={false}
-            initialValues={{ type: initialType }}
+            initialValues={{ type: initialType, message: defaultMessage }}
             className="space-y-1"
         >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
@@ -81,6 +91,7 @@ export function ContactForm({ defaultType }: ContactFormProps) {
                     rules={[{ required: true, message: t("nameRequired") }]}
                 >
                     <Input
+                        ref={nameInputRef}
                         placeholder={t("namePlaceholder")}
                         size="large"
                         className="rounded-xl!"

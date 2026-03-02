@@ -35,6 +35,7 @@
     "home": "Home",
     "capabilities": "Capabilities",
     "engagement": "Partnership",
+    "projects": "Projects",
     "events": "Events",
     "contact": "Contact"
   },
@@ -421,6 +422,37 @@
         }
       }
     },
+    "projects": {
+      "tag": "Portfolio",
+      "title": "Featured Projects",
+      "desc": "Products designed & built by TensorLab — from DevTools, EdTech to FinTech.",
+      "items": {
+        "ecommerce-assistant": {
+          "title": "AI Sales Advisor",
+          "desc": "AI-powered sales chatbot — product recommendations, cart management, auto-ordering, and policy Q&A via natural language.",
+          "category": "AI · E-commerce",
+          "tech": ["LangGraph", "NestJS", "pgvector", "Redis", "SSE Streaming"]
+        },
+        "ccpoke": {
+          "title": "ccpoke",
+          "desc": "Two-way bridge between terminal and mobile. Code anywhere with Claude Code, Cursor, and other AI agents via Telegram, Discord, Zalo.",
+          "category": "DevTool",
+          "tech": ["Claude Code", "Telegram Bot", "TypeScript", "CLI"]
+        },
+        "vocabolt": {
+          "title": "VocaBolt",
+          "desc": "Smart vocabulary learning app powered by AI. Auto-schedule reviews, generate tests, create stories from learned words, and grade your progress.",
+          "category": "EdTech",
+          "tech": ["Next.js", "AI", "Spaced Repetition", "PWA"]
+        },
+        "moni": {
+          "title": "Moni",
+          "desc": "Vietnam's first personal finance learning & management app with gamification. Available on both Android and iOS.",
+          "category": "FinTech",
+          "tech": ["React Native", "Gamification", "AI", "Mobile"]
+        }
+      }
+    },
     "eventsHighlight": {
       "tag": "Events",
       "title": "Upcoming events",
@@ -586,6 +618,100 @@
       "email": "Email",
       "phone": "Phone",
       "facebook": "Facebook"
+    }
+  },
+  "projectDetail": {
+    "backToProjects": "Back to projects",
+    "visitProject": "Visit project",
+    "contactForDemo": "Contact for demo",
+    "contactUs": "Contact TensorLab",
+    "featuresTitle": "Core Features",
+    "featuresDesc": "Key features that power this project.",
+    "ctaTitle": "Interested in this project?",
+    "ctaDesc": "Try the live demo or contact TensorLab to discuss details.",
+    "ecommerce-assistant": {
+      "desc": "AI-powered e-commerce sales chatbot — turn every conversation into an order. Smart product recommendations, natural language cart management, auto-ordering, and shop policy Q&A.",
+      "features": [
+        {
+          "title": "Smart Product Recommendations",
+          "desc": "Semantic search + CRAG self-check + query expansion — find the right product, verify results, and auto-expand queries."
+        },
+        {
+          "title": "Natural Language Cart",
+          "desc": "Add, remove, update quantities using plain language. No buttons needed."
+        },
+        {
+          "title": "Auto-Ordering",
+          "desc": "Collect phone number and delivery address within the chat. Create complete orders without leaving the chatbox."
+        },
+        {
+          "title": "Multi-Intent & Cross-session",
+          "desc": "Handle multiple requests in one message. Remember returning customers across sessions. CRAG self-corrects AI errors."
+        }
+      ]
+    },
+    "ccpoke": {
+      "desc": "Two-way bridge between terminal and phone. Interact with Claude Code, Codex CLI, Cursor and other AI agents via Telegram, Discord, Zalo — code from your phone.",
+      "features": [
+        {
+          "title": "Two-Way Bridge",
+          "desc": "Send prompts from your phone, get results from the terminal — all from the chat platform you already use."
+        },
+        {
+          "title": "Multi-Platform",
+          "desc": "Supports Telegram, Discord, Zalo — communicate via the most popular messaging platforms."
+        },
+        {
+          "title": "Multi AI Agent",
+          "desc": "Compatible with Claude Code, Codex CLI, Cursor CLI and any AI tool running on terminal."
+        },
+        {
+          "title": "Simple CLI",
+          "desc": "Just run npx -y ccpoke and you're done. No complex setup needed."
+        }
+      ]
+    },
+    "vocabolt": {
+      "desc": "Smart vocabulary learning app powered by AI. Auto-schedule reviews using Spaced Repetition, generate tests, create stories from learned words, and grade your progress — 100% free.",
+      "features": [
+        {
+          "title": "AI Content Generation",
+          "desc": "AI automatically creates tests, stories, and contextual examples from your learned vocabulary list."
+        },
+        {
+          "title": "Spaced Repetition",
+          "desc": "Smart review scheduling — at the right time for long-term retention."
+        },
+        {
+          "title": "Free PWA",
+          "desc": "Install like an app, works offline. Completely free, no ads."
+        },
+        {
+          "title": "Auto Grading",
+          "desc": "AI grades and analyzes mistakes, helping you understand weak points to improve."
+        }
+      ]
+    },
+    "moni": {
+      "desc": "Vietnam's first personal finance learning & management app with gamification. 2,400+ users, rated 4.9/5 on App Store.",
+      "features": [
+        {
+          "title": "Gamified Finance Learning",
+          "desc": "Personal finance courses with gamification — learn while playing, play while remembering."
+        },
+        {
+          "title": "Expense Tracking",
+          "desc": "Track income and expenses, allocate monthly budgets with an intuitive interface."
+        },
+        {
+          "title": "Cross-Platform",
+          "desc": "Available on both Google Play and App Store. React Native for native experience."
+        },
+        {
+          "title": "Social Proof",
+          "desc": "2,400+ real users, rated 4.9/5 — proof of product value."
+        }
+      ]
     }
   }
 }

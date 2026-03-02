@@ -35,6 +35,7 @@ function ContactPageContent() {
     const t = useTranslations("contactPage");
     const searchParams = useSearchParams();
     const type = searchParams.get("type") ?? undefined;
+    const defaultMessage = searchParams.get("message") ?? undefined;
     const shouldReduceMotion = useReducedMotion();
     const reduced = Boolean(shouldReduceMotion);
 
@@ -176,7 +177,7 @@ function ContactPageContent() {
                                 {t("formDesc")}
                             </p>
                         </div>
-                        <ContactForm defaultType={type} />
+                        <ContactForm defaultType={type} defaultMessage={defaultMessage} />
                     </div>
                 </motion.div>
             </div>
