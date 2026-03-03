@@ -37,6 +37,7 @@
     "engagement": "Hợp tác",
     "projects": "Dự án",
     "events": "Sự kiện",
+    "team": "Đội ngũ",
     "contact": "Liên hệ"
   },
   "events": {
@@ -719,6 +720,81 @@
           "desc": "2.400+ người dùng thực, đánh giá 4.9/5 — minh chứng cho giá trị sản phẩm."
         }
       ]
+    }
+  },
+  "teamPage": {
+    "metaTitle": "Đội Ngũ — TensorLab",
+    "metaDesc": "Gặp gỡ đội ngũ TensorLab — các kỹ sư, designer và cố vấn đứng sau những sản phẩm số production-ready.",
+    "introTag": "Về chúng tôi",
+    "introTitle": "Đội ngũ nhỏ, tác động lớn",
+    "introDesc": "TensorLab được xây dựng bởi những kỹ sư có kinh nghiệm thực chiến tại các startup công nghệ. Chúng tôi không chỉ code — chúng tôi hiểu sản phẩm, hiểu thị trường, và biến ý tưởng thành giải pháp thực tế.",
+    "introHighlights": {
+      "experience": {
+        "value": "5+",
+        "label": "Năm kinh nghiệm",
+        "desc": "Trong phát triển sản phẩm số, từ startup đến enterprise"
+      },
+      "projects": {
+        "value": "20+",
+        "label": "Dự án đã triển khai",
+        "desc": "Web app, mobile, blockchain, AI — production-ready"
+      },
+      "techStack": {
+        "value": "15+",
+        "label": "Công nghệ thành thạo",
+        "desc": "React, Next.js, NestJS, MongoDB, Solidity, Go, ..."
+      },
+      "teamwork": {
+        "value": "100%",
+        "label": "Cam kết chất lượng",
+        "desc": "Delivery đúng hạn, code sạch, tài liệu đầy đủ"
+      }
+    },
+    "membersTag": "Đội ngũ cốt lõi",
+    "membersTitle": "Những người xây dựng",
+    "membersDesc": "Mỗi thành viên đều có kinh nghiệm thực chiến tại các công ty sản phẩm, sẵn sàng đồng hành cùng bạn từ ý tưởng đến go-live.",
+    "advisorsTag": "Cố vấn",
+    "advisorsTitle": "Dẫn dắt bởi kinh nghiệm",
+    "advisorsDesc": "Các chuyên gia đồng hành tư vấn chiến lược, công nghệ và phát triển.",
+    "downloadCv": "Tải CV",
+    "members": {
+      "member-1": {
+        "name": "Thái Lê",
+        "role": "Founder & Full-stack Engineer",
+        "bio": "5+ năm kinh nghiệm. Từng làm Full-stack tại 24Karat, PinkSale, Hectagon. Chuyên React/Next.js, NestJS và Web3."
+      },
+      "member-2": {
+        "name": "Anh Dũng",
+        "role": "Backend Developer",
+        "bio": "4+ năm kinh nghiệm. Chuyên NestJS, Golang và Blockchain. Thiết kế microservice và indexing on-chain."
+      },
+      "member-3": {
+        "name": "Thành viên 3",
+        "role": "Frontend Engineer",
+        "bio": "3+ năm kinh nghiệm. Chuyên về ReactJS, Material UI và Ant Design. Xây dựng dashboard, admin panel và marketplace."
+      },
+      "member-4": {
+        "name": "Quang Thịnh",
+        "role": "Frontend Engineer",
+        "bio": "4+ năm kinh nghiệm. Chuyên VueJS, NuxtJS và ReactJS. Xây dựng dashboard, hệ thống giám sát và nền tảng EdTech."
+      }
+    },
+    "advisors": {
+      "nguyen": {
+        "name": "Nguyện Bùi",
+        "role": "CEO tại laptrinhcuocsong",
+        "bio": "Founder của hệ sinh thái giáo dục công nghệ laptrinhcuocsong.com và techschool.vn. Cố vấn chiến lược nội dung và tăng trưởng cộng đồng."
+      },
+      "duc": {
+        "name": "Đức Nguyễn",
+        "role": "CEO tại cpp.ai.vn",
+        "bio": "Founder cpp.ai.vn, chuyên gia System Design và kiến trúc phần mềm. Cố vấn về chiến lược công nghệ và giải pháp AI."
+      },
+      "hoang": {
+        "name": "Hoàng Phạm",
+        "role": "CTO tại Infinilab",
+        "bio": "CTO tại infinilab.asia, chuyên về hạ tầng cloud và phát triển sản phẩm. Cố vấn kỹ thuật và quy trình phát triển."
+      }
     }
   }
 }

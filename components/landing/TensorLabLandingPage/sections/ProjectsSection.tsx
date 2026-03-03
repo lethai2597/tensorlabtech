@@ -59,13 +59,13 @@ export function ProjectsSection() {
                     className="h-full cursor-pointer border-transparent transition duration-300 hover:border-border hover:-translate-y-1 p-0! overflow-hidden!"
                   >
                     {/* Screenshot zone */}
-                    <div className="relative overflow-hidden aspect-[16/9]">
+                    <div className="relative overflow-hidden aspect-[16/9] -mb-px">
                       <Image
                         src={project.thumbnailUrl}
                         alt={t(`items.${project.key}.title`)}
                         fill
                         sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        className="object-cover object-top scale-[1.01] transition-transform duration-500 group-hover:scale-105"
                       />
                       {/* Gradient overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

@@ -37,6 +37,7 @@
     "engagement": "Partnership",
     "projects": "Projects",
     "events": "Events",
+    "team": "Team",
     "contact": "Contact"
   },
   "events": {
@@ -712,6 +713,81 @@
           "desc": "2,400+ real users, rated 4.9/5 — proof of product value."
         }
       ]
+    }
+  },
+  "teamPage": {
+    "metaTitle": "Our Team — TensorLab",
+    "metaDesc": "Meet the people behind TensorLab — engineers, designers, and advisors who build production-ready digital products.",
+    "introTag": "About us",
+    "introTitle": "Small team, big impact",
+    "introDesc": "TensorLab is built by engineers with hands-on experience at tech startups. We don't just code — we understand products, markets, and turn ideas into practical solutions.",
+    "introHighlights": {
+      "experience": {
+        "value": "5+",
+        "label": "Years of experience",
+        "desc": "In digital product development, from startup to enterprise"
+      },
+      "projects": {
+        "value": "20+",
+        "label": "Projects delivered",
+        "desc": "Web apps, mobile, blockchain, AI — production-ready"
+      },
+      "techStack": {
+        "value": "15+",
+        "label": "Technologies mastered",
+        "desc": "React, Next.js, NestJS, MongoDB, Solidity, Go, ..."
+      },
+      "teamwork": {
+        "value": "100%",
+        "label": "Quality commitment",
+        "desc": "On-time delivery, clean code, comprehensive docs"
+      }
+    },
+    "membersTag": "Core Team",
+    "membersTitle": "The people who build",
+    "membersDesc": "Every member brings real-world experience from product companies, ready to partner with you from idea to go-live.",
+    "advisorsTag": "Advisors",
+    "advisorsTitle": "Guided by experience",
+    "advisorsDesc": "Industry experts who advise on strategy, technology, and business growth.",
+    "downloadCv": "Download CV",
+    "members": {
+      "member-1": {
+        "name": "Thai Le",
+        "role": "Founder & Full-stack Engineer",
+        "bio": "5+ years of experience. Former Full-stack at 24Karat, PinkSale, Hectagon. Specializes in React/Next.js, NestJS and Web3."
+      },
+      "member-2": {
+        "name": "Anh Dung",
+        "role": "Backend Developer",
+        "bio": "4+ years of experience. Specializes in NestJS, Golang and Blockchain. Designs microservices and on-chain indexing."
+      },
+      "member-3": {
+        "name": "Member 3",
+        "role": "Frontend Engineer",
+        "bio": "3+ years of experience. Specializes in ReactJS, Material UI and Ant Design. Builds dashboards, admin panels and marketplaces."
+      },
+      "member-4": {
+        "name": "Quang Thinh",
+        "role": "Frontend Engineer",
+        "bio": "4+ years of experience. Specializes in VueJS, NuxtJS and ReactJS. Builds dashboards, monitoring systems and EdTech platforms."
+      }
+    },
+    "advisors": {
+      "nguyen": {
+        "name": "Nguyen Bui",
+        "role": "CEO at laptrinhcuocsong",
+        "bio": "Founder of the tech education ecosystem laptrinhcuocsong.com and techschool.vn. Strategic advisor on content and community growth."
+      },
+      "duc": {
+        "name": "Duc Nguyen",
+        "role": "CEO at cpp.ai.vn",
+        "bio": "Founder of cpp.ai.vn, expert in System Design and software architecture. Advisor on technology strategy and AI solutions."
+      },
+      "hoang": {
+        "name": "Hoang Pham",
+        "role": "CTO at Infinilab",
+        "bio": "CTO at infinilab.asia, specializing in cloud infrastructure and product development. Technical advisor on delivery processes."
+      }
     }
   }
 }

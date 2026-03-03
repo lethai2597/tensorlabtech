@@ -21,7 +21,7 @@ const FOOTER_COLUMNS = [
       { labelKey: "0", href: "/#capabilities" },
       { labelKey: "1", href: "/#engagement" },
       { labelKey: "2", href: "/#process" },
-      { labelKey: "3", href: "/events" },
+      // { labelKey: "3", href: "/events" },
     ],
   },
   {
