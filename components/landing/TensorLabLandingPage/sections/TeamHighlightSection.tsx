@@ -1,8 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 import { SectionHeader } from "@/components/landing/SectionHeader";
@@ -19,6 +20,13 @@ const SOCIAL_ICONS = {
   twitter: { icon: Twitter, label: "Twitter" },
   website: { icon: Globe, label: "Website" },
 } as const;
+
+const CARD_COLORS = [
+  { spotlight: "rgba(37, 99, 235, 0.30)", accent: "#2563eb" },
+  { spotlight: "rgba(139, 92, 246, 0.30)", accent: "#8b5cf6" },
+  { spotlight: "rgba(56, 189, 248, 0.30)", accent: "#0ea5e9" },
+  { spotlight: "rgba(34, 197, 94, 0.30)", accent: "#10b981" },
+] as const;
 
 export function TeamHighlightSection() {
   const t = useTranslations("landing.teamHighlight");
@@ -48,51 +56,65 @@ export function TeamHighlightSection() {
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {TEAM_MEMBERS.map((member) => {
+          {TEAM_MEMBERS.map((member, idx) => {
             const socialEntries = Object.entries(member.social).filter(
               ([, url]) => !!url,
             ) as [keyof typeof SOCIAL_ICONS, string][];
+            const color = CARD_COLORS[idx % CARD_COLORS.length]!;
 
             return (
               <motion.div key={member.key} variants={fadeUp}>
                 <SpotlightCard
-                  spotlightColor="rgba(37, 99, 235, 0.30)"
-                  className="h-full group"
+                  spotlightColor={color.spotlight}
+                  className="h-full group cursor-default border-transparent transition duration-300 hover:border-border hover:-translate-y-1"
                 >
-                  <div className="flex flex-col items-center text-center gap-6 py-1">
+                  <div className="flex flex-col items-center text-center gap-6">
                     {/* Avatar */}
-                    <div className="p-1 rounded-full bg-gradient-to-br from-transparent via-border to-transparent transition-all duration-300 group-hover:from-blue-500/30 group-hover:via-sky-500/30 group-hover:to-cyan-500/30">
-                      <div className="w-28 aspect-square shrink-0 rounded-full overflow-hidden bg-border">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={member.avatarUrl}
-                          alt={tTeam(`members.${member.key}.name`)}
-                          className="block w-full h-full object-cover"
-                        />
-                      </div>
+                    <div className="relative w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden bg-border">
+                      <Image
+                        src={member.avatarUrl}
+                        alt={tTeam(`members.${member.key}.name`)}
+                        fill
+                        sizes="144px"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
                     </div>
 
                     {/* Info */}
                     <div className="space-y-2">
-                      <h3 className="text-lg font-bold text-foreground">
+                      <h3 className="text-xl font-bold text-foreground">
                         {tTeam(`members.${member.key}.name`)}
                       </h3>
-                      <p className="text-sm font-semibold text-primary">
+                      <p className="text-sm font-semibold" style={{ color: color.accent }}>
                         {tTeam(`members.${member.key}.role`)}
+                      </p>
+                      <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xs mx-auto">
+                        {tTeam(`members.${member.key}.bio`)}
                       </p>
                     </div>
 
-                    {/* Bio */}
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1">
-                      {tTeam(`members.${member.key}.bio`)}
-                    </p>
-
                     {/* Social links */}
-                    <div className="flex items-center gap-2.5 pt-1">
+                    <div className="flex items-center gap-2.5">
                       {socialEntries.map(([platform, url]) => {
                         const config = SOCIAL_ICONS[platform];
                         if (!config) return null;
                         const Icon = config.icon;
+
+                        if (platform === "website") {
+                          return (
+                            <a
+                              key={platform}
+                              href={url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background/60 px-3 py-1.5 text-xs font-medium text-zinc-500 dark:text-zinc-400 hover:text-primary hover:border-primary/30 transition-all duration-200"
+                            >
+                              <ExternalLink className="size-3.5" />
+                              {new URL(url).hostname.replace("www.", "")}
+                            </a>
+                          );
+                        }
+
                         return (
                           <a
                             key={platform}
@@ -107,8 +129,6 @@ export function TeamHighlightSection() {
                         );
                       })}
                     </div>
-
-                    {/* No CV button on landing page */}
                   </div>
                 </SpotlightCard>
               </motion.div>

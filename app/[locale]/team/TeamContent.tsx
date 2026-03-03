@@ -32,120 +32,36 @@ const SOCIAL_ICONS = {
   website: { icon: Globe, label: "Website" },
 } as const;
 
-/* ---------- member card ---------- */
+/* ---------- card accent colors (cycle) ---------- */
 
-function MemberCard({
-  member,
-  fadeUp,
-  t,
-  showCv,
-}: {
-  member: TeamMember;
-  fadeUp: ReturnType<typeof useSectionVariants>["fadeUp"];
-  t: ReturnType<typeof useTranslations>;
-  showCv?: boolean;
-}) {
-  const socialEntries = Object.entries(member.social).filter(
-    ([, url]) => !!url,
-  ) as [keyof typeof SOCIAL_ICONS, string][];
-
-  return (
-    <motion.div variants={fadeUp}>
-      <SpotlightCard
-        spotlightColor="rgba(37, 99, 235, 0.30)"
-        className="h-full group"
-      >
-        <div className="flex flex-col items-center text-center gap-6 py-1">
-          {/* Avatar */}
-          <div className="p-1 rounded-full bg-gradient-to-br from-transparent via-border to-transparent transition-all duration-300 group-hover:from-blue-500/30 group-hover:via-sky-500/30 group-hover:to-cyan-500/30">
-            <div className="w-28 aspect-square shrink-0 rounded-full overflow-hidden bg-border">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={member.avatarUrl}
-                alt={t(`members.${member.key}.name`)}
-                className="block w-full h-full object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Info */}
-          <div className="space-y-2">
-            <h3 className="text-lg font-bold text-foreground">
-              {t(`members.${member.key}.name`)}
-            </h3>
-            <p className="text-sm font-semibold text-primary">
-              {t(`members.${member.key}.role`)}
-            </p>
-          </div>
-
-          {/* Bio */}
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1">
-            {t(`members.${member.key}.bio`)}
-          </p>
-
-          {/* Social links */}
-          <div className="flex items-center gap-2.5 pt-1">
-            {socialEntries.map(([platform, url]) => {
-              const config = SOCIAL_ICONS[platform];
-              if (!config) return null;
-              const Icon = config.icon;
-              return (
-                <a
-                  key={platform}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={config.label}
-                  className="inline-flex items-center justify-center size-9 rounded-xl border border-border bg-background/60 text-zinc-500 dark:text-zinc-400 hover:text-primary hover:border-primary/30 transition-all duration-200"
-                >
-                  <Icon className="size-4" />
-                </a>
-              );
-            })}
-          </div>
-
-          {/* CV download — only for core members */}
-          {showCv && member.cvUrl && (
-            <a href={member.cvUrl} download className="w-full">
-              <Button
-                block
-                icon={<Download className="size-4" />}
-                className="rounded-xl! h-9! text-xs! font-medium!"
-              >
-                {t("downloadCv")}
-              </Button>
-            </a>
-          )}
-        </div>
-      </SpotlightCard>
-    </motion.div>
-  );
-}
-
-/* ---------- advisor card (premium vertical layout) ---------- */
-
-const ADVISOR_COLORS = [
-  { spotlight: "rgba(139, 92, 246, 0.30)", accent: "#8b5cf6", hoverBorder: "hover:border-violet-500/30" },
-  { spotlight: "rgba(56, 189, 248, 0.30)", accent: "#0ea5e9", hoverBorder: "hover:border-sky-500/30" },
-  { spotlight: "rgba(34, 197, 94, 0.30)", accent: "#10b981", hoverBorder: "hover:border-emerald-500/30" },
+const CARD_COLORS = [
+  { spotlight: "rgba(37, 99, 235, 0.30)", accent: "#2563eb" },
+  { spotlight: "rgba(139, 92, 246, 0.30)", accent: "#8b5cf6" },
+  { spotlight: "rgba(56, 189, 248, 0.30)", accent: "#0ea5e9" },
+  { spotlight: "rgba(34, 197, 94, 0.30)", accent: "#10b981" },
 ] as const;
 
-function AdvisorCard({
-  advisor,
+/* ---------- unified team card ---------- */
+
+function TeamCard({
+  person,
   index,
+  type,
   fadeUp,
   t,
 }: {
-  advisor: TeamMember;
+  person: TeamMember;
   index: number;
+  type: "member" | "advisor";
   fadeUp: ReturnType<typeof useSectionVariants>["fadeUp"];
   t: ReturnType<typeof useTranslations>;
 }) {
-  const socialEntries = Object.entries(advisor.social).filter(
+  const socialEntries = Object.entries(person.social).filter(
     ([, url]) => !!url,
   ) as [keyof typeof SOCIAL_ICONS, string][];
 
-  const color = ADVISOR_COLORS[index % ADVISOR_COLORS.length]!;
+  const color = CARD_COLORS[index % CARD_COLORS.length]!;
+  const i18nPrefix = type === "member" ? "members" : "advisors";
 
   return (
     <motion.div variants={fadeUp}>
@@ -154,29 +70,27 @@ function AdvisorCard({
         className="h-full group cursor-default border-transparent transition duration-300 hover:border-border hover:-translate-y-1"
       >
         <div className="flex flex-col items-center text-center gap-6">
-          {/* Avatar — large, with colored border on hover */}
-          <div className="p-1 rounded-full bg-gradient-to-br from-transparent via-border to-transparent transition-all duration-300 group-hover:from-violet-500/30 group-hover:via-sky-500/30 group-hover:to-emerald-500/30">
-            <div className="relative w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden bg-border">
-              <Image
-                src={advisor.avatarUrl}
-                alt={t(`advisors.${advisor.key}.name`)}
-                fill
-                sizes="144px"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
+          {/* Avatar */}
+          <div className="relative w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden bg-border">
+            <Image
+              src={person.avatarUrl}
+              alt={t(`${i18nPrefix}.${person.key}.name`)}
+              fill
+              sizes="144px"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
           </div>
 
           {/* Info */}
           <div className="space-y-2">
             <h3 className="text-xl font-bold text-foreground">
-              {t(`advisors.${advisor.key}.name`)}
+              {t(`${i18nPrefix}.${person.key}.name`)}
             </h3>
             <p className="text-sm font-semibold" style={{ color: color.accent }}>
-              {t(`advisors.${advisor.key}.role`)}
+              {t(`${i18nPrefix}.${person.key}.role`)}
             </p>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xs mx-auto">
-              {t(`advisors.${advisor.key}.bio`)}
+              {t(`${i18nPrefix}.${person.key}.bio`)}
             </p>
           </div>
 
@@ -187,7 +101,6 @@ function AdvisorCard({
               if (!config) return null;
               const Icon = config.icon;
 
-              /* Website link gets a special pill-style button */
               if (platform === "website") {
                 return (
                   <a
@@ -217,6 +130,19 @@ function AdvisorCard({
               );
             })}
           </div>
+
+          {/* CV download — only for members */}
+          {type === "member" && person.cvUrl && (
+            <a href={person.cvUrl} download className="w-full">
+              <Button
+                block
+                icon={<Download className="size-4" />}
+                className="rounded-xl! h-9! text-xs! font-medium!"
+              >
+                {t("downloadCv")}
+              </Button>
+            </a>
+          )}
         </div>
       </SpotlightCard>
     </motion.div>
@@ -254,13 +180,14 @@ export default function TeamContent() {
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {TEAM_MEMBERS.map((member) => (
-              <MemberCard
+            {TEAM_MEMBERS.map((member, idx) => (
+              <TeamCard
                 key={member.key}
-                member={member}
+                person={member}
+                index={idx}
+                type="member"
                 fadeUp={fadeUp}
                 t={t}
-                showCv
               />
             ))}
           </div>
@@ -303,10 +230,11 @@ export default function TeamContent() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {TEAM_ADVISORS.map((advisor, idx) => (
-              <AdvisorCard
+              <TeamCard
                 key={advisor.key}
-                advisor={advisor}
+                person={advisor}
                 index={idx}
+                type="advisor"
                 fadeUp={fadeUp}
                 t={t}
               />
