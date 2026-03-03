@@ -13,8 +13,8 @@ import { BlogHighlightSection } from "./sections/BlogHighlightSection";
 import { ProjectsSection } from "./sections/ProjectsSection";
 
 /* Below-fold sections: lazy-loaded to reduce initial bundle size */
-const TestimonialsSection = dynamic(
-  () => import("./sections/TestimonialsSection").then(m => m.TestimonialsSection),
+const TeamHighlightSection = dynamic(
+  () => import("./sections/TeamHighlightSection").then(m => m.TeamHighlightSection),
 );
 const FAQSection = dynamic(
   () => import("./sections/FAQSection").then(m => m.FAQSection),
@@ -61,7 +61,7 @@ export function TensorLabLandingPage({ blogPosts = [] }: TensorLabLandingPagePro
       <ProjectsSection />
       {/* <EventsHighlightSection /> */}
       <BlogHighlightSection posts={blogPosts} />
-      <TestimonialsSection />
+      <TeamHighlightSection />
       <FAQSection />
       <FinalCTASection />
     </div>

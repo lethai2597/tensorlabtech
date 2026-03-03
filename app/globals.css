@@ -94,11 +94,11 @@ body {
   gap: 0.25rem;
 }
 
-.ant-tag>* {
+.ant-tag > * {
   flex-shrink: 0;
 }
 
-.ant-tag>span:not(.ant-tag-close-icon) {
+.ant-tag > span:not(.ant-tag-close-icon) {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -117,4 +117,15 @@ body {
 
 .ant-alert-with-description .ant-alert-title {
   margin-bottom: 4px;
+}
+
+/* Mobile menu: ẩn hamburger button + overlay trên desktop (≥ 1024px) */
+@media (min-width: 1024px) {
+  #mobile-menu-toggle {
+    display: none !important;
+  }
+
+  #mobile-menu-overlay {
+    display: none !important;
+  }
 }

@@ -503,6 +503,12 @@
         }
       }
     },
+    "teamHighlight": {
+      "tag": "Our Team",
+      "title": "The People Behind TensorLab",
+      "desc": "Experienced engineers ready to partner with you.",
+      "cta": "Learn more about our team"
+    },
     "commitments": {
       "tag": "Commitments",
       "title": "Why TensorLab?",
@@ -750,6 +756,7 @@
     "advisorsTitle": "Guided by experience",
     "advisorsDesc": "Industry experts who advise on strategy, technology, and business growth.",
     "downloadCv": "Download CV",
+    "coreTeamNote": "Core team — backed by a network of 10+ collaborators & domain experts",
     "members": {
       "member-1": {
         "name": "Thai Le",

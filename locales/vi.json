@@ -510,6 +510,12 @@
         }
       }
     },
+    "teamHighlight": {
+      "tag": "Đội ngũ",
+      "title": "Những con người đứng sau TensorLab",
+      "desc": "Đội ngũ kỹ sư giàu kinh nghiệm, sẵn sàng đồng hành cùng bạn.",
+      "cta": "Xem thêm về đội ngũ"
+    },
     "commitments": {
       "tag": "Cam kết",
       "title": "Vì sao chọn TensorLab?",
@@ -757,6 +763,7 @@
     "advisorsTitle": "Dẫn dắt bởi kinh nghiệm",
     "advisorsDesc": "Các chuyên gia đồng hành tư vấn chiến lược, công nghệ và phát triển.",
     "downloadCv": "Tải CV",
+    "coreTeamNote": "Đội ngũ cốt lõi — cùng mạng lưới 10+ cộng sự & chuyên gia đồng hành",
     "members": {
       "member-1": {
         "name": "Thái Lê",

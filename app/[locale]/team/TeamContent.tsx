@@ -232,7 +232,7 @@ export default function TeamContent() {
   const { fadeUp, stagger } = useSectionVariants(reduced);
 
   return (
-    <main className="bg-background">
+    <main className="bg-background py-12 md:py-20">
       {/* Members section */}
       <motion.section
         id="members"
@@ -240,7 +240,7 @@ export default function TeamContent() {
         whileInView="visible"
         viewport={landingViewport}
         variants={stagger}
-        className="relative overflow-hidden bg-background pt-28 pb-16 md:pt-40 md:pb-24"
+        className="relative overflow-hidden bg-background py-16 md:py-24"
       >
         <SectionBackdrop variant="primary" />
 
@@ -264,6 +264,20 @@ export default function TeamContent() {
               />
             ))}
           </div>
+
+          {/* Core team note */}
+          <motion.div
+            variants={fadeUp}
+            className="mt-10 flex flex-col items-center gap-3"
+          >
+            <div className="flex items-center gap-3">
+              <div className="h-px w-12 bg-gradient-to-r from-transparent to-border" />
+              <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
+                {t("coreTeamNote")}
+              </p>
+              <div className="h-px w-12 bg-gradient-to-l from-transparent to-border" />
+            </div>
+          </motion.div>
         </div>
       </motion.section>
 

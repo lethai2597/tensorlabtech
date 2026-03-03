@@ -84,7 +84,7 @@ export function Header() {
           <div className="flex items-center gap-3">
             <LanguageSwitcher />
             <ThemeToggle />
-            <div className="lg:hidden">
+            <div id="mobile-menu-toggle">
               <Button
                 icon={mobileOpen ? <X size={18} /> : <MenuIcon size={18} />}
                 aria-label="Toggle menu"
@@ -98,7 +98,7 @@ export function Header() {
       {/* Full-screen mobile menu */}
       {mobileOpen && (
         <div
-          className="lg:hidden"
+          id="mobile-menu-overlay"
           style={{
             position: "fixed",
             top: 64,
@@ -106,7 +106,7 @@ export function Header() {
             right: 0,
             bottom: 0,
             zIndex: 9999,
-            background: "rgba(5, 5, 15, 0.97)",
+            background: "color-mix(in srgb, var(--background) 97%, transparent)",
             backdropFilter: "blur(20px)",
             animation: "fadeIn 0.2s ease-out",
           }}
@@ -148,7 +148,8 @@ export function Header() {
                         fontWeight: 500,
                         textDecoration: "none",
                         transition: "all 0.2s",
-                        color: isActive ? "#3b82f6" : "#a1a1aa",
+                        color: isActive ? "#3b82f6" : "var(--foreground)",
+                        opacity: isActive ? 1 : 0.6,
                         background: isActive
                           ? "rgba(59, 130, 246, 0.1)"
                           : "transparent",
@@ -164,7 +165,7 @@ export function Header() {
             {/* Bottom section */}
             <div
               style={{
-                borderTop: "1px solid rgba(255,255,255,0.08)",
+                borderTop: "1px solid var(--border)",
                 paddingTop: 16,
                 display: "flex",
                 alignItems: "center",
@@ -172,7 +173,7 @@ export function Header() {
               }}
             >
               <BrandLogo size={20} />
-              <span style={{ color: "#71717a", fontSize: 13 }}>
+              <span style={{ color: "var(--foreground)", opacity: 0.5, fontSize: 13 }}>
                 TensorLab © 2025
               </span>
             </div>
