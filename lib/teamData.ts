@@ -41,11 +41,11 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     key: "member-3",
     slug: "member-3",
-    avatarUrl: "/images/team/thai.jpg",
+    avatarUrl: "/images/team/truong.jpg",
     social: {
       facebook: "https://www.facebook.com/truong.nguyenkhac.374",
     },
-    cvUrl: "/images/team/thai-resume.pdf",
+    cvUrl: "/images/team/trương-resume.pdf",
   },
   {
     key: "member-4",
