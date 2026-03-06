@@ -427,30 +427,64 @@
       "tag": "Portfolio",
       "title": "Featured Projects",
       "desc": "Products designed & built by TensorLab — from DevTools, EdTech to FinTech.",
+      "ctaAll": "View all projects",
       "items": {
         "ecommerce-assistant": {
           "title": "AI Sales Advisor",
           "desc": "AI-powered sales chatbot — product recommendations, cart management, auto-ordering, and policy Q&A via natural language.",
           "category": "AI · E-commerce",
-          "tech": ["LangGraph", "NestJS", "pgvector", "Redis", "SSE Streaming"]
+          "tech": [
+            "LangGraph",
+            "NestJS",
+            "pgvector",
+            "Redis",
+            "SSE Streaming"
+          ]
         },
         "ccpoke": {
           "title": "ccpoke",
           "desc": "Two-way bridge between terminal and mobile. Code anywhere with Claude Code, Cursor, and other AI agents via Telegram, Discord, Zalo.",
           "category": "DevTool",
-          "tech": ["Claude Code", "Telegram Bot", "TypeScript", "CLI"]
+          "tech": [
+            "Claude Code",
+            "Telegram Bot",
+            "TypeScript",
+            "CLI"
+          ]
+        },
+        "learn-ai-engineer": {
+          "title": "Learn AI Engineer",
+          "desc": "Free AI Application Engineer learning roadmap — 6 phases, 18 topics, from LLM Fundamentals to Production. Includes slides, docs, source code, and project ideas.",
+          "category": "Education · Open Source",
+          "tech": [
+            "Next.js",
+            "NestJS",
+            "LangChain",
+            "RAG",
+            "AI Agents"
+          ]
         },
         "vocabolt": {
           "title": "VocaBolt",
           "desc": "Smart vocabulary learning app powered by AI. Auto-schedule reviews, generate tests, create stories from learned words, and grade your progress.",
           "category": "EdTech",
-          "tech": ["Next.js", "AI", "Spaced Repetition", "PWA"]
+          "tech": [
+            "Next.js",
+            "AI",
+            "Spaced Repetition",
+            "PWA"
+          ]
         },
         "moni": {
           "title": "Moni",
           "desc": "Vietnam's first personal finance learning & management app with gamification. Available on both Android and iOS.",
           "category": "FinTech",
-          "tech": ["React Native", "Gamification", "AI", "Mobile"]
+          "tech": [
+            "React Native",
+            "Gamification",
+            "AI",
+            "Mobile"
+          ]
         }
       }
     },
@@ -675,6 +709,27 @@
         {
           "title": "Simple CLI",
           "desc": "Just run npx -y ccpoke and you're done. No complex setup needed."
+        }
+      ]
+    },
+    "learn-ai-engineer": {
+      "desc": "The most comprehensive free AI Application Engineer tutorial roadmap — from LLM Fundamentals, RAG, Orchestration, Agents to Production. Includes lecture slides, Markdown docs, ready-to-run FE/BE source code, and 4 project ideas with step-by-step guidelines.",
+      "features": [
+        {
+          "title": "6 Phases, 18 Topics",
+          "desc": "Sequential learning path from LLM Fundamentals, RAG, Orchestration, Agents to Production and Advanced — each phase includes slides, docs, and source code."
+        },
+        {
+          "title": "FE/BE Source Code",
+          "desc": "Ready-to-run Next.js + NestJS sample code. Every topic includes real demos you can run and understand how things work."
+        },
+        {
+          "title": "Project Ideas with Guidelines",
+          "desc": "4 real-world project ideas: Personal Knowledge Base, Product Assistant, Meeting Notes, Study Coach — with step-by-step implementation guides."
+        },
+        {
+          "title": "Community & Open Source",
+          "desc": "68+ stars, 27+ forks on GitHub. Completely free and open source for the community to learn and contribute."
         }
       ]
     },

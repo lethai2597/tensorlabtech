@@ -2,6 +2,16 @@
 
 export const PROJECT_ITEMS = [
   {
+    key: "ccpoke",
+    slug: "ccpoke",
+    url: "https://kaida-palooza.github.io/ccpoke/vi/",
+    isPublic: true,
+    thumbnailUrl: "/images/projects/ccpoke.png",
+    spotlightColor: "rgba(249, 115, 22, 0.35)" as const,
+    categoryColor: "text-orange-500",
+    categoryBg: "bg-orange-500/10 border-orange-500/20",
+  },
+  {
     key: "ecommerce-assistant",
     slug: "ecommerce-assistant",
     url: "https://ecommerce-assistant.tensorlab.tech/",
@@ -12,14 +22,14 @@ export const PROJECT_ITEMS = [
     categoryBg: "bg-violet-500/10 border-violet-500/20",
   },
   {
-    key: "ccpoke",
-    slug: "ccpoke",
-    url: "https://kaida-palooza.github.io/ccpoke/vi/",
+    key: "learn-ai-engineer",
+    slug: "learn-ai-engineer",
+    url: "https://github.com/lethai2597/learn-ai-engineer",
     isPublic: true,
-    thumbnailUrl: "/images/projects/ccpoke.png",
-    spotlightColor: "rgba(249, 115, 22, 0.35)" as const,
-    categoryColor: "text-orange-500",
-    categoryBg: "bg-orange-500/10 border-orange-500/20",
+    thumbnailUrl: "/images/projects/learn-ai-engineer.png",
+    spotlightColor: "rgba(16, 185, 129, 0.35)" as const,
+    categoryColor: "text-emerald-500",
+    categoryBg: "bg-emerald-500/10 border-emerald-500/20",
   },
   {
     key: "vocabolt",

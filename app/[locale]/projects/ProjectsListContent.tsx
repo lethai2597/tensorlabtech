@@ -22,7 +22,6 @@ export default function ProjectsListContent() {
 
   return (
     <div className="container mx-auto px-8 py-8 pb-24">
-
       {/* Page header — same structure as blog & events pages */}
       <motion.div
         initial="hidden"
@@ -112,7 +111,7 @@ export default function ProjectsListContent() {
                   {/* Info zone — identical to landing */}
                   <div className="p-6 space-y-3">
                     <div className="flex items-start justify-between gap-3">
-                      <h2 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                      <h2 className="text-xl font-bold text-foreground">
                         {t(`items.${project.key}.title`)}
                       </h2>
                       <ExternalLink className="size-4 shrink-0 text-zinc-400 mt-1.5 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -127,7 +126,7 @@ export default function ProjectsListContent() {
                       {techStack.map((tech) => (
                         <span
                           key={tech}
-                          className="inline-flex items-center rounded-full border border-border bg-background/60 px-2.5 py-0.5 text-[11px] font-medium text-zinc-500 dark:text-zinc-400 transition-colors group-hover:border-primary/20 group-hover:text-primary/80"
+                          className="inline-flex items-center rounded-full border border-border bg-background/60 px-2.5 py-0.5 text-[11px] font-medium text-zinc-500 dark:text-zinc-400"
                         >
                           {tech}
                         </span>

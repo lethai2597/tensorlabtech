@@ -434,30 +434,64 @@
       "tag": "Portfolio",
       "title": "Dự Án Nổi Bật",
       "desc": "Sản phẩm do TensorLab thiết kế & phát triển — từ DevTool, EdTech đến FinTech.",
+      "ctaAll": "Xem tất cả dự án",
       "items": {
         "ecommerce-assistant": {
           "title": "AI Sales Advisor",
           "desc": "Chatbot AI bán hàng tự động — tư vấn sản phẩm, quản lý giỏ hàng, đặt hàng và trả lời chính sách qua ngôn ngữ tự nhiên.",
           "category": "AI · E-commerce",
-          "tech": ["LangGraph", "NestJS", "pgvector", "Redis", "SSE Streaming"]
+          "tech": [
+            "LangGraph",
+            "NestJS",
+            "pgvector",
+            "Redis",
+            "SSE Streaming"
+          ]
         },
         "ccpoke": {
           "title": "ccpoke",
           "desc": "Cầu nối 2 chiều giữa terminal và điện thoại. Code mọi nơi với Claude Code, Cursor và nhiều AI agents khác qua Telegram, Discord, Zalo.",
           "category": "DevTool",
-          "tech": ["Claude Code", "Telegram Bot", "TypeScript", "CLI"]
+          "tech": [
+            "Claude Code",
+            "Telegram Bot",
+            "TypeScript",
+            "CLI"
+          ]
+        },
+        "learn-ai-engineer": {
+          "title": "Learn AI Engineer",
+          "desc": "Lộ trình học AI Application Engineer miễn phí — 6 giai đoạn, 18 chủ đề, từ LLM Fundamentals đến Production. Kèm slide, docs, source code và project ideas.",
+          "category": "Education · Open Source",
+          "tech": [
+            "Next.js",
+            "NestJS",
+            "LangChain",
+            "RAG",
+            "AI Agents"
+          ]
         },
         "vocabolt": {
           "title": "VocaBolt",
           "desc": "Ứng dụng học từ vựng thông minh với AI. Tự động nhắc ôn tập, tạo bài test, viết truyện từ từ đã học và chấm điểm.",
           "category": "EdTech",
-          "tech": ["Next.js", "AI", "Spaced Repetition", "PWA"]
+          "tech": [
+            "Next.js",
+            "AI",
+            "Spaced Repetition",
+            "PWA"
+          ]
         },
         "moni": {
           "title": "Moni",
           "desc": "Ứng dụng học tập & quản lý tài chính cá nhân tích hợp gamification đầu tiên tại Việt Nam. Hỗ trợ cả Android và iOS.",
           "category": "FinTech",
-          "tech": ["React Native", "Gamification", "AI", "Mobile"]
+          "tech": [
+            "React Native",
+            "Gamification",
+            "AI",
+            "Mobile"
+          ]
         }
       }
     },
@@ -682,6 +716,27 @@
         {
           "title": "CLI đơn giản",
           "desc": "Chỉ cần npx -y ccpoke là xong. Không cần cài đặt phức tạp."
+        }
+      ]
+    },
+    "learn-ai-engineer": {
+      "desc": "Lộ trình tutorial học AI Application Engineer miễn phí và chi tiết nhất — từ LLM Fundamentals, RAG, Orchestration, Agents đến Production. Bao gồm slide bài giảng, tài liệu Markdown, source code FE/BE chạy được ngay và 4 project ideas kèm guideline từng bước.",
+      "features": [
+        {
+          "title": "6 Giai đoạn, 18 Chủ đề",
+          "desc": "Lộ trình học tuần tự từ LLM Fundamentals, RAG, Orchestration, Agents đến Production và Advanced — mỗi giai đoạn có slide, docs và source code."
+        },
+        {
+          "title": "Source Code FE/BE",
+          "desc": "Code mẫu Next.js + NestJS chạy được ngay. Mỗi chủ đề đều có Demo thực tế để chạy thử và hiểu cách hoạt động."
+        },
+        {
+          "title": "Project Ideas kèm Guideline",
+          "desc": "4 ý tưởng dự án thực tế: Personal Knowledge Base, Trợ lý sản phẩm, Meeting Notes, Study Coach — kèm hướng dẫn từng bước."
+        },
+        {
+          "title": "Cộng đồng & Open Source",
+          "desc": "68+ stars, 27+ forks trên GitHub. Hoàn toàn miễn phí, mở nguồn để cộng đồng cùng học và đóng góp."
         }
       ]
     },
