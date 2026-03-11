@@ -9,7 +9,7 @@ export type CapabilityItem = {
   icon: LucideIcon;
   color: string; // Tailwind text color class (static — must be literal for Tailwind JIT)
   dotColor: string; // Tailwind bg color class for bullet dots (static literal, not derived at runtime)
-  spotlightColor: string; // rgba for SpotlightCard glow
+  spotlightColor: `rgba(${number}, ${number}, ${number}, ${number})`; // rgba for SpotlightCard glow
   contactType: "product" | "outsource" | "other"; // pre-fills ?type= param on /contact
   contactMessage: string; // pre-fills ?message= param on /contact (Vietnamese)
 };

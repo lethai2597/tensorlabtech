@@ -1,0 +1,358 @@
+# TensorLab Codebase Exploration Report
+
+**Date:** 2026-03-11 | **Time:** 12:48  
+**Scope:** Landing page structure, components, localization, and navigation
+
+---
+
+## 1. Components Landing Directory Structure
+
+**Location:** `components/landing/`
+
+### Core UI Components (Root Level)
+- `SectionHeader.tsx` - Renders section tags, titles, descriptions with Framer Motion
+- `CheckList.tsx` - Bulleted list with check icons (configurable size & color)
+- `IconFeatureCard.tsx` - Feature card with icon + title + description
+- `TimelineList.tsx` - Timeline/timeline visualization component
+- `CTABox.tsx` - Call-to-action box container
+- `ContactForm.tsx` - Contact form component
+
+### Landing Page Bundle
+**Location:** `components/landing/TensorLabLandingPage/`
+
+**Sections (in `sections/` subfolder):**
+- `HeroSection.tsx` - Hero/above-fold section
+- `CapabilitiesSection.tsx` - Capabilities showcase
+- `EngagementModelsSection.tsx` - Partnership/engagement models (Product & Outsource tabs)
+- `ScrollRevealHeadlineSection.tsx` - Scroll-triggered headline
+- `DeliveryProcessSection.tsx` - Process/workflow section
+- `ProjectsSection.tsx` - Featured projects
+- `BlogHighlightSection.tsx` - Latest blog posts
+- `TeamHighlightSection.tsx` - Team showcase (lazy-loaded)
+- `FAQSection.tsx` - FAQ accordion (lazy-loaded)
+- `FinalCTASection.tsx` - Final call-to-action (lazy-loaded)
+- `TestimonialsSection.tsx` - Testimonials/case studies
+- `CaseStudiesSection.tsx` - In-depth case studies
+- `LogoCloudSection.tsx` - Client/partner logos
+- `GlobeAnimation.tsx` - 3D globe animation
+- `FooterSection.tsx` - Footer
+
+**Main Page Component:**
+- `TensorLabLandingPage.tsx` - Orchestrator (~70 lines, lazy-loads below-fold sections)
+- `index.ts` - Public exports
+- `SectionBackdrop.tsx` - Gradient backdrop component with 3 variants (primary, cool, neutral)
+
+---
+
+## 2. Key Components Found
+
+### ✅ SectionBackdrop
+**File:** `components/landing/TensorLabLandingPage/SectionBackdrop.tsx`  
+**Type:** Client component  
+**Props:**
+- `variant?: "primary" | "cool" | "neutral"` - Color scheme
+- `className?: string` - Override classes
+
+**Usage:** Decorative blurred gradient circles behind sections. Uses radial gradients with dark mode opacity adjustment.
+
+### ✅ SectionHeader
+**File:** `components/landing/SectionHeader.tsx`  
+**Type:** Client component  
+**Props:**
+- `tag: string` - Section tag label
+- `title: string | ReactNode` - Main heading
+- `description?: string` - Subtitle
+- `reducedMotion: boolean` - Accessibility flag
+- `fadeUp: Variants` - Framer Motion animation
+- `className?: string` - Override max-width (default: "max-w-2xl")
+
+**Usage:** Centered section header with animated tag, title, and description.
+
+### ✅ SpotlightCard
+**File:** `components/SpotlightCard.tsx`  
+**Type:** Client component (Ref-forwarded React.FC)  
+**Props:**
+- `spotlightColor?: rgba(...)` - Gradient color (default: `rgba(37, 99, 235, 0.35)`)
+- Standard HTML div attributes
+
+**Features:** 
+- Mouse-following spotlight effect on hover/focus
+- Customizable gradient color
+- Accessibility: keyboard focus support with ring styling
+- Smooth 500ms opacity transition
+
+### ✅ CheckList
+**File:** `components/landing/CheckList.tsx`  
+**Type:** Client component  
+**Props:**
+- `items: string[]` - List items
+- `colorClass?: string` - Icon color (default: "text-success")
+- `size?: "sm" | "base"` - Text/icon size
+
+**Usage:** Renders `<ul>` with CheckCircle2 icons from lucide-react.
+
+### ✅ useSectionVariants
+**File:** `lib/landingMotion.ts`  
+**Export:** Named function (not a hook, but used as one)  
+**Signature:** `(reduceMotion: boolean) => { fadeIn, fadeUp, stagger }`
+
+**Animations:**
+- `fadeIn` - Opacity only (0→1)
+- `fadeUp` - Opacity + Y offset (y: 24px)
+- `stagger` - Children with 0.15s stagger delay
+
+**Viewport Config:**
+```js
+{
+  once: true,
+  amount: 0.2,
+  margin: "0px 0px -120px 0px" // Triggers early
+}
+```
+
+---
+
+## 3. Engagement/Partnership Section Context
+
+**File:** `components/landing/TensorLabLandingPage/sections/EngagementModelsSection.tsx`  
+**Line Count:** ~213 lines  
+**ID:** `id="engagement"` (for nav hash linking)
+
+**Structure:**
+- Two partnership models shown as toggleable cards:
+  1. **Product Partnership** - Icon: Handshake
+  2. **Outsourcing** - Icon: Users
+- Left column: Model selector cards (SpotlightCard)
+- Right column: Active model detail with CheckList
+
+**Key Translations Used:**
+```
+landing.engagement.tag
+landing.engagement.title
+landing.engagement.desc
+landing.engagement.product.* (title, subtitle, cta, items[])
+landing.engagement.outsource.* (title, subtitle, cta, items[])
+landing.engagement.activeLabel
+```
+
+**CTA Behavior:** Links to `/contact?type=product` or `/contact?type=outsource`
+
+---
+
+## 4. Localization Structure
+
+### English (`locales/en.json`) - First 100 Lines
+```json
+{
+  "common": {
+    "title": "Create Next App",
+    "description": "Generated by create next app"
+  },
+  "home": {
+    "welcome": "hello"
+  },
+  "language": { "vi": "Vietnamese", "en": "English" },
+  "theme": { "light": "Light", "dark": "Dark" },
+  "notFound": { ... },
+  "error": { ... },
+  "loading": { ... },
+  "aria": { ... },
+  "nav": {
+    "home": "Home",
+    "capabilities": "Capabilities",
+    "engagement": "Partnership",
+    "projects": "Projects",
+    "events": "Events",
+    "team": "Team",
+    "contact": "Contact"
+  },
+  "events": { ... }
+}
+```
+
+### Vietnamese (`locales/vi.json`) - First 100 Lines
+```json
+{
+  "common": { ... },
+  "home": { "welcome": "xin chào" },
+  "language": { "vi": "Tiếng Việt", "en": "English" },
+  "theme": { "light": "Sáng", "dark": "Tối" },
+  "notFound": { ... },
+  "error": { ... },
+  "loading": { "tip": "Đang tải…" },
+  "aria": { ... },
+  "nav": {
+    "home": "Trang chủ",
+    "capabilities": "Năng lực",
+    "engagement": "Hợp tác",
+    "projects": "Dự án",
+    "events": "Sự kiện",
+    "team": "Đội ngũ",
+    "contact": "Liên hệ"
+  },
+  "events": { ... }
+}
+```
+
+**Key Namespaces:** `common`, `home`, `nav`, `theme`, `language`, `aria`, `notFound`, `error`, `loading`, `events`, `landing.*`
+
+---
+
+## 5. App Directory Structure
+
+**Pattern:** `app/[locale]/` with dynamic locale routing
+
+### Pages Found:
+```
+app/[locale]/
+├── layout.tsx                     # Locale layout + providers
+├── error.tsx                      # Error boundary
+├── loading.tsx                    # Loading skeleton
+├── page.tsx                       # Home page
+├── not-found.tsx                  # 404 page
+├── capabilities/
+│   ├── page.tsx
+│   └── CapabilitiesListContent.tsx
+├── projects/
+│   ├── page.tsx
+│   ├── ProjectsListContent.tsx
+│   └── [slug]/
+│       ├── page.tsx
+│       └── ProjectDetailContent.tsx
+├── blog/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── loading.tsx
+│   └── [slug]/
+│       ├── page.tsx
+│       └── loading.tsx
+├── team/
+│   ├── page.tsx
+│   └── TeamContent.tsx
+├── contact/
+│   └── page.tsx
+├── events/
+│   └── ai-application-engineer-intro/
+│       └── EventContent.tsx
+└── test/
+    ├── dashboard/page.tsx
+    ├── components/page.tsx
+    └── landingpage/page.tsx
+```
+
+**Locale Routing:** Uses `next-intl` package with `[locale]` segment  
+**Default Locale:** `en` (no prefix in URL)  
+**Supported:** `en`, `vi`
+
+---
+
+## 6. Header Nav Component
+
+**File:** `components/layout/Header.tsx` (~207 lines)  
+**Type:** Client component  
+
+**Features:**
+- Fixed header with backdrop blur
+- Desktop nav: horizontal links
+- Mobile nav: full-screen overlay with slide-up animations
+- Active state detection for current page
+- Theme + Language switchers
+- Brand logo with TensorLab text
+
+**Nav Items:**
+```tsx
+[
+  { key: "home", label: t("home"), href: "/" },
+  { key: "capabilities", label: t("capabilities"), href: "/capabilities" },
+  { key: "engagement", label: t("engagement"), hash: "engagement" },  // Hash-based
+  { key: "projects", label: t("projects"), href: "/projects" },
+  { key: "blog", label: "Blog", href: "/blog" },
+  { key: "team", label: t("team"), href: "/team" },
+  { key: "contact", label: t("contact"), href: "/contact" },
+]
+```
+
+**Hash Linking:** "engagement" item uses `#engagement` anchor on home page (`/`)
+
+---
+
+## 7. Example Component: IconFeatureCard
+
+**File:** `components/landing/IconFeatureCard.tsx` (~49 lines)  
+**Type:** Client component
+
+```tsx
+"use client";
+
+import type { ReactNode } from "react";
+import type { LucideIcon } from "lucide-react";
+
+import SpotlightCard from "@/components/SpotlightCard";
+
+type IconFeatureCardProps = {
+    icon: LucideIcon;
+    iconColorClass?: string;      // e.g. "text-primary"
+    iconBgClass?: string;          // e.g. "bg-primary/12"
+    title: string;
+    description?: string;
+    children?: ReactNode;
+    className?: string;
+};
+
+export function IconFeatureCard({
+    icon: Icon,
+    iconColorClass = "text-primary",
+    iconBgClass = "bg-primary/12 dark:bg-primary/18",
+    title,
+    description,
+    children,
+    className,
+}: IconFeatureCardProps) {
+    return (
+        <SpotlightCard className={className ?? "h-full"}>
+            <div className="space-y-3">
+                <div
+                    className={`size-12 rounded-2xl ${iconBgClass} 
+                                  flex items-center justify-center ${iconColorClass}`}
+                >
+                    <Icon size={24} aria-hidden="true" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground">{title}</h3>
+                {description && (
+                    <p className="text-sm text-zinc-500 
+                                  dark:text-zinc-400 leading-relaxed">
+                        {description}
+                    </p>
+                )}
+                {children}
+            </div>
+        </SpotlightCard>
+    );
+}
+```
+
+**Pattern:** Wraps `SpotlightCard`, composes icon + text. Flexible with custom children.
+
+---
+
+## Summary
+
+| Element | Location | Status |
+|---------|----------|--------|
+| **SectionBackdrop** | `components/landing/TensorLabLandingPage/` | ✅ Found |
+| **SectionHeader** | `components/landing/` | ✅ Found |
+| **SpotlightCard** | `components/` | ✅ Found |
+| **CheckList** | `components/landing/` | ✅ Found |
+| **useSectionVariants** | `lib/landingMotion.ts` | ✅ Found |
+| **Engagement Section** | `components/landing/.../EngagementModelsSection.tsx` | ✅ Found |
+| **Header Nav** | `components/layout/Header.tsx` | ✅ Found |
+| **Localization** | `locales/{en,vi}.json` | ✅ Both present |
+
+**Tech Stack:**
+- Framer Motion for animations
+- Lucide React for icons
+- Ant Design (Button, Tag)
+- TailwindCSS for styling
+- next-intl for i18n
+- TypeScript strict mode
+

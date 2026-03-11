@@ -12,7 +12,6 @@ import { BrandLogo } from "@/components/ui/BrandLogo";
 export function Header() {
   const t = useTranslations("nav");
   const pathname = usePathname();
-  const isHome = pathname === "/" || pathname === "/vi";
   const [mobileOpen, setMobileOpen] = useState(false);
 
   // Prevent body scroll when mobile menu is open
@@ -23,8 +22,8 @@ export function Header() {
 
   const items = [
     { key: "home", label: t("home"), href: "/" },
-    { key: "capabilities", label: t("capabilities"), hash: "capabilities" },
-    { key: "engagement", label: t("engagement"), hash: "engagement" },
+    { key: "capabilities", label: t("capabilities"), href: "/capabilities" },
+    { key: "engagement", label: t("engagement"), href: "/hop-tac" },
     { key: "projects", label: t("projects"), href: "/projects" },
     { key: "blog", label: "Blog", href: "/blog" },
     { key: "team", label: t("team"), href: "/team" },
@@ -33,19 +32,9 @@ export function Header() {
   ] as const;
 
   const handleNavClick = (
-    e: React.MouseEvent,
-    item: (typeof items)[number],
+    _e: React.MouseEvent,
+    _item: (typeof items)[number],
   ) => {
-    const isPageLink = "href" in item && item.href;
-    if (!isPageLink && "hash" in item) {
-      if (isHome) {
-        const el = document.getElementById(item.hash);
-        if (el) {
-          e.preventDefault();
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }
-    }
     setMobileOpen(false);
   };
 
@@ -63,22 +52,16 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-6">
-            {items.map((item) => {
-              const href =
-                "hash" in item
-                  ? { pathname: "/" as const, hash: item.hash }
-                  : item.href;
-              return (
-                <Link
-                  key={item.key}
-                  href={href}
-                  className="text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-foreground transition-colors"
-                  onClick={(e) => handleNavClick(e, item)}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
+            {items.map((item) => (
+              <Link
+                key={item.key}
+                href={item.href}
+                className="text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-foreground transition-colors"
+                onClick={(e) => handleNavClick(e, item)}
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="flex items-center gap-3">
@@ -121,14 +104,7 @@ export function Header() {
           >
             <ul style={{ listStyle: "none", margin: 0, padding: 0, flex: 1 }}>
               {items.map((item, index) => {
-                const href =
-                  "hash" in item
-                    ? { pathname: "/" as const, hash: item.hash }
-                    : item.href;
-                const isActive =
-                  "href" in item && item.href
-                    ? pathname === item.href
-                    : false;
+                const isActive = pathname === item.href;
                 return (
                   <li
                     key={item.key}
@@ -137,7 +113,7 @@ export function Header() {
                     }}
                   >
                     <Link
-                      href={href}
+                      href={item.href}
                       onClick={(e) => handleNavClick(e, item)}
                       style={{
                         display: "flex",

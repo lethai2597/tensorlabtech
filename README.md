@@ -2,7 +2,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Tài liệu dành cho người mới
 
-- **[Custom Primary Theme (Tailwind & Ant Design)](./docs/theme.md)** — Chỉnh màu primary, dark mode, biến CSS và token Ant Design.
+- **[Codebase Summary](./docs/codebase-summary.md)** — Tổng quan cấu trúc dự án, routes, components, và phương pháp phát triển.
+- **[Custom Primary Theme (Tailwind & Ant Design)](./docs/custom-theme.md)** — Chỉnh màu primary, dark mode, biến CSS và token Ant Design.
 - **[Làm việc với API (Generate & Hooks)](./docs/api.md)** — Generate schema từ OpenAPI, dùng client và viết hook TanStack Query.
 - **[Làm việc với Zustand](./docs/zustand.md)** — Store app config, persist, hydration và cách thêm store mới.
 

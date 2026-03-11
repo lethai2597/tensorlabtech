@@ -1,0 +1,234 @@
+---
+title: "10 Bài Học Thực Chiến Khi Xây Dựng Ecommerce AI Chatbot Với LangGraph"
+date: "2026-03-11"
+description: "Chia sẻ 10 key takeaways quan trọng nhất sau hơn 1 tháng vật lộn xây dựng Ecommerce Chatbot có thể thay thế nhân viên bán hàng, từ Query Expansion đến Response Merger."
+---
+
+<Callout type="info" title="Tóm tắt nội dung">
+Sau hơn 1 tháng xây dựng một Ecommerce AI Chatbot MVP có khả năng thay thế Sale, Trực page, Chăm sóc khách hàng — bài viết chia sẻ 10 bài học thực chiến quan trọng nhất dành cho các lập trình viên đang muốn tích hợp AI vào sản phẩm thực tế.
+</Callout>
+
+Trong lúc có nhiều người vẫn nghi ngờ việc Agentic AI có thể ứng dụng trong thực tế như thế nào, thì mình đang triển khai một MVP mà nếu dự án này thành công — có lẽ nhiều người sẽ phải... ra đường.
+
+Xin chào các bạn, lâu ghê không post một bài, bởi vì hơn 1 tháng nay mình đang bận xây dựng một **Ecommerce Assistant** — có thể gọi là Chatbot cho việc bán hàng. Nhờ cơ hội móc nối với một nền tảng có sẵn **30-40.000 shop**, triển khai thử nghiệm Ecommerce Chatbot mà mình tin rằng thông minh hơn đa số các chatbot đang được tích hợp vào các trang bán hàng ngoài thị trường, có khả năng thay thế các vị trí Sale, Trực page, Chăm sóc khách hàng... Và nếu MVP này thành công thì sao? Chẳng phải là rất nhiều người đang làm các vị trí đó phải ra đường hay sao?
+
+Nhưng bài viết này không phải để khoe — mà có thể nó sắp trở thành một minh chứng thực tế cho sức mạnh của **Agentic AI** áp dụng vào thực tế. Mục đích chính của bài này là chia sẻ lại những **key takeaways** mình vọc vạch được sau khi vật lộn với dự án này xuyên Tết.
+
+Tệp người đọc hướng tới các bạn lập trình viên đang quan tâm tới việc tích hợp AI vào các dự án từ đơn giản tới phức tạp nhất (**AI Application Engineer**) nói chung, và các bạn đang muốn xây dựng những Agentic AI thông minh nói riêng.
+
+---
+
+## Sơ qua về Chatbot: Tại sao nó có thể thay thế nhân viên bán hàng?
+
+| Khả năng | Chi tiết |
+| --- | --- |
+| **Nhớ mọi thứ về Shop** | Chỉ cần đưa data, chatbot không bao giờ quên các thông tin quan trọng về shop mà nó đang làm việc. |
+| **Trò chuyện dài full luồng** | Theo chân người mua qua mọi giai đoạn của việc bán hàng, trò chuyện tư vấn không khác gì một nhân viên. |
+| **Tư vấn sản phẩm** | Khách hỏi bằng ngôn ngữ bình thường, không cần gõ đúng tên. "Cho xem mấy loại đồ ăn vặt lành mạnh" — nó hiểu ý, tìm theo nghĩa chứ không chỉ keyword. |
+| **Quản lý giỏ hàng** | "Mua 2 lọ dầu dừa với 3 hộp ngũ cốc" — hiểu là 2 hành động, thêm từng cái, báo kết quả từng cái. |
+| **Đặt đơn hàng trong chat** | Hỏi SĐT, địa chỉ, tóm tắt đơn, xác nhận, tạo đơn. Những lần đặt sau? Nhớ thông tin cũ, không hỏi lại. |
+| **Nhớ ngữ cảnh dài** | Chat 50 tin nhắn vẫn nhớ khách thích gì, budget bao nhiêu, dị ứng gì. |
+| **Xử lý multi-intent** | "Thêm ngũ cốc vào giỏ, tìm sữa hạt rồi xóa giỏ hàng luôn" — 2 yêu cầu trong 1 tin nhắn, xử lý cả 2. |
+| **Biết giới hạn** | Hỏi review sản phẩm, mã giảm giá (chưa hỗ trợ) — thẳng thắn nói chưa hỗ trợ, gợi ý liên hệ shop, chứ không bịa. |
+
+<Callout type="warning" title="Lưu ý">
+Dự án MVP mình focus vào các chức năng chính và làm sao để chatbot thông minh, chưa có khả năng bảo mật và chịu tải, nên mình không public link ở đây. Nếu ai quan tâm tới demo có thể để lại comment.
+</Callout>
+
+---
+
+## 1. Query Expansion — Đừng để LLM chịu trách nhiệm hiểu hết ngôn ngữ người dùng
+
+Khách gõ "sữa hạt" nhưng trong database tên sản phẩm là "Sữa Hạt Macca Nguyên Chất 500ml". Vector search có thể tìm được, nhưng không phải lúc nào cũng chính xác — đặc biệt với tiếng Việt và tên sản phẩm đặc thù.
+
+Mình xây **1 lớp Query Expansion** chạy **TRƯỚC** khi search:
+
+```
+"sữa hạt" → ["sữa hạt", "sữa hạt macca", "sữa hạt điều", "sữa hạt óc chó"...]
+```
+
+Dùng synonym dictionary (~70 entries viết tay + auto-expand từ catalog).
+
+<Callout type="tip" title="Bài học rút ra">
+Nghe đơn giản nhưng hiệu quả cực kỳ — nó giúp search engine tìm đúng hơn mà không cần LLM phải suy luận nhiều. Bước nhỏ nhưng impact lớn.
+</Callout>
+
+---
+
+## 2. Dùng LangGraph — Thiết kế Agent như một pipeline có kiểm soát
+
+Đây là **quyết định kiến trúc quan trọng nhất**. Ban đầu mình dùng ReAct agent — LLM tự nghĩ, tự chọn tool, tự chạy. Demo thì đẹp, nhưng production thì nightmare: LLM gọi tool sai, gọi thừa, chạy vòng vòng, debug muốn khóc.
+
+Chuyển sang **LangGraph** — thiết kế pipeline dưới dạng đồ thị với nhiều node chuyên biệt:
+
+- **Supervisor**: Phân loại intent
+- **Product Advisor**: Tìm sản phẩm
+- **Cart Manager**: Quản lý giỏ hàng
+- **Order Manager**: Đặt đơn hàng
+
+Code quyết định node nào chạy, thứ tự nào. LLM chỉ lo phần "suy nghĩ" trong phạm vi của nó.
+
+Kết quả? **Debug dễ hơn 10 lần**, chính xác hơn nhiều, và quan trọng nhất — **KIỂM SOÁT ĐƯỢC**.
+
+<Callout type="danger" title="Bài học quan trọng">
+Đừng dùng ReAct cho production. Graph-based pipeline mới là hướng đi.
+</Callout>
+
+---
+
+## 3. Multi-Intent: Parallel và Sequential — Khách nói 1 câu nhưng muốn 2 thứ
+
+"Tìm sữa hạt rồi thêm 2 lọ dầu dừa vào giỏ" — đây là 2 intent khác nhau. Nếu chatbot chỉ xử lý 1 thì khách bực lắm.
+
+Mình dùng node **Supervisor với Chain-of-Thought reasoning** — bắt LLM phải giải thích suy luận TRƯỚC khi commit intent. Sau đó tách thành sub-queries, route vào đúng node chuyên biệt.
+
+Nhưng đây mới là phần hay: **KHÔNG PHẢI cặp intent nào cũng chạy song song được.**
+
+| Trường hợp | Xử lý | Lý do |
+| --- | --- | --- |
+| Tìm sản phẩm + Trả lời câu hỏi chung | **Parallel** | Không đụng gì nhau |
+| Thêm giỏ + Đặt đơn | **Sequential** | Đơn hàng cần đọc state giỏ hàng |
+
+Mình define **1 whitelist các cặp an toàn** để parallel, còn lại default sequential. Code quyết định, không phải LLM.
+
+---
+
+## 4. Conversation Memory — Chatbot không nhớ thì không bằng Google
+
+Chat được 20-30 tin nhắn mà chatbot quên sạch context, hỏi lại từ đầu — khách bỏ đi.
+
+Nhưng nhồi hết 50 tin nhắn vào context LLM cũng không ổn — tốn token, chậm, và có 1 hiện tượng gọi là **"Lost in the Middle"** — LLM chú ý đầu và cuối tin nhắn tốt, nhưng quên mất thông tin ở giữa.
+
+Mình xây **3 tầng memory**:
+
+1. **Context nóng**: Giữ nguyên ~8 tin nhắn gần nhất
+2. **Progressive summary**: Tự động tóm tắt tin nhắn cũ hơn thành vài câu
+3. **Cross-session profile** (sắp tới): Lưu preferences khách vào Redis, quay lại hôm sau vẫn nhớ
+
+<Callout type="tip" title="Trick ít người nói">
+Đặt summary + preferences ở **ĐẦU** system prompt, không phải ở giữa. LLM sẽ nhớ tốt hơn đáng kể nhờ tránh hiện tượng "Lost in the Middle".
+</Callout>
+
+---
+
+## 5. Làm Tool càng xịn, Chatbot càng thông minh
+
+Nhiều người tập trung prompt engineering nhưng quên mất: chatbot chỉ thông minh bằng **TOOLS** mà nó có.
+
+**Ví dụ 1:** Ban đầu tool search sản phẩm chỉ trả `tên + giá`. Chatbot được hỏi "sản phẩm này làm từ gì" — không biết. Thêm `description` vào tool result — chatbot trả lời được ngay, **KHÔNG CẦN** đổi prompt.
+
+**Ví dụ 2:** Tool thêm giỏ hàng ban đầu chỉ nhận `productId`. Khách nói "thêm dầu dừa" nhưng LLM không resolve được ID. Sửa tool cho nhận `productName` + hybrid search — khách nói gì cũng thêm đúng.
+
+<Callout type="info" title="Nguyên tắc vàng">
+LLM chỉ giỏi bằng thông tin nó có. Muốn chatbot thông minh hơn — làm tool trả về data tốt hơn, đầy đủ hơn. **Prompt engineering có giới hạn, tool engineering thì không.**
+</Callout>
+
+---
+
+## 6. Vector Search thôi chưa đủ — Cần thêm Reranking
+
+Vector search (semantic) hiểu ý tốt — "đồ uống lành mạnh" tìm được sữa hạt, trà thảo mộc. Nhưng **exact match thì kém** — khách gõ đúng tên sản phẩm mà có khi trả kết quả khác.
+
+Mình thêm **1 lớp reranking** sau vector search — chấm điểm lại kết quả bằng code thuần:
+
+| Tiêu chí | Điểm cộng |
+| --- | --- |
+| Tên sản phẩm match chính xác | **+3 điểm** |
+| Keyword trùng | **+1 điểm** |
+| Category đúng | **+0.5 điểm** |
+
+Chạy trên server, **0 API call thêm**, mà chất lượng kết quả tăng **20-35%**. Rẻ mà hiệu quả.
+
+---
+
+## 7. Implement CRAG (Corrective RAG) — Đừng trả "Không tìm thấy" ở lần đầu
+
+Khách hỏi "sữa hạt bán chạy nhất" — vector search trả kết quả kém — chatbot nói "không tìm thấy" — khách bỏ đi. Nhưng search lại với "sữa hạt" đơn giản hơn thì có kết quả!
+
+Mình implement **self-check**:
+
+1. Search xong — tự chấm điểm kết quả (dựa trên similarity score)
+2. Nếu kém — LLM viết lại query đơn giản hơn (bỏ modifier "bán chạy nhất")
+3. Search lại
+4. Chỉ khi retry cũng fail mới nói "không tìm thấy"
+
+Chi phí thêm 1 lần gọi LLM khi fail, nhưng giảm **~30% tỷ lệ chatbot từ chối trả lời**. Khách không bị bỏ rơi.
+
+---
+
+## 8. Chỉ rõ giới hạn chức năng — Đừng để Chatbot bịa
+
+Đây là điểm nhiều chatbot AI dở: khách hỏi gì cũng trả lời, kể cả bịa. "Sản phẩm này review 5 sao" — trong khi hệ thống không có review.
+
+Mình define rõ ràng trong prompt và code: chatbot **BIẾT** mình không có tính năng review, không có mã giảm giá, không track đơn. Khi khách hỏi — trả lời thẳng thắn "chưa hỗ trợ", gợi ý liên hệ shop, chứ không hallucinate.
+
+Ngoài ra, mình dùng **structured output** với field `unsupportedReason`:
+
+```typescript
+// LLM phải classify LÝ DO không hỗ trợ
+type UnsupportedReason =
+  | "no_review_system"
+  | "no_promotion_data"
+  | "no_store_info";
+
+// → Response template phù hợp với từng trường hợp
+```
+
+<Callout type="warning" title="Cảnh báo">
+Thiếu cái này chatbot sẽ mất uy tín rất nhanh. Khách phát hiện chatbot nói bừa 1 lần — không tin nữa — bỏ.
+</Callout>
+
+---
+
+## 9. Tuyệt đối đừng tin LLM làm toán
+
+Khách nói "thêm cái đắt nhất vào giỏ" — 5 sản phẩm có giá khác nhau — LLM chọn. Kết quả? **Sai ~40%**. LLM rất kém so sánh số, bị ảnh hưởng bởi vị trí trong danh sách, thậm chí nhầm "đắt nhất" với "rẻ nhất".
+
+Fix cực đơn giản:
+
+```
+detect keyword ("đắt nhất", "rẻ nhất")
+  → code sort mảng theo giá
+  → chọn đúng cái
+  → inject cho LLM format response
+```
+
+Code sort thì **luôn đúng**, LLM sort thì **may rủi**.
+
+<Callout type="danger" title="Nguyên tắc chung">
+Bất cứ logic nào **CÓ THỂ** deterministic — **BẮT BUỘC** deterministic. LLM giỏi ngôn ngữ, tệ toán. Chia đúng việc.
+</Callout>
+
+---
+
+## 10. Response Merger — Nhiều Node trả lời thì phải gộp thông minh
+
+Khi chatbot xử lý 2-3 intent cùng lúc, mỗi node trả 1 đoạn response riêng. Nối bằng xuống dòng — tin nhắn rời rạc, lặp lời chào, thiếu tự nhiên.
+
+Mình dùng **1 node Response Merger** — nhận N đoạn response, mỗi đoạn được gắn type:
+
+| Type | Ưu tiên |
+| --- | --- |
+| `cart_update` | Cao — luôn đứng trước |
+| `product_list` | Trung bình |
+| `order` | Trung bình |
+| `fallback` | Thấp nhất |
+
+LLM viết lại thành 1 tin nhắn tự nhiên, mạch lạc.
+
+- **1 response** — trả nguyên, 0 LLM call
+- **2+ responses** — 1 LLM call merge (~1-2 giây)
+
+Trải nghiệm tốt hơn đáng kể so với nối chuỗi.
+
+---
+
+## Tổng kết
+
+10 bài học trên là kết quả của hơn 1 tháng vật lộn với thực tế. Có vài điều mình muốn nhấn mạnh:
+
+- **Prompt engineering có giới hạn** — tool engineering, architecture engineering mới là nơi tạo ra sự khác biệt thật sự.
+- **Code phải kiểm soát LLM**, không phải ngược lại. Mọi logic deterministic phải do code xử lý.
+- **Trải nghiệm người dùng là vua** — chatbot thông minh nhưng trả lời rời rạc, quên context, hay bịa thì vẫn bị bỏ.
+
+Hy vọng các bạn rút ra được điều gì đó hữu ích cho hành trình xây dựng AI Agent của riêng mình.

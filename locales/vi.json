@@ -799,7 +799,7 @@
     "ctaTitle": "Sẵn sàng làm việc với TensorLab?",
     "ctaDesc": "Cho chúng tôi biết về dự án của bạn, chúng tôi sẽ đề xuất hướng tiếp cận phù hợp.",
     "ctaButton": "Liên hệ",
-    "viewAll": "Xem tất cả năng lực",
+    "viewAll": "Xem chi tiết",
     "learnMore": "Tìm hiểu thêm",
     "relatedTitle": "Khám phá thêm năng lực",
     "items": {
@@ -931,6 +931,114 @@
       }
     },
     "consultButton": "Nhận tư vấn"
+  },
+  "hopTac": {
+    "meta": {
+      "title": "Hợp tác — TensorLab",
+      "desc": "Từ ý tưởng đến sản phẩm thực tế — đúng model, đúng tốc độ. Khám phá hai hướng hợp tác với TensorLab."
+    },
+    "hero": {
+      "tag": "Hợp tác",
+      "tagline": "Từ ý tưởng đến sản phẩm thực tế — đúng model, đúng tốc độ.",
+      "philosophy": "TensorLab không chỉ thực thi task — chúng tôi đồng hành kết quả. Từ discovery đến production, từ MVP đến scale, chúng tôi chọn đúng hướng đi cùng bạn.",
+      "cta": "Xem mô hình hợp tác"
+    },
+    "tab": {
+      "product": "Hợp tác Product",
+      "outsource": "Outsource"
+    },
+    "product": {
+      "tag": "Hợp tác Product",
+      "title": "Cùng xây sản phẩm — chia sẻ kết quả",
+      "desc": "Phù hợp khi bạn cần một đối tác kỹ thuật đồng hành từ MVP đến scale, không chỉ là vendor thực thi.",
+      "fitTitle": "Phù hợp nếu bạn...",
+      "fitItems": [
+        "Có ý tưởng sản phẩm và cần đội ngũ kỹ thuật để hiện thực hoá",
+        "Muốn ship MVP nhanh nhưng không muốn nợ kỹ thuật",
+        "Cần đối tác hiểu sản phẩm, không chỉ code theo yêu cầu",
+        "Đang scale và cần architecture vững chắc từ đầu"
+      ],
+      "processTitle": "Quy trình hợp tác",
+      "processSteps": [
+        { "label": "Inquiry", "desc": "Bạn mô tả ý tưởng và mục tiêu" },
+        { "label": "Discovery call", "desc": "Làm rõ scope, rủi ro, kỳ vọng" },
+        { "label": "Proposal", "desc": "TensorLab gửi kiến trúc + lộ trình" },
+        { "label": "Kick-off", "desc": "Ký kết và bắt đầu sprint đầu tiên" },
+        { "label": "Build & iterate", "desc": "Deliver liên tục, sync hàng tuần" }
+      ],
+      "faqTitle": "Câu hỏi thường gặp",
+      "faq": [
+        {
+          "q": "Ownership code thuộc về ai?",
+          "a": "100% thuộc về bạn. TensorLab bàn giao toàn bộ source code, tài liệu và quyền kiểm soát hạ tầng khi kết thúc hợp tác."
+        },
+        {
+          "q": "TensorLab khác agency truyền thống như thế nào?",
+          "a": "Chúng tôi không chỉ nhận spec rồi code — chúng tôi tham gia vào product discovery, đề xuất giải pháp kiến trúc và chủ động cảnh báo rủi ro kỹ thuật."
+        },
+        {
+          "q": "Mô hình tính phí như thế nào?",
+          "a": "Linh hoạt theo từng trường hợp: milestone-based, monthly retainer hoặc co-build. Trao đổi để tìm mô hình phù hợp nhất."
+        },
+        {
+          "q": "Thời gian triển khai MVP thường mất bao lâu?",
+          "a": "Phụ thuộc scope, nhưng thông thường 6–12 tuần cho MVP production-ready. Discovery call sẽ làm rõ estimate cụ thể."
+        }
+      ]
+    },
+    "outsource": {
+      "tag": "Outsource",
+      "title": "Đội ngũ kỹ thuật thuê theo nhu cầu",
+      "desc": "Phù hợp khi bạn cần mở rộng team nhanh hoặc thuê chuyên gia cho dự án cụ thể.",
+      "fitTitle": "Phù hợp nếu bạn...",
+      "fitItems": [
+        "Có team nội bộ nhưng thiếu một số kỹ năng chuyên biệt",
+        "Cần tăng tốc delivery mà không muốn tuyển dụng dài hạn",
+        "Có dự án ngắn hạn cần đội ngũ sẵn sàng làm việc ngay",
+        "Muốn kiểm soát chi phí nhân sự linh hoạt theo mùa vụ"
+      ],
+      "rolesTitle": "Vai trò có thể thuê",
+      "roles": [
+        { "title": "Product Manager", "desc": "Quản lý backlog, roadmap và delivery" },
+        { "title": "Frontend Engineer", "desc": "React, Next.js, Vue, mobile UI" },
+        { "title": "Backend Engineer", "desc": "NestJS, Go, API design, database" },
+        { "title": "Mobile Engineer", "desc": "React Native, Flutter, iOS/Android" },
+        { "title": "AI Engineer", "desc": "LLM integration, RAG, agents" },
+        { "title": "DevOps", "desc": "CI/CD, cloud infra, monitoring" }
+      ],
+      "processTitle": "Quy trình onboarding",
+      "processSteps": [
+        { "label": "Brief", "desc": "Bạn mô tả nhu cầu và yêu cầu kỹ thuật" },
+        { "label": "Matching", "desc": "TensorLab đề xuất profile phù hợp" },
+        { "label": "Contract", "desc": "Ký hợp đồng, align expectations" },
+        { "label": "Sprint 1", "desc": "Bắt đầu làm việc, onboarding nhanh" },
+        { "label": "Weekly sync", "desc": "Check-in hàng tuần, điều chỉnh nếu cần" }
+      ],
+      "faqTitle": "Câu hỏi thường gặp",
+      "faq": [
+        {
+          "q": "Thời gian tối thiểu để thuê là bao lâu?",
+          "a": "Tối thiểu 1 tháng. Chúng tôi ưu tiên hợp tác dài hạn để đảm bảo chất lượng onboarding và delivery."
+        },
+        {
+          "q": "Có thể mix nhiều vai trò khác nhau không?",
+          "a": "Có. Bạn có thể thuê 1 FE + 1 BE, hoặc bất kỳ combo nào phù hợp với nhu cầu dự án."
+        },
+        {
+          "q": "Quy trình quản lý công việc như thế nào?",
+          "a": "Chúng tôi tích hợp vào tool và workflow của bạn (Jira, Linear, Notion...). Daily standup và weekly sync là tiêu chuẩn."
+        },
+        {
+          "q": "Nếu không hài lòng với người được match, xử lý thế nào?",
+          "a": "Chúng tôi sẽ thay thế trong vòng 1–2 tuần. Sự hài lòng của bạn là ưu tiên hàng đầu."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Bắt đầu từ một cuộc trao đổi",
+      "desc": "Không có cam kết nào ngay từ đầu. Chỉ là một cuộc gọi 30 phút để hiểu bạn cần gì.",
+      "button": "Liên hệ TensorLab"
+    }
   },
   "teamPage": {
     "metaTitle": "Đội Ngũ — TensorLab",

@@ -187,7 +187,7 @@ export function EngagementModelsSection() {
                     </div>
                   </div>
                   <div className="shrink-0 sm:flex sm:items-center">
-                    <Link href={`/contact?type=${activeModel.key}`}>
+                    <Link href={activeModel.key === "product" ? "/hop-tac#product" : "/hop-tac#outsource"}>
                       <Button
                         type={activeModel.ctaType}
                         size="large"

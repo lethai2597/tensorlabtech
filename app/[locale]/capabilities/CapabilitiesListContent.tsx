@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Tag } from "antd";
+import { MessageCircle } from "lucide-react";
 
 import ShinyText from "@/components/ShinyText";
 import { useSectionVariants } from "@/lib/landingMotion";
@@ -130,8 +131,9 @@ export default function CapabilitiesListContent() {
                 <div className="pt-2">
                   <Link
                     href={`/contact?type=${cap.contactType}&message=${encodeURIComponent(cap.contactMessage)}`}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-surface border border-border hover:border-primary hover:text-primary transition-colors duration-200 text-foreground"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold bg-primary text-white hover:bg-primary/90 transition-colors duration-200 shadow-sm"
                   >
+                    <MessageCircle size={16} />
                     {tDetail("consultButton")}
                   </Link>
                 </div>

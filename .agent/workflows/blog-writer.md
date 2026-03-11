@@ -1,5 +1,5 @@
 ---
-description: Chuyển đổi text thô (bài viết Facebook) thành bài viết MDX sinh động với charts, diagrams, callouts, code blocks, và ảnh minh họa
+description: Chuyển đổi text thô (bài viết Facebook) thành bài viết MDX sinh động với callouts, code blocks, và markdown tables
 ---
 
 # Blog Writer Workflow
@@ -23,7 +23,7 @@ User cung cấp:
 - **Cấu trúc** → chia thành các sections (H2, H3)
 - **Tips/cảnh báo** → có thể dùng Callout
 - **Code examples** → code fences với language
-- **Cần ảnh minh họa** → dùng generate_image
+
 
 ### 2. Tạo frontmatter
 
@@ -63,13 +63,6 @@ description: "[Mô tả 1-2 câu cho SEO và listing page]"
 <Callout type="info|tip|warning|danger" title="Tiêu đề">
   Nội dung callout
 </Callout>
-
-{/* Ảnh có caption */}
-<ImageWithCaption
-  src="/blog/ten-anh.png"
-  alt="Mô tả ảnh"
-  caption="Caption hiển thị dưới ảnh"
-/>
 ```
 
 **Dùng markdown thuần cho dữ liệu:**
@@ -111,4 +104,4 @@ Output file: `content/blog/react-vs-vue.mdx`
 
 ## Dependencies
 
-Các MDX components (`Callout`, `ImageWithCaption`) đã được cấu hình sẵn trong page `app/[locale]/blog/[slug]/page.tsx` — không cần import trong file MDX.
+Các MDX components (`Callout`) đã được cấu hình sẵn trong page `app/[locale]/blog/[slug]/page.tsx` — không cần import trong file MDX.
