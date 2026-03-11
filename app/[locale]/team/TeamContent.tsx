@@ -158,7 +158,7 @@ export default function TeamContent() {
   const { fadeUp, stagger } = useSectionVariants(reduced);
 
   return (
-    <main className="bg-background py-12 md:py-20">
+    <div className="bg-background py-12 md:py-20">
       {/* Members section */}
       <motion.section
         id="members"
@@ -242,6 +242,6 @@ export default function TeamContent() {
           </div>
         </div>
       </motion.section>
-    </main>
+    </div>
   );
 }

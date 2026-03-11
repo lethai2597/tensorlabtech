@@ -47,13 +47,13 @@ export default function ProjectsListContent() {
         </motion.div>
         <motion.h1
           variants={fadeUp}
-          className="text-4xl md:text-5xl font-semibold text-foreground"
+          className="text-4xl md:text-5xl font-bold text-foreground"
         >
           {t("title")}
         </motion.h1>
         <motion.p
           variants={fadeUp}
-          className="text-sm text-zinc-500 dark:text-zinc-400"
+          className="text-zinc-500 dark:text-zinc-400"
         >
           {t("desc")}
         </motion.p>
@@ -84,16 +84,16 @@ export default function ProjectsListContent() {
                   className="h-full cursor-pointer border-transparent transition duration-300 hover:border-border hover:-translate-y-1 p-0! overflow-hidden!"
                 >
                   {/* Screenshot zone — identical to landing */}
-                  <div className="relative overflow-hidden aspect-[16/9] -mb-px">
+                  <div className="relative overflow-hidden aspect-[16/9]">
                     <Image
                       src={project.thumbnailUrl}
                       alt={t(`items.${project.key}.title`)}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover object-top scale-[1.01] transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover object-top"
                     />
                     {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 dark:from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                     {/* Category badge */}
                     <span

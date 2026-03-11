@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
-import { getPostBySlug, getPostSlugs } from "@/lib/blog";
+import { getPostBySlug } from "@/lib/blog";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { Calendar, Clock, ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 import { Callout } from "@/components/blog/mdx/Callout";
 import { ImageWithCaption } from "@/components/blog/mdx/ImageWithCaption";
 import { Heading } from "@/components/blog/mdx/Heading";
@@ -140,7 +141,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         notFound();
     }
 
-    const backHref = locale === "en" ? "/blog" : `/${locale}/blog`;
+    const t = await getTranslations({ locale, namespace: "blogPost" });
 
     const { content: mdxContent } = await compileMDX({
         source: post.content,
@@ -156,11 +157,11 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="container mx-auto px-8 py-8">
             {/* Back link */}
             <Link
-                href={backHref}
+                href="/blog"
                 className="inline-flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 hover:text-primary transition-colors mb-8 no-underline"
             >
                 <ArrowLeft size={16} />
-                Quay lại Blog
+                {t("backToBlog")}
             </Link>
 
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8">
@@ -175,7 +176,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                         <div className="flex items-center gap-4 text-sm text-zinc-500 dark:text-zinc-400">
                             <span className="flex items-center gap-1.5">
                                 <Calendar size={14} />
-                                {new Date(post.date).toLocaleDateString("vi-VN", {
+                                {new Date(post.date).toLocaleDateString(locale === "vi" ? "vi-VN" : "en-US", {
                                     year: "numeric",
                                     month: "long",
                                     day: "numeric",

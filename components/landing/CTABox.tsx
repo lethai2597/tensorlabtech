@@ -44,7 +44,7 @@ export function CTABox({
 
                     <motion.h2
                         variants={fadeUp}
-                        className="text-2xl md:text-3xl font-bold text-foreground"
+                        className="text-2xl md:text-3xl font-semibold text-foreground"
                     >
                         {title}
                     </motion.h2>

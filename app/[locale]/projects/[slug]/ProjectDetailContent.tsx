@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
+import { useSectionVariants } from "@/lib/landingMotion";
 import { useTranslations } from "next-intl";
 import { Button } from "antd";
 import {
@@ -19,19 +20,6 @@ import { Link } from "@/i18n/navigation";
 import { PROJECT_ITEMS } from "@/lib/projectData";
 import SpotlightCard from "@/components/SpotlightCard";
 
-import type { Variants } from "framer-motion";
-
-/* ---------- animation config ---------- */
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } },
-};
-
-const stagger: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
 
 const FEATURE_ICONS = [Zap, Layers, Target, Lightbulb] as const;
 
@@ -41,6 +29,8 @@ export default function ProjectDetailContent({ slug }: { slug: string }) {
   const t = useTranslations("landing.projects");
   const tDetail = useTranslations("projectDetail");
   const shouldReduceMotion = useReducedMotion();
+  const reduced = Boolean(shouldReduceMotion);
+  const { fadeUp, stagger } = useSectionVariants(reduced);
 
   const project = PROJECT_ITEMS.find((p) => p.slug === slug);
   if (!project) return null;
@@ -69,12 +59,12 @@ export default function ProjectDetailContent({ slug }: { slug: string }) {
     features = [];
   }
 
-  const motionProps = shouldReduceMotion
+  const motionProps = reduced
     ? {}
     : { initial: "hidden" as const, animate: "visible" as const };
 
   return (
-    <motion.main
+    <motion.div
       {...motionProps}
       variants={stagger}
       className="bg-background"
@@ -197,7 +187,7 @@ export default function ProjectDetailContent({ slug }: { slug: string }) {
             <motion.h2
               variants={fadeUp}
               {...motionProps}
-              className="text-3xl font-bold text-foreground text-center mb-4"
+              className="text-3xl font-semibold text-foreground text-center mb-4"
             >
               {tDetail("featuresTitle")}
             </motion.h2>
@@ -250,7 +240,7 @@ export default function ProjectDetailContent({ slug }: { slug: string }) {
           <motion.h2
             variants={fadeUp}
             {...motionProps}
-            className="text-3xl font-bold text-foreground mb-4"
+            className="text-3xl font-semibold text-foreground mb-4"
           >
             {tDetail("ctaTitle")}
           </motion.h2>
@@ -311,6 +301,6 @@ export default function ProjectDetailContent({ slug }: { slug: string }) {
           </motion.div>
         </div>
       </section>
-    </motion.main>
+    </motion.div>
   );
 }

@@ -8,7 +8,6 @@ import { ScrollRevealHeadlineSection } from "./sections/ScrollRevealHeadlineSect
 import { CapabilitiesSection } from "./sections/CapabilitiesSection";
 import { EngagementModelsSection } from "./sections/EngagementModelsSection";
 import { DeliveryProcessSection } from "./sections/DeliveryProcessSection";
-// import { EventsHighlightSection } from "./sections/CaseStudiesSection";
 import { BlogHighlightSection } from "./sections/BlogHighlightSection";
 import { ProjectsSection } from "./sections/ProjectsSection";
 

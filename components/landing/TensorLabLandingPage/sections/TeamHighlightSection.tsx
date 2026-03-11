@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { ArrowRight, ExternalLink } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 import { SectionHeader } from "@/components/landing/SectionHeader";
 import { SectionBackdrop } from "@/components/landing/TensorLabLandingPage/SectionBackdrop";

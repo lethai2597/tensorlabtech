@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { Button } from "antd";
@@ -24,6 +25,7 @@ interface BlogHighlightSectionProps {
 
 export function BlogHighlightSection({ posts }: BlogHighlightSectionProps) {
   const t = useTranslations("landing.insights");
+  const locale = useLocale();
   const shouldReduceMotion = useReducedMotion();
   const reduced = Boolean(shouldReduceMotion);
   const { fadeUp, stagger } = useSectionVariants(reduced);
@@ -70,7 +72,7 @@ export function BlogHighlightSection({ posts }: BlogHighlightSectionProps) {
                     <div className="flex items-center gap-4 text-xs text-zinc-500 dark:text-zinc-400">
                       <span className="flex items-center gap-1.5">
                         <Calendar size={14} />
-                        {new Date(post.date).toLocaleDateString("vi-VN", {
+                        {new Date(post.date).toLocaleDateString(locale === "vi" ? "vi-VN" : "en-US", {
                           year: "numeric",
                           month: "short",
                           day: "numeric",

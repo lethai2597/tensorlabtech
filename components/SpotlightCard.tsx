@@ -59,7 +59,7 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
   return (
     <div
       ref={divRef}
-      tabIndex={tabIndex ?? 0}
+      tabIndex={tabIndex ?? -1}
       onMouseMove={(e) => {
         onMouseMove?.(e);
         handleMouseMoveInternal(e);

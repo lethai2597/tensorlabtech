@@ -661,6 +661,9 @@
       "facebook": "Facebook"
     }
   },
+  "blogPost": {
+    "backToBlog": "Back to Blog"
+  },
   "projectDetail": {
     "backToProjects": "Back to projects",
     "visitProject": "Visit project",
@@ -775,6 +778,152 @@
         }
       ]
     }
+  },
+  "capabilityList": {
+    "tag": "Capabilities",
+    "title": "What we're great at",
+    "desc": "From strategy and architecture to production delivery — six core capabilities that shape how we work.",
+    "learnMore": "Learn more"
+  },
+  "capabilityDetail": {
+    "backToCapabilities": "Back to capabilities",
+    "featuresTitle": "What we do",
+    "featuresDesc": "Core capabilities and how we deliver value.",
+    "ctaTitle": "Ready to work with TensorLab?",
+    "ctaDesc": "Tell us about your project and we'll propose the right approach.",
+    "ctaButton": "Contact us",
+    "viewAll": "View all capabilities",
+    "learnMore": "Learn more",
+    "relatedTitle": "Explore more capabilities",
+    "items": {
+      "consulting": {
+        "longDesc": "We align technology decisions with your business goals — from system architecture, technical roadmap, and code quality standards to choosing the right stack and trade-offs for your context.",
+        "features": [
+          {
+            "title": "Architecture Review",
+            "desc": "Assess current state and design a scalable, maintainable target architecture."
+          },
+          {
+            "title": "Technical Roadmap",
+            "desc": "Prioritize technical investments aligned to product milestones."
+          },
+          {
+            "title": "Stack Selection",
+            "desc": "Evaluate trade-offs to choose the right tools for your team and context."
+          },
+          {
+            "title": "Quality Standards",
+            "desc": "Establish coding conventions, review processes, and delivery standards."
+          }
+        ]
+      },
+      "dx": {
+        "longDesc": "We help organizations move faster by standardizing processes, integrating systems, and automating repetitive workflows — turning operational bottlenecks into competitive advantages.",
+        "features": [
+          {
+            "title": "Process Standardization",
+            "desc": "Map and streamline key workflows for consistency and speed."
+          },
+          {
+            "title": "System Integration",
+            "desc": "Connect siloed tools and data sources into a unified operational layer."
+          },
+          {
+            "title": "Workflow Automation",
+            "desc": "Automate manual, repetitive tasks using modern tooling and RPA."
+          },
+          {
+            "title": "Data Enablement",
+            "desc": "Structure and surface operational data for better decision-making."
+          }
+        ]
+      },
+      "product": {
+        "longDesc": "From discovery to production-grade delivery — we build digital products that are fast to ship, easy to maintain, and cost-efficient to operate. Not just task execution, but outcome ownership.",
+        "features": [
+          {
+            "title": "Discovery & Scoping",
+            "desc": "Clarify goals, users, and MVP scope before writing a single line of code."
+          },
+          {
+            "title": "UI/UX Design",
+            "desc": "User-centered design with a focus on clarity, speed, and accessibility."
+          },
+          {
+            "title": "MVP Delivery",
+            "desc": "Ship a working, production-ready MVP with clean architecture from day one."
+          },
+          {
+            "title": "Scale & Iteration",
+            "desc": "Extend features, optimize performance, and maintain operability as you grow."
+          }
+        ]
+      },
+      "ai": {
+        "longDesc": "We take AI from proof-of-concept to production — building RAG pipelines, knowledge bases, AI agents, and recommendation systems with proper MLOps, evaluation, and monitoring in place.",
+        "features": [
+          {
+            "title": "RAG & Knowledge Base",
+            "desc": "Build retrieval-augmented generation systems on your proprietary data."
+          },
+          {
+            "title": "AI Agents",
+            "desc": "Design agentic workflows that automate complex, multi-step tasks."
+          },
+          {
+            "title": "Recommendations",
+            "desc": "Personalized content, product, and action recommendations using ML."
+          },
+          {
+            "title": "MLOps & Monitoring",
+            "desc": "Evaluation pipelines, drift detection, cost optimization, and observability."
+          }
+        ]
+      },
+      "web3": {
+        "longDesc": "We build Web3 products with a focus on security and user experience — from decentralized applications and wallet integrations to token gating, RBAC, and on-chain audit logging.",
+        "features": [
+          {
+            "title": "dApp Development",
+            "desc": "Decentralized applications with clean UI and reliable on-chain interactions."
+          },
+          {
+            "title": "Wallet Integration",
+            "desc": "Seamless multi-wallet support with secure authentication flows."
+          },
+          {
+            "title": "Token Gating & RBAC",
+            "desc": "Control access to features and content based on on-chain ownership."
+          },
+          {
+            "title": "Audit & Security",
+            "desc": "Smart contract audits, access logs, and security-first architecture."
+          }
+        ]
+      },
+      "cloud": {
+        "longDesc": "We design and operate cloud infrastructure that is stable, observable, and cost-optimized — from CI/CD pipelines and monitoring to auto-scaling, hardening, and cost management.",
+        "features": [
+          {
+            "title": "CI/CD Pipeline",
+            "desc": "Automated build, test, and deployment pipelines for fast, reliable releases."
+          },
+          {
+            "title": "Observability",
+            "desc": "Logging, metrics, tracing, and alerting for full production visibility."
+          },
+          {
+            "title": "Auto-Scaling",
+            "desc": "Infrastructure that scales with demand while controlling cloud spend."
+          },
+          {
+            "title": "Security Hardening",
+            "desc": "Network policies, secrets management, and compliance best practices."
+          }
+        ]
+      }
+    },
+    "consultButton": "Get a Consultation"
   },
   "teamPage": {
     "metaTitle": "Our Team — TensorLab",

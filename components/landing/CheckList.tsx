@@ -17,8 +17,8 @@ export function CheckList({
 }: CheckListProps) {
     const textClass =
         size === "sm"
-            ? "text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed"
-            : "text-zinc-600 dark:text-zinc-300 text-base leading-relaxed";
+            ? "text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed"
+            : "text-zinc-500 dark:text-zinc-400 text-base leading-relaxed";
     const iconSizeClass = size === "sm" ? "size-4" : "size-5";
     const gapClass = size === "sm" ? "space-y-3" : "space-y-4";
 

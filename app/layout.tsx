@@ -1,3 +1,4 @@
+import "@ant-design/v5-patch-for-react-19";
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Be_Vietnam_Pro } from "next/font/google";

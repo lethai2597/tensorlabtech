@@ -51,7 +51,7 @@ export function Header() {
 
   return (
     <>
-      <header className="border-b border-border px-4 h-16 fixed top-0 left-0 right-0 z-50 bg-surface/30 backdrop-blur-md">
+      <header className="border-b border-border h-16 fixed top-0 left-0 right-0 z-50 bg-surface/30 backdrop-blur-md">
         <div className="flex items-center justify-between h-full container mx-auto px-4 md:px-8">
           <Link
             href="/"
@@ -174,7 +174,7 @@ export function Header() {
             >
               <BrandLogo size={20} />
               <span style={{ color: "var(--foreground)", opacity: 0.5, fontSize: 13 }}>
-                TensorLab © 2025
+                TensorLab © {new Date().getFullYear()}
               </span>
             </div>
           </nav>
@@ -187,6 +187,16 @@ export function Header() {
             @keyframes slideUp {
               from { opacity: 0; transform: translateY(12px); }
               to { opacity: 1; transform: translateY(0); }
+            }
+            @media (prefers-reduced-motion: reduce) {
+              @keyframes fadeIn {
+                from { opacity: 1; }
+                to { opacity: 1; }
+              }
+              @keyframes slideUp {
+                from { opacity: 1; transform: none; }
+                to { opacity: 1; transform: none; }
+              }
             }
           `}</style>
         </div>
