@@ -23,7 +23,7 @@ export function Header() {
   const items = [
     { key: "home", label: t("home"), href: "/" },
     { key: "capabilities", label: t("capabilities"), href: "/capabilities" },
-    { key: "engagement", label: t("engagement"), href: "/hop-tac" },
+    { key: "partnership", label: t("engagement"), href: "/partnership" },
     { key: "projects", label: t("projects"), href: "/projects" },
     { key: "blog", label: "Blog", href: "/blog" },
     { key: "team", label: t("team"), href: "/team" },
@@ -31,10 +31,7 @@ export function Header() {
     { key: "contact", label: t("contact"), href: "/contact" },
   ] as const;
 
-  const handleNavClick = (
-    _e: React.MouseEvent,
-    _item: (typeof items)[number],
-  ) => {
+  const handleNavClick = () => {
     setMobileOpen(false);
   };
 
@@ -57,7 +54,7 @@ export function Header() {
                 key={item.key}
                 href={item.href}
                 className="text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-foreground transition-colors"
-                onClick={(e) => handleNavClick(e, item)}
+                onClick={handleNavClick}
               >
                 {item.label}
               </Link>
@@ -114,7 +111,7 @@ export function Header() {
                   >
                     <Link
                       href={item.href}
-                      onClick={(e) => handleNavClick(e, item)}
+                      onClick={handleNavClick}
                       style={{
                         display: "flex",
                         alignItems: "center",

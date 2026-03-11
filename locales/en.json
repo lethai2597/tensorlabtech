@@ -925,114 +925,6 @@
     },
     "consultButton": "Get a Consultation"
   },
-  "hopTac": {
-    "meta": {
-      "title": "Partnership — TensorLab",
-      "desc": "From idea to real product — the right model, the right speed. Explore two ways to partner with TensorLab."
-    },
-    "hero": {
-      "tag": "Partnership",
-      "tagline": "From idea to real product — the right model, the right speed.",
-      "philosophy": "TensorLab doesn't just execute tasks — we own outcomes. From discovery to production, from MVP to scale, we choose the right path together.",
-      "cta": "Explore partnership models"
-    },
-    "tab": {
-      "product": "Product Partnership",
-      "outsource": "Outsource"
-    },
-    "product": {
-      "tag": "Product Partnership",
-      "title": "Build together — share the outcome",
-      "desc": "Best when you need a technical partner to co-build from MVP to scale, not just a vendor that executes tasks.",
-      "fitTitle": "It's a good fit if...",
-      "fitItems": [
-        "You have a product idea and need a technical team to bring it to life",
-        "You want to ship an MVP fast without accumulating technical debt",
-        "You need a partner who understands the product, not just codes to spec",
-        "You're scaling and need solid architecture from the start"
-      ],
-      "processTitle": "Collaboration process",
-      "processSteps": [
-        { "label": "Inquiry", "desc": "You describe your idea and goals" },
-        { "label": "Discovery call", "desc": "Clarify scope, risks, expectations" },
-        { "label": "Proposal", "desc": "TensorLab sends architecture + roadmap" },
-        { "label": "Kick-off", "desc": "Sign and start the first sprint" },
-        { "label": "Build & iterate", "desc": "Continuous delivery, weekly sync" }
-      ],
-      "faqTitle": "Frequently asked questions",
-      "faq": [
-        {
-          "q": "Who owns the code?",
-          "a": "100% you. TensorLab delivers all source code, documentation, and infrastructure control at the end of the engagement."
-        },
-        {
-          "q": "How is TensorLab different from a traditional agency?",
-          "a": "We don't just take a spec and code it — we participate in product discovery, propose architectural solutions, and proactively flag technical risks."
-        },
-        {
-          "q": "How does pricing work?",
-          "a": "Flexible per case: milestone-based, monthly retainer, or co-build. Let's talk to find the best model for your situation."
-        },
-        {
-          "q": "How long does an MVP typically take?",
-          "a": "Depends on scope, but typically 6–12 weeks for a production-ready MVP. The discovery call will clarify the specific estimate."
-        }
-      ]
-    },
-    "outsource": {
-      "tag": "Outsource",
-      "title": "On-demand engineering talent",
-      "desc": "Best when you need to scale your team quickly or hire specialists for a specific project.",
-      "fitTitle": "It's a good fit if...",
-      "fitItems": [
-        "You have an internal team but lack certain specialized skills",
-        "You need to speed up delivery without long-term hiring",
-        "You have a short-term project and need a team ready to start immediately",
-        "You want flexible cost control that scales with your needs"
-      ],
-      "rolesTitle": "Roles available",
-      "roles": [
-        { "title": "Product Manager", "desc": "Backlog, roadmap, and delivery management" },
-        { "title": "Frontend Engineer", "desc": "React, Next.js, Vue, mobile UI" },
-        { "title": "Backend Engineer", "desc": "NestJS, Go, API design, database" },
-        { "title": "Mobile Engineer", "desc": "React Native, Flutter, iOS/Android" },
-        { "title": "AI Engineer", "desc": "LLM integration, RAG, agents" },
-        { "title": "DevOps", "desc": "CI/CD, cloud infra, monitoring" }
-      ],
-      "processTitle": "Onboarding process",
-      "processSteps": [
-        { "label": "Brief", "desc": "You describe your needs and technical requirements" },
-        { "label": "Matching", "desc": "TensorLab proposes suitable profiles" },
-        { "label": "Contract", "desc": "Sign and align expectations" },
-        { "label": "Sprint 1", "desc": "Start working, quick onboarding" },
-        { "label": "Weekly sync", "desc": "Weekly check-in, adjust as needed" }
-      ],
-      "faqTitle": "Frequently asked questions",
-      "faq": [
-        {
-          "q": "What is the minimum engagement duration?",
-          "a": "Minimum 1 month. We prefer longer partnerships to ensure quality onboarding and delivery."
-        },
-        {
-          "q": "Can I mix different roles?",
-          "a": "Yes. You can hire 1 FE + 1 BE, or any combo that fits your project needs."
-        },
-        {
-          "q": "How is work managed?",
-          "a": "We integrate into your tools and workflow (Jira, Linear, Notion...). Daily standup and weekly sync are standard."
-        },
-        {
-          "q": "What if I'm not satisfied with the matched person?",
-          "a": "We'll replace within 1–2 weeks. Your satisfaction is our top priority."
-        }
-      ]
-    },
-    "cta": {
-      "title": "Start with a conversation",
-      "desc": "No commitment required. Just a 30-minute call to understand what you need.",
-      "button": "Contact TensorLab"
-    }
-  },
   "teamPage": {
     "metaTitle": "Our Team — TensorLab",
     "metaDesc": "Meet the people behind TensorLab — engineers, designers, and advisors who build production-ready digital products.",
@@ -1107,6 +999,110 @@
         "role": "CTO at Infinilab",
         "bio": "CTO at infinilab.asia, specializing in cloud infrastructure and product development. Technical advisor on delivery processes."
       }
+    }
+  },
+  "partnership": {
+    "meta": {
+      "title": "Partnership — TensorLab",
+      "desc": "Explore TensorLab's two partnership models: product co-build and outsource delivery."
+    },
+    "hero": {
+      "tag": "Partnership",
+      "title": "Build great products together",
+      "desc": "Two clear ways to engage — choose the model that fits your stage, team, and goals.",
+      "ctaProduct": "Discuss opportunity",
+      "ctaOutsource": "Send brief"
+    },
+    "engagement": {
+      "tag": "Engagement Models",
+      "title": "Two ways to partner with TensorLab",
+      "desc": "Each model is designed for a different context. Pick the one that matches your situation.",
+      "product": {
+        "title": "Product Partnership",
+        "subtitle": "Co-build with outcome ownership and fast iteration.",
+        "for": "Best for: Startups and scale-ups who want a technical co-founder, not just a vendor.",
+        "cta": "Discuss opportunity",
+        "items": [
+          "We join as a co-build partner from MVP to scale with shared quality ownership.",
+          "We cover discovery, architecture, build & operations — not just task execution.",
+          "Flexible engagement: milestone-based, co-build, or long-term — tailored to your context."
+        ],
+        "includesLabel": "What's included",
+        "includes": [
+          "Product discovery & problem framing sessions",
+          "System architecture & technical roadmap",
+          "Sprint-based build with daily async updates",
+          "Post-launch: monitoring, ops runbooks, knowledge transfer"
+        ],
+        "useCases": [
+          "Early-stage startup",
+          "MVP to production scale",
+          "AI / Web3 product build",
+          "Technical co-founder needed",
+          "Series A scale-up"
+        ]
+      },
+      "outsource": {
+        "title": "Outsource",
+        "subtitle": "Dedicated team, project-based delivery, or team augmentation.",
+        "for": "Best for: Companies needing fast, reliable execution on defined scope.",
+        "cta": "Send brief",
+        "items": [
+          "Engage via dedicated team, project-based delivery, or team augmentation.",
+          "Roles: PM/BA, UI/UX, FE, BE, Mobile, AI Engineer, DevOps — full or partial team.",
+          "Transparent delivery: weekly updates, demos, PR reviews, QA checklists, and clear handover docs."
+        ],
+        "includesLabel": "Available roles",
+        "includes": [
+          "Product Manager / Business Analyst",
+          "UI/UX Designer — research, wireframe, prototype",
+          "Frontend, Backend, Mobile, AI/ML, DevOps Engineers",
+          "QA Engineer — test plans, automation, regression"
+        ],
+        "useCases": [
+          "Team augmentation",
+          "Project-based delivery",
+          "Dedicated development team",
+          "Feature sprint",
+          "Mobile / Web / AI build"
+        ]
+      },
+      "approachLabel": "Our approach",
+      "activeLabel": "Selected",
+      "useCasesLabel": "Typical use cases",
+      "howItStartsLabel": "How it starts",
+      "howItStarts": [
+        "Send a brief or book a call",
+        "Discovery & alignment session (30 min)",
+        "Proposal, contract & kick-off"
+      ]
+    },
+    "faq": {
+      "tag": "FAQ",
+      "title": "Common questions",
+      "desc": "Things partners often ask before getting started.",
+      "items": [
+        {
+          "q": "What's the difference between Product Partnership and Outsource?",
+          "a": "Product Partnership is for co-building — we take shared ownership of outcomes, from discovery to launch and beyond. Outsource is execution-focused: you define the scope, we deliver with full transparency."
+        },
+        {
+          "q": "Which model is right for an early-stage startup?",
+          "a": "Product Partnership fits early-stage teams who need a co-founder-level technical partner. Outsource fits teams with a defined roadmap who need reliable execution capacity."
+        },
+        {
+          "q": "How does the engagement process start?",
+          "a": "Send us a brief or book a call. We'll have a discovery conversation within 2 business days, align on fit, and propose the right engagement structure."
+        },
+        {
+          "q": "Can I switch between models mid-engagement?",
+          "a": "Yes. We're flexible. If your needs evolve — more ownership, less scope — we can adjust the engagement structure together."
+        },
+        {
+          "q": "What do I need to prepare before reaching out?",
+          "a": "Just a rough idea of what you want to build and your timeline. We'll help you structure the rest during discovery."
+        }
+      ]
     }
   }
 }

@@ -24,7 +24,7 @@ app/
 │   ├── capabilities/      # Capabilities page
 │   ├── team/              # Team page
 │   ├── contact/           # Contact page
-│   ├── hop-tac/           # Partnership detail page (NEW)
+│   ├── partnership/       # Partnership detail page (NEW)
 │   └── test/
 ├── layout.tsx             # Root layout
 ├── providers/             # Global providers (Theme, Query)
@@ -34,14 +34,12 @@ components/landing/
 ├── TensorLabLandingPage/  # Home page sections
 │   ├── sections/          # Hero, Capabilities, Projects, Case Studies, etc.
 │   └── TensorLabLandingPage.tsx
-├── HopTacPage/            # Partnership page (NEW)
-│   ├── HopTacHero.tsx
-│   ├── HopTacStickyTab.tsx
-│   ├── HopTacModelSection.tsx
-│   ├── HopTacProcessTimeline.tsx
-│   ├── HopTacFaq.tsx
-│   ├── HopTacCta.tsx
-│   └── HopTacPage.tsx
+├── PartnershipPage/       # Partnership page (NEW)
+│   ├── sections/          # Hero, Engagement Details, FAQ sections
+│   │   ├── PartnershipHeroSection.tsx
+│   │   ├── EngagementDetailSection.tsx
+│   │   └── PartnershipFAQSection.tsx
+│   └── PartnershipPage.tsx
 ├── layout/                # Header, MainLayout, Footer
 ├── ui/                    # Reusable UI components
 └── [other components]
@@ -83,11 +81,10 @@ docs/
 | `/capabilities`          | Capabilities list     | Service offerings                            |
 | `/team`                  | Team page             | Team members                                 |
 | `/contact`               | Contact form          | Contact/inquiry form                         |
-| `/hop-tac` (NEW)         | HopTacPage            | Partnership & engagement models detail page  |
+| `/partnership` (NEW)     | PartnershipPage       | Partnership & engagement models detail page  |
 
 **Navigation Changes:**
-- Header engagement nav link: `/#engagement` → `/hop-tac`
-- Engagement model CTAs: `/contact?type=...` → `/hop-tac#product` / `/hop-tac#outsource`
+- Header engagement nav link: `/#engagement` → `/partnership`
 
 ---
 
@@ -95,21 +92,18 @@ docs/
 
 ### Landing Pages
 - **TensorLabLandingPage**: Home page with multiple sections (Hero, Capabilities, Projects, Case Studies, Team, Blog, Testimonials, FAQ, CTA, Footer)
-- **HopTacPage** (NEW): Partnership detail page with sticky tab navigation between Product & Outsource models
+- **PartnershipPage** (NEW): Partnership detail page with product and outsource engagement models
 
-### HopTacPage Components (NEW)
+### PartnershipPage Components (NEW)
 
-Located at `components/landing/HopTacPage/`:
+Located at `components/landing/PartnershipPage/`:
 
-| Component                | Purpose                                                        |
-| ------------------------ | -------------------------------------------------------------- |
-| `HopTacPage.tsx`         | Main client component, scroll tracking with IntersectionObserver |
-| `HopTacHero.tsx`         | Hero section with tagline, philosophy, scroll CTA              |
-| `HopTacStickyTab.tsx`    | Sticky tab nav (Product \| Outsource)                          |
-| `HopTacModelSection.tsx` | Reusable section container (fit cards, timeline, FAQ, roles)   |
-| `HopTacProcessTimeline.tsx` | Step-by-step process timeline component                      |
-| `HopTacFaq.tsx`          | Accordion FAQ with Framer Motion AnimatePresence              |
-| `HopTacCta.tsx`          | Shared CTA button → `/contact?type={activeTab}`               |
+| Component                        | Purpose                                                   |
+| -------------------------------- | --------------------------------------------------------- |
+| `PartnershipPage.tsx`            | Main client component, orchestrates sections              |
+| `sections/PartnershipHeroSection.tsx` | Hero section with tagline and partnership philosophy      |
+| `sections/EngagementDetailSection.tsx` | Details for product & outsource engagement models         |
+| `sections/PartnershipFAQSection.tsx` | FAQ accordion with partnership-related questions         |
 
 ### Layout Components
 - **Header**: Navigation with locale switcher, theme toggle, engagement link
@@ -140,16 +134,16 @@ All user-facing text is i18n managed via `next-intl`.
 **Namespaces:**
 - `common` — Common buttons, labels, shared text
 - `home` — Home page content
-- `hopTac` (NEW) — Partnership page content (`en.json`, `vi.json`)
+- `partnership` (NEW) — Partnership page content (`en.json`, `vi.json`)
 - `blog`, `events`, `projects`, `capabilities`, `team`, `contact` — Page-specific
 
 **Usage in components:**
 ```tsx
 // Server components
-const t = await getTranslations("hopTac");
+const t = await getTranslations("partnership");
 
 // Client components
-const t = useTranslations("hopTac");
+const t = useTranslations("partnership");
 t("title", { count: 5 }); // With parameters
 ```
 

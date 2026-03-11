@@ -932,114 +932,6 @@
     },
     "consultButton": "Nhận tư vấn"
   },
-  "hopTac": {
-    "meta": {
-      "title": "Hợp tác — TensorLab",
-      "desc": "Từ ý tưởng đến sản phẩm thực tế — đúng model, đúng tốc độ. Khám phá hai hướng hợp tác với TensorLab."
-    },
-    "hero": {
-      "tag": "Hợp tác",
-      "tagline": "Từ ý tưởng đến sản phẩm thực tế — đúng model, đúng tốc độ.",
-      "philosophy": "TensorLab không chỉ thực thi task — chúng tôi đồng hành kết quả. Từ discovery đến production, từ MVP đến scale, chúng tôi chọn đúng hướng đi cùng bạn.",
-      "cta": "Xem mô hình hợp tác"
-    },
-    "tab": {
-      "product": "Hợp tác Product",
-      "outsource": "Outsource"
-    },
-    "product": {
-      "tag": "Hợp tác Product",
-      "title": "Cùng xây sản phẩm — chia sẻ kết quả",
-      "desc": "Phù hợp khi bạn cần một đối tác kỹ thuật đồng hành từ MVP đến scale, không chỉ là vendor thực thi.",
-      "fitTitle": "Phù hợp nếu bạn...",
-      "fitItems": [
-        "Có ý tưởng sản phẩm và cần đội ngũ kỹ thuật để hiện thực hoá",
-        "Muốn ship MVP nhanh nhưng không muốn nợ kỹ thuật",
-        "Cần đối tác hiểu sản phẩm, không chỉ code theo yêu cầu",
-        "Đang scale và cần architecture vững chắc từ đầu"
-      ],
-      "processTitle": "Quy trình hợp tác",
-      "processSteps": [
-        { "label": "Inquiry", "desc": "Bạn mô tả ý tưởng và mục tiêu" },
-        { "label": "Discovery call", "desc": "Làm rõ scope, rủi ro, kỳ vọng" },
-        { "label": "Proposal", "desc": "TensorLab gửi kiến trúc + lộ trình" },
-        { "label": "Kick-off", "desc": "Ký kết và bắt đầu sprint đầu tiên" },
-        { "label": "Build & iterate", "desc": "Deliver liên tục, sync hàng tuần" }
-      ],
-      "faqTitle": "Câu hỏi thường gặp",
-      "faq": [
-        {
-          "q": "Ownership code thuộc về ai?",
-          "a": "100% thuộc về bạn. TensorLab bàn giao toàn bộ source code, tài liệu và quyền kiểm soát hạ tầng khi kết thúc hợp tác."
-        },
-        {
-          "q": "TensorLab khác agency truyền thống như thế nào?",
-          "a": "Chúng tôi không chỉ nhận spec rồi code — chúng tôi tham gia vào product discovery, đề xuất giải pháp kiến trúc và chủ động cảnh báo rủi ro kỹ thuật."
-        },
-        {
-          "q": "Mô hình tính phí như thế nào?",
-          "a": "Linh hoạt theo từng trường hợp: milestone-based, monthly retainer hoặc co-build. Trao đổi để tìm mô hình phù hợp nhất."
-        },
-        {
-          "q": "Thời gian triển khai MVP thường mất bao lâu?",
-          "a": "Phụ thuộc scope, nhưng thông thường 6–12 tuần cho MVP production-ready. Discovery call sẽ làm rõ estimate cụ thể."
-        }
-      ]
-    },
-    "outsource": {
-      "tag": "Outsource",
-      "title": "Đội ngũ kỹ thuật thuê theo nhu cầu",
-      "desc": "Phù hợp khi bạn cần mở rộng team nhanh hoặc thuê chuyên gia cho dự án cụ thể.",
-      "fitTitle": "Phù hợp nếu bạn...",
-      "fitItems": [
-        "Có team nội bộ nhưng thiếu một số kỹ năng chuyên biệt",
-        "Cần tăng tốc delivery mà không muốn tuyển dụng dài hạn",
-        "Có dự án ngắn hạn cần đội ngũ sẵn sàng làm việc ngay",
-        "Muốn kiểm soát chi phí nhân sự linh hoạt theo mùa vụ"
-      ],
-      "rolesTitle": "Vai trò có thể thuê",
-      "roles": [
-        { "title": "Product Manager", "desc": "Quản lý backlog, roadmap và delivery" },
-        { "title": "Frontend Engineer", "desc": "React, Next.js, Vue, mobile UI" },
-        { "title": "Backend Engineer", "desc": "NestJS, Go, API design, database" },
-        { "title": "Mobile Engineer", "desc": "React Native, Flutter, iOS/Android" },
-        { "title": "AI Engineer", "desc": "LLM integration, RAG, agents" },
-        { "title": "DevOps", "desc": "CI/CD, cloud infra, monitoring" }
-      ],
-      "processTitle": "Quy trình onboarding",
-      "processSteps": [
-        { "label": "Brief", "desc": "Bạn mô tả nhu cầu và yêu cầu kỹ thuật" },
-        { "label": "Matching", "desc": "TensorLab đề xuất profile phù hợp" },
-        { "label": "Contract", "desc": "Ký hợp đồng, align expectations" },
-        { "label": "Sprint 1", "desc": "Bắt đầu làm việc, onboarding nhanh" },
-        { "label": "Weekly sync", "desc": "Check-in hàng tuần, điều chỉnh nếu cần" }
-      ],
-      "faqTitle": "Câu hỏi thường gặp",
-      "faq": [
-        {
-          "q": "Thời gian tối thiểu để thuê là bao lâu?",
-          "a": "Tối thiểu 1 tháng. Chúng tôi ưu tiên hợp tác dài hạn để đảm bảo chất lượng onboarding và delivery."
-        },
-        {
-          "q": "Có thể mix nhiều vai trò khác nhau không?",
-          "a": "Có. Bạn có thể thuê 1 FE + 1 BE, hoặc bất kỳ combo nào phù hợp với nhu cầu dự án."
-        },
-        {
-          "q": "Quy trình quản lý công việc như thế nào?",
-          "a": "Chúng tôi tích hợp vào tool và workflow của bạn (Jira, Linear, Notion...). Daily standup và weekly sync là tiêu chuẩn."
-        },
-        {
-          "q": "Nếu không hài lòng với người được match, xử lý thế nào?",
-          "a": "Chúng tôi sẽ thay thế trong vòng 1–2 tuần. Sự hài lòng của bạn là ưu tiên hàng đầu."
-        }
-      ]
-    },
-    "cta": {
-      "title": "Bắt đầu từ một cuộc trao đổi",
-      "desc": "Không có cam kết nào ngay từ đầu. Chỉ là một cuộc gọi 30 phút để hiểu bạn cần gì.",
-      "button": "Liên hệ TensorLab"
-    }
-  },
   "teamPage": {
     "metaTitle": "Đội Ngũ — TensorLab",
     "metaDesc": "Gặp gỡ đội ngũ TensorLab — các kỹ sư, designer và cố vấn đứng sau những sản phẩm số production-ready.",
@@ -1114,6 +1006,110 @@
         "role": "CTO tại Infinilab",
         "bio": "CTO tại infinilab.asia, chuyên về hạ tầng cloud và phát triển sản phẩm. Cố vấn kỹ thuật và quy trình phát triển."
       }
+    }
+  },
+  "partnership": {
+    "meta": {
+      "title": "Hợp tác — TensorLab",
+      "desc": "Khám phá hai mô hình hợp tác của TensorLab: đồng xây dựng sản phẩm và thuê ngoài."
+    },
+    "hero": {
+      "tag": "Hợp tác",
+      "title": "Cùng nhau xây dựng sản phẩm tốt",
+      "desc": "Hai hình thức hợp tác rõ ràng — chọn mô hình phù hợp với giai đoạn, đội ngũ và mục tiêu của bạn.",
+      "ctaProduct": "Thảo luận cơ hội",
+      "ctaOutsource": "Gửi brief"
+    },
+    "engagement": {
+      "tag": "Mô hình hợp tác",
+      "title": "Hai cách hợp tác với TensorLab",
+      "desc": "Mỗi mô hình được thiết kế cho một bối cảnh khác nhau. Chọn mô hình phù hợp với tình huống của bạn.",
+      "product": {
+        "title": "Product Partnership",
+        "subtitle": "Đồng xây dựng với quyền sở hữu kết quả và vòng lặp nhanh.",
+        "for": "Phù hợp nhất: Startup và scale-up cần đối tác kỹ thuật đồng hành, không chỉ là nhà cung cấp.",
+        "cta": "Thảo luận cơ hội",
+        "items": [
+          "Chúng tôi tham gia như đối tác đồng xây dựng từ MVP đến scale với chất lượng chia sẻ.",
+          "Bao phủ discovery, kiến trúc, xây dựng & vận hành — không chỉ thực thi task.",
+          "Mô hình linh hoạt: theo milestone, co-build, hoặc dài hạn — tùy theo bối cảnh của bạn."
+        ],
+        "includesLabel": "Những gì bao gồm",
+        "includes": [
+          "Discovery & phân tích vấn đề sản phẩm",
+          "Kiến trúc hệ thống & lộ trình kỹ thuật",
+          "Build theo sprint với cập nhật async hàng ngày",
+          "Sau ra mắt: monitoring, runbook, chuyển giao kiến thức"
+        ],
+        "useCases": [
+          "Startup giai đoạn đầu",
+          "Từ MVP đến scale",
+          "Sản phẩm AI / Web3",
+          "Cần đối tác kỹ thuật đồng hành",
+          "Scale-up Series A"
+        ]
+      },
+      "outsource": {
+        "title": "Outsource",
+        "subtitle": "Thực thi đáng tin cậy qua dedicated team, giao hàng theo dự án, hoặc augmentation.",
+        "for": "Phù hợp nhất: Công ty cần thực thi nhanh, đáng tin cậy trên scope đã xác định.",
+        "cta": "Gửi brief",
+        "items": [
+          "Hợp tác qua dedicated team, giao hàng theo dự án, hoặc augmentation đội ngũ.",
+          "Vai trò: PM/BA, UI/UX, FE, BE, Mobile, AI Engineer, DevOps — full hoặc partial team.",
+          "Giao hàng minh bạch: cập nhật hàng tuần, demo, PR review, QA checklist, và tài liệu bàn giao rõ ràng."
+        ],
+        "includesLabel": "Vai trò có sẵn",
+        "includes": [
+          "Product Manager / Business Analyst",
+          "UI/UX Designer — nghiên cứu, wireframe, prototype",
+          "Frontend, Backend, Mobile, AI/ML, DevOps Engineers",
+          "QA Engineer — kế hoạch test, automation, regression"
+        ],
+        "useCases": [
+          "Bổ sung đội ngũ",
+          "Giao hàng theo dự án",
+          "Đội dedicated",
+          "Sprint tính năng",
+          "Build Mobile / Web / AI"
+        ]
+      },
+      "approachLabel": "Cách chúng tôi làm",
+      "activeLabel": "Đang chọn",
+      "useCasesLabel": "Trường hợp phù hợp",
+      "howItStartsLabel": "Cách bắt đầu",
+      "howItStarts": [
+        "Gửi brief hoặc đặt lịch call",
+        "Buổi discovery & alignment (30 phút)",
+        "Đề xuất, hợp đồng & kick-off"
+      ]
+    },
+    "faq": {
+      "tag": "FAQ",
+      "title": "Câu hỏi thường gặp",
+      "desc": "Những gì các đối tác thường hỏi trước khi bắt đầu.",
+      "items": [
+        {
+          "q": "Sự khác biệt giữa Product Partnership và Outsource là gì?",
+          "a": "Product Partnership là đồng xây dựng — chúng tôi chia sẻ quyền sở hữu kết quả, từ discovery đến ra mắt và sau đó. Outsource tập trung vào thực thi: bạn định nghĩa scope, chúng tôi giao hàng minh bạch."
+        },
+        {
+          "q": "Mô hình nào phù hợp với startup giai đoạn đầu?",
+          "a": "Product Partnership phù hợp với team giai đoạn đầu cần đối tác kỹ thuật ở cấp co-founder. Outsource phù hợp với team đã có roadmap rõ ràng và cần năng lực thực thi đáng tin cậy."
+        },
+        {
+          "q": "Quy trình bắt đầu hợp tác như thế nào?",
+          "a": "Gửi brief hoặc đặt lịch call. Chúng tôi sẽ có cuộc trò chuyện discovery trong vòng 2 ngày làm việc, xác nhận sự phù hợp và đề xuất cấu trúc hợp tác phù hợp."
+        },
+        {
+          "q": "Tôi có thể chuyển đổi giữa các mô hình trong quá trình hợp tác không?",
+          "a": "Được. Chúng tôi linh hoạt. Nếu nhu cầu của bạn thay đổi — nhiều quyền sở hữu hơn, ít scope hơn — chúng tôi có thể điều chỉnh cấu trúc hợp tác cùng nhau."
+        },
+        {
+          "q": "Tôi cần chuẩn bị gì trước khi liên hệ?",
+          "a": "Chỉ cần ý tưởng sơ bộ về những gì bạn muốn xây dựng và timeline của bạn. Chúng tôi sẽ giúp bạn cấu trúc phần còn lại trong quá trình discovery."
+        }
+      ]
     }
   }
 }
